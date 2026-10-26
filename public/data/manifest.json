@@ -1,0 +1,72 @@
+{
+  "sources": {
+    "card": [
+      "analysis/09_urban_activity_final/01_consumption/monthly_card_observation.csv",
+      "analysis/09_urban_activity_final/01_consumption/card_episode_a_annual.csv",
+      "analysis/09_urban_activity_final/01_consumption/card_sector_episode_a.csv",
+      "analysis/09_urban_activity_final/01_consumption/card_episode_coverage.csv"
+    ],
+    "sgis": [
+      "analysis/09_urban_activity_final/02_sgis_business/sgis_business_workers_yearly.csv"
+    ],
+    "sbr": [
+      "analysis/09_urban_activity_final/03_sgis_firm_ecosystem/firm_ecosystem_yearly.csv",
+      "analysis/09_urban_activity_final/03_sgis_firm_ecosystem/three_group_hypothesis_test.csv"
+    ],
+    "purpose": [
+      "analysis/09_urban_activity_final/04_purpose_od/purpose_monthly_observed.csv",
+      "analysis/03_purpose_od/commercial/20260928_v02/tables/purpose_origin_yearly_by_origin.csv"
+    ],
+    "rail": [
+      "analysis/09_urban_activity_final/05_rail_and_bus/rail_jeongbalsan_yearly.csv",
+      "analysis/09_urban_activity_final/05_rail_and_bus/rail_jeongbalsan_monthly.csv",
+      "analysis/09_urban_activity_final/05_rail_and_bus/rail_jeongbalsan_timegroups.csv"
+    ],
+    "bus": [
+      "analysis/09_urban_activity_final/05_rail_and_bus/bus_monthly_all_and_fixed18.csv",
+      "analysis/07_bus_stop_activity/20260928_v01/data/janghang2_monthly_by_stop_2020_202607.csv"
+    ],
+    "stcis": [
+      "analysis/08_stcis/20261024_internal_mobility/tables/annual_internal_change.csv",
+      "analysis/08_stcis/20261024_internal_mobility/tables/weekday_saturday_change.csv",
+      "analysis/08_stcis/20261024_internal_mobility/tables/24h_15min_observability.csv",
+      "analysis/08_stcis/20261025_external_mobility/tables/matched_year_pair_window_summary.csv",
+      "analysis/08_stcis/20261025_external_mobility/tables/region_observability_profile.csv",
+      "analysis/08_stcis/20261025_od_synthesis/time_pattern_synthesis.csv"
+    ],
+    "geography": [
+      "analysis/07_bus_stop_activity/data/janghang_legal_dong_vworld_current.geojson",
+      "analysis/07_bus_stop_activity/20260928_v01/data/janghang2_monthly_by_stop_2020_202607.csv"
+    ]
+  },
+  "row_counts": {
+    "card": 0,
+    "sgis": 28,
+    "sbr": 72,
+    "purpose": 144,
+    "rail": 0,
+    "bus": 0,
+    "stcis": 0,
+    "geography": 0
+  },
+  "checks": {
+    "card_2020_janghang2_index": 77.57,
+    "card_2020_goyang_index": 94.18,
+    "sgis_business_2020_2024_pct": -7.56,
+    "sbr_three_group_2024_pct": 36.54,
+    "rail_2025_index": 81.63
+  },
+  "audit_crosschecks": [
+    "sgis_j2_workers_2020_2024",
+    "sgis_j2_workers_2018_2024",
+    "bus_all_2020",
+    "bus_fixed18_2020",
+    "bus_all_2025",
+    "bus_fixed18_2025",
+    "stcis_internal_inbound_2025_2021",
+    "stcis_internal_outbound_2025_2021",
+    "rail_jeongbalsan_2025_2019"
+  ],
+  "status": "PASS",
+  "note": "No missing observation was converted to zero; only verified derived tables were exported."
+}
