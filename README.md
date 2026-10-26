@@ -24,7 +24,7 @@ $env:WEB_TEST_URL='http://127.0.0.1:4173/'
 node scripts/browser_smoke.mjs
 ```
 
-`dist/`가 정적 배포 산출물이다. `vite.config.ts`의 `base: './'`로 GitHub Pages의 하위 경로에서도 JS/CSS와 JSON이 상대 경로로 로드된다. **기존 GitHub 저장소나 사이트에는 배포하지 않았다.** 새 정적 호스팅에 배포하려면 `dist/` 내용을 업로드하거나 별도 저장소의 Pages 빌드 산출물로 사용하면 된다. 호스팅 경로에서 `data/manifest.json`이 HTTP 200인지 확인한다.
+`dist/`가 정적 배포 산출물이다. `vite.config.ts`의 `base: './'`로 GitHub Pages의 하위 경로에서도 JS/CSS와 JSON이 상대 경로로 로드된다. 임시 공개 사이트: **<https://mark8477-create.github.io/janghang2-urban-activity-preview/>**. 별도 저장소의 GitHub Actions가 빌드·배포하며, 실제 공개 사이트에서 페이지와 `data/manifest.json` HTTP 200 및 브라우저 기능 17개를 확인했다. 기존 판교·청라 저장소는 변경하지 않았다.
 
 브라우저 스모크 테스트는 설치된 Google Chrome을 `playwright-core`로 실행한다. Chrome 경로가 다른 PC에서는 `scripts/browser_smoke.mjs`의 `executablePath`를 조정한다. 테스트에 외부 GIS 타일/API는 필요하지 않다.
 
