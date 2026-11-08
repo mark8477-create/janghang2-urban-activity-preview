@@ -1,0 +1,41 @@
+/* PAGE 2 IBM(Carbon) 스타일 — map.css 다음에 불러온다. 지도 캔버스는 데이터 그림이라 Carbon Gray 100 어두운 면을 유지한다. */
+.map-page{background:var(--surface-1,#f4f4f4);color:var(--ink,#161616);padding:32px max(32px,2.2vw) 32px}
+.map-page-heading h1{font-weight:700;font-size:42px;letter-spacing:0;color:var(--ink,#161616)}
+.map-page-heading p:last-child{color:var(--ink-muted,#525252)}
+.map-stage-badge{background:#e0e0e0;color:#161616;border:0;border-radius:0;font-weight:400}
+
+/* 좌우 패널: 흰 타일, 0px, 그림자 없음 */
+.map-sidebar,.map-center{border-radius:0;box-shadow:none;border:1px solid #e0e0e0}
+.map-sidebar section{border-bottom:1px solid #e0e0e0}
+.map-sidebar h2{font-weight:700;color:#161616}
+.map-panel-description{color:#525252}
+.map-sidebar .eyebrow{color:#525252}
+
+/* 선택형 버튼 = Carbon 선택 타일: 기본 흰 면 + 1px 선, 선택 시 연한 블루 면 + 왼쪽 3px 블루 */
+.boundary-options button,.map-control-row button,.map-reset,.map-clear-selection,.data-layer-list button,.flow-list button{border-radius:0;border:1px solid #e0e0e0;background:#fff;color:#161616;font-weight:400}
+.boundary-options button:hover,.map-control-row button:hover,.map-reset:hover,.map-clear-selection:hover,.data-layer-list button:hover,.flow-list button:hover{background:#e8e8e8}
+.boundary-options button[aria-pressed="true"],.data-layer-list button[aria-pressed="true"],.flow-list button[aria-pressed="true"]{background:#edf5ff;border-color:#0f62fe;box-shadow:inset 3px 0 #0f62fe;color:#161616}
+.data-layer-list button small{color:#525252}
+.map-control-row button,.map-reset,.map-clear-selection{text-align:center}
+.map-clear-selection{background:#0f62fe;border-color:#0f62fe;color:#fff}.map-clear-selection:hover{background:#0050e6}
+
+/* 입력: 회색 면 + 아래 선 */
+.play-row button,.play-row select,.layer-select select,.layer-select input{border-radius:0;border:0;border-bottom:1px solid #8d8d8d;background:#f4f4f4;color:#161616}
+.play-row button{border:1px solid #0f62fe;background:#fff;color:#0f62fe}
+.layer-select{color:#525252;font-weight:400}
+.layer-stat{background:#f4f4f4;color:#161616;border-radius:0;border-left:3px solid #0f62fe}
+
+/* 알림 */
+.map-notice{background:#fcf4d6;border:0;border-left:4px solid #f1c21b;border-radius:0;color:#161616}
+.map-caution{background:#fff1f1;border-left:4px solid #da1e28;color:#161616}
+.map-boundary-details h3{color:#161616;font-weight:700;font-size:24px}
+.map-boundary-details dt{color:#525252;font-weight:600}.map-boundary-details dd{color:#161616}
+.map-tile-error{border-radius:0;border:0;border-left:4px solid #f1c21b;background:#fcf4d6;color:#161616}
+
+/* 지도 캔버스 머리·발(Gray 100) */
+.map-center{background:#161616;border-color:#262626}
+.map-center .map-canvas-head,.map-center .map-canvas-foot{background:#161616;border-color:#393939;color:#f4f4f4}
+.map-center .map-canvas-head span,.map-center .map-canvas-foot p{color:#c6c6c6}
+.map-canvas-head strong{font-weight:600}
+.map-canvas-wrap{background:#161616}
+.place-marker span{border-radius:0}

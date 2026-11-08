@@ -16,3 +16,4 @@
 
 `actions/configure-pages`의 `enablement: true`는 기본 `GITHUB_TOKEN`으로는 권한이 부족해 별도 Pages 관리 토큰이 필요하므로 현재 워크플로에 넣지 않았다. 개인 토큰은 사용하지 않았다. 임시 공개를 중단하려면 저장소의 Pages 설정에서 게시를 해제하거나 저장소를 삭제한다.
 
+배포 상태 문서도 커밋 `84966ca96c954153ba19df92eb89735e719254e4`로 갱신했다. 후속 [Actions 실행](https://github.com/mark8477-create/janghang2-urban-activity-preview/actions/runs/40276123501) 역시 전체 성공했고 페이지·데이터 파일 HTTP 200을 다시 확인했다.

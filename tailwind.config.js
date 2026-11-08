@@ -4,4 +4,3 @@ export default {
   theme: { extend: { colors: { ink: '#17252f', teal: '#176b87', rust: '#d66b32' } } },
   plugins: [],
 };
-

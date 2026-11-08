@@ -18,4 +18,12 @@
 신규 공개 저장소 `mark8477-create/janghang2-urban-activity-preview`에 웹 전용 26개 파일을 커밋했다. GitHub Actions의 의존성 설치·프로덕션 빌드는 성공. 첫 실행은 저장소 Pages 미활성화로 `configure-pages`에서 중단됐다. 저장소 소유자의 `Settings → Pages → Source=GitHub Actions` 초기 설정 후 재실행·공개 URL 검증이 남았다. 세부 `GITHUB_PAGES_DEPLOYMENT.md`.
 
 사용자 설정 후 실행 `40275348950`의 두 번째 시도가 전체 성공했다. 공개 사이트 `https://mark8477-create.github.io/janghang2-urban-activity-preview/`의 페이지·데이터 HTTP 200, Chrome 17/17 PASS를 확인했다. 원격 배포 단계 완료.
+# 2026-10-26 로컬 연구 결과 중심 개편
+
+- 시작 전 원본 보존: `archives/20261026_before_findings_redesign.zip` (SHA-256은 `REDESIGN_HANDOFF.md` 참조).
+- 기존 웹·웹 JSON·감사 보고서 확인 후 핵심 결과, 시기별 비교 가능 기간, 대표 근거 그래프, 종합 해석, 상세 탐색 탭으로 재구성했다.
+- 기존 소비·SGIS/SBR·목적 OD·STCIS·철도·버스 차트, 필터, 지도, 표·CSV·PNG 기능 유지.
+- 검증: `npm run build` 통과, `verify_story_metrics.py` 8개 대표 수치 일치, 프로덕션 브라우저 23/23 통과.
+- 원격 배포 상태: **이번 개편 미배포**. 공개 URL은 기존 버전일 수 있다.
+- 완료 범위와 재실행 명령은 `REDESIGN_HANDOFF.md` 참조.
 

@@ -27,4 +27,3 @@ node scripts/browser_smoke.mjs
 사용자가 새 저장소 `mark8477-create/janghang2-urban-activity-preview`를 생성했다. GitHub 연결 도구로 웹 전용 26파일을 `main` 커밋 `770613259242b5ef7da67b65d5f3549a585ca511`에 올렸다. Actions 실행 ID `40275348950`: `npm ci`·`npm run build` 성공, `actions/configure-pages@v5`만 Pages 사이트 미활성화(404)로 실패. 저장소 Pages 설정 도구가 없어 사용자에게 `Settings → Pages → Source=GitHub Actions` 1회 설정을 요청했다. **사용자 설정 응답이 오면** GitHub 연결 도구 `github_rerun_failed_workflow_run_jobs`로 실행 `40275348950`을 다시 돌리고 Pages URL·매니페스트 HTTP 200 및 브라우저 화면을 확인한다. 상세 `GITHUB_PAGES_DEPLOYMENT.md`. 원본·분석 파일은 GitHub에 올리지 않았다.
 
 위 초기 설정은 2026-10-26 사용자가 완료했다. 실행 `40275348950` 두 번째 시도 성공, 공개 URL `https://mark8477-create.github.io/janghang2-urban-activity-preview/`의 페이지·매니페스트 HTTP 200과 Chrome 17/17 검사를 확인했다. GitHub Pages 배포 완료. 추가 원본 데이터는 올리지 않았다.
-

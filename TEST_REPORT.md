@@ -20,4 +20,12 @@
 - 브라우저 기능은 로컬 프로덕션 미리보기와 `https://mark8477-create.github.io/janghang2-urban-activity-preview/`에서 각각 확인했다. 공개 사이트도 17/17 스모크 검사와 페이지·매니페스트 HTTP 200을 통과했다. 배포 이력은 `GITHUB_PAGES_DEPLOYMENT.md`.
 - 공간도는 검증된 현행 법정 경계·정류소 점을 보여주는 SVG다. 배경 지도 타일이나 역사적 행정경계는 제공하지 않는다.
 - 표/CSV/PNG는 현재 차트의 표시값을 내보낸다. 공급 정의가 미확인인 지표의 경제적 해석까지 검증한 것은 아니다.
+# 2026-10-26 연구 결과 중심 개편 추가 검증
+
+- 이전 화면 ZIP 보존 및 SHA-256 확인: `archives/20261026_before_findings_redesign.zip`.
+- `npm run build`: 통과. TypeScript 오류 없음. ECharts 포함 번들 >500 kB 경고는 성능 개선 후보이며 기능 오류는 아니다.
+- `python scripts/verify_story_metrics.py`: 개편 대표 지표 8건(카드 2, SGIS 2, SBR 1, 철도 1, STCIS 2) 감사 원표와 일치; STCIS 각 연도 24대표일 확인.
+- `WEB_TEST_URL=http://127.0.0.1:4174/ node scripts/browser_smoke.mjs`: 로컬 프로덕션 빌드에서 23/23 통과. 기간 선택, 핵심 결과에서 탐색 탭 이동, 기존 필터·표·CSV·PNG, 목적 OD 결측, 지도, 모바일 차트와 가로 넘침 없음 확인. 브라우저 콘솔 및 페이지 오류 없음.
+- `test_desktop.png`, `test_mobile.png`: 개편 화면의 브라우저 스크린샷. 전체 페이지 캡처에는 화면에 진입하지 않은 탭의 차트가 표시되지 않으며, 탭 전환 시 로드·동작함을 테스트에서 확인했다.
+- 원격 GitHub Pages는 이번 개편을 배포하지 않았으므로 원격 개편 화면 테스트는 실시하지 않았다.
 

@@ -14,4 +14,3 @@
 | `geography.json` | `analysis/07_bus_stop_activity/data/janghang_legal_dong_vworld_current.geojson`; 위 버스 정류소별 표 좌표 | VWorld 현행 법정 장항동 경계(2026-09-28 조회); 버스 연도별 TAGO 좌표/SGIS 행정경계 선별 | 좌표 그대로 SVG 투영. 경계 기준연도 미확인·장항2동 행정경계와 다름을 지도에 표기. 가상 OD 연결·지도 타일 생성 없음. |
 
 생성기는 카드, SGIS 사업체·종사자, SBR, 정발산역, 버스 전체·고정 패널, STCIS 내부 고정 패널의 핵심 수치를 감사 원표에 대조한다. `manifest.json`의 `status=PASS`가 생성 당시 검사 통과를 뜻한다. 제공기관 미확인 메타데이터의 검증을 뜻하지 않는다.
-

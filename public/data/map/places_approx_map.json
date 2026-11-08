@@ -1,0 +1,77 @@
+{
+ "schema_version": "places-approx-1",
+ "coordinate_crs": "EPSG:4326",
+ "source_crs": "EPSG:5174",
+ "source": "PROM 토지정보 서비스 — 사용자가 시설 구역을 직접 그리고 해당 필지만 선택해 다운로드(파일 날짜 2026-09-17). 공식 상권 경계 아님.",
+ "method": "union of all 구역계.shp zones per facility (duplicate label versions included) -> centroid -> WGS84",
+ "render_rule": "Render only as an approximate location marker; not a commercial boundary or official facility point.",
+ "records": [
+  {
+   "name": "라페스타",
+   "coordinates": [
+    126.7685988,
+    37.6611514
+   ],
+   "coordinate_status": "APPROXIMATE_ZONE_CENTROID_UNVERIFIED",
+   "zone_files": 9,
+   "distinct_zones": 8,
+   "union_area_m2": 21900,
+   "covered_parcels": [
+    "경기도 고양시 일산동구 장항동 761-1대",
+    "경기도 고양시 일산동구 장항동 761-2대",
+    "경기도 고양시 일산동구 장항동 761-3대",
+    "경기도 고양시 일산동구 장항동 761대",
+    "경기도 고양시 일산동구 장항동 763-1대",
+    "경기도 고양시 일산동구 장항동 763-2대",
+    "경기도 고양시 일산동구 장항동 763-3대",
+    "경기도 고양시 일산동구 장항동 763대",
+    "경기도 고양시 일산동구 장항동 764-1대",
+    "경기도 고양시 일산동구 장항동 764-2대",
+    "경기도 고양시 일산동구 장항동 764-3대",
+    "경기도 고양시 일산동구 장항동 764대",
+    "경기도 고양시 일산동구 장항동 765-1대",
+    "경기도 고양시 일산동구 장항동 765-2대",
+    "경기도 고양시 일산동구 장항동 765-3대",
+    "경기도 고양시 일산동구 장항동 765대",
+    "경기도 고양시 일산동구 장항동 766-1대",
+    "경기도 고양시 일산동구 장항동 766-2대",
+    "경기도 고양시 일산동구 장항동 766-3대",
+    "경기도 고양시 일산동구 장항동 766대",
+    "경기도 고양시 일산동구 장항동 768-1대",
+    "경기도 고양시 일산동구 장항동 768-2대",
+    "경기도 고양시 일산동구 장항동 768-3대",
+    "경기도 고양시 일산동구 장항동 768대"
+   ],
+   "evidence_files": [
+    "data/raw/prom_geometry/라페스타 C동_geometry/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/라페스타A동_geometry/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/라페스타A동_geometry_2/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/라페스타B동_geomertry/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/라페스타B동_geometry_2/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/라페스타C동_geometry_2/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/라페스타D동_geometry/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/라페스타E동_geometry/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/라페스타F동_geometry/01_구역계/구역계.shp"
+   ]
+  },
+  {
+   "name": "웨스턴돔",
+   "coordinates": [
+    126.7723141,
+    37.655335
+   ],
+   "coordinate_status": "APPROXIMATE_ZONE_CENTROID_UNVERIFIED",
+   "zone_files": 2,
+   "distinct_zones": 2,
+   "union_area_m2": 30648,
+   "covered_parcels": [
+    "경기도 고양시 일산동구 장항동 867대",
+    "경기도 고양시 일산동구 장항동 868대"
+   ],
+   "evidence_files": [
+    "data/raw/prom_geometry/웨스턴돔A동_geometry/01_구역계/구역계.shp",
+    "data/raw/prom_geometry/웨스턴돔B동_geomery/01_구역계/구역계.shp"
+   ]
+  }
+ ]
+}

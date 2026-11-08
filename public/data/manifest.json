@@ -9,9 +9,9 @@
     "sgis": [
       "analysis/09_urban_activity_final/02_sgis_business/sgis_business_workers_yearly.csv"
     ],
-    "sbr": [
-      "analysis/09_urban_activity_final/03_sgis_firm_ecosystem/firm_ecosystem_yearly.csv",
-      "analysis/09_urban_activity_final/03_sgis_firm_ecosystem/three_group_hypothesis_test.csv"
+    "mois": [
+      "analysis/mois_industry_change_analysis/industry_change_analysis.csv",
+      "analysis/mois_industry_change_analysis/core_instant_sensitivity.csv"
     ],
     "purpose": [
       "analysis/09_urban_activity_final/04_purpose_od/purpose_monthly_observed.csv",
@@ -37,23 +37,31 @@
     "geography": [
       "analysis/07_bus_stop_activity/data/janghang_legal_dong_vworld_current.geojson",
       "analysis/07_bus_stop_activity/20260928_v01/data/janghang2_monthly_by_stop_2020_202607.csv"
+    ],
+    "stage4_summary": [
+      "analysis/03_purpose_od/commercial/20260928_v02/tables/purpose_origin_yearly_by_origin.csv",
+      "analysis/09_urban_activity_final/04_purpose_od/purpose_yearly_comparisons.csv",
+      "analysis/09_urban_activity_final/05_rail_and_bus/rail_jeongbalsan_monthly.csv",
+      "analysis/08_stcis/20261024_internal_mobility/tables/annual_internal_change.csv",
+      "analysis/07_bus_stop_activity/20260928_v01/data/janghang2_monthly_by_stop_2020_202607.csv"
     ]
   },
   "row_counts": {
     "card": 0,
     "sgis": 28,
-    "sbr": 72,
+    "mois": 3168,
     "purpose": 144,
     "rail": 0,
     "bus": 0,
     "stcis": 0,
-    "geography": 0
+    "geography": 0,
+    "stage4_summary": 1
   },
   "checks": {
     "card_2020_janghang2_index": 77.57,
     "card_2020_goyang_index": 94.18,
     "sgis_business_2020_2024_pct": -7.56,
-    "sbr_three_group_2024_pct": 36.54,
+    "mois_core_2024": 344,
     "rail_2025_index": 81.63
   },
   "audit_crosschecks": [

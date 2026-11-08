@@ -1,0 +1,156 @@
+/* ─────────────────────────────────────────────────────────────
+   IBM(Carbon) 스타일 테마 — design/IBM_DESIGN.md (VoltAgent/awesome-design-md, MIT) 기반
+   공식 IBM 디자인 시스템이 아닌 공개 CSS 분석본을 참고한 '디자인 규칙'만 적용. 로고·브랜드명은 쓰지 않음.
+   - 흰 캔버스 / #f4f4f4 면 / 차콜 #161616 글자 / IBM Blue #0f62fe 단일 강조
+   - 모서리 0px, 그림자 없음, 1px #e0e0e0 선으로 위계
+   - IBM Plex Sans KR(한글) + IBM Plex Sans, 큰 제목 300, 본문 16px · 자간 0.16px
+   ───────────────────────────────────────────────────────────── */
+/* 글꼴은 index.html 의 <link> 로 불러온다(합쳐진 CSS 중간의 @import 는 브라우저가 무시하므로). */
+
+:root{
+  --ibm-blue:#0f62fe; --ibm-blue-hover:#0050e6; --ibm-blue-60:#0043ce; --ibm-blue-80:#002d9c; --ibm-blue-10:#edf5ff;
+  --ink:#161616; --ink-muted:#525252; --ink-subtle:#8c8c8c;
+  --canvas:#ffffff; --surface-1:#f4f4f4; --surface-2:#e0e0e0; --hairline:#e0e0e0;
+  --inverse:#161616; --inverse-2:#262626; --inverse-ink-muted:#c6c6c6;
+  --success:#24a148; --warning:#f1c21b; --error:#da1e28;
+  font-family:'IBM Plex Sans KR','IBM Plex Sans','Helvetica Neue',Arial,sans-serif;
+  color:var(--ink); background:var(--canvas);
+}
+body{letter-spacing:.16px;color:var(--ink);background:var(--canvas)}
+button,select,input{font-family:inherit;letter-spacing:.16px}
+a{color:var(--ibm-blue);text-underline-offset:3px}a:hover{color:var(--ibm-blue-60)}
+
+/* 셸 헤더(Carbon UI shell, Gray 100 · 48px) */
+.page-navigation{height:48px;background:var(--inverse);border-bottom:1px solid var(--inverse-2);box-shadow:none}
+.page-navigation-inner{width:min(1584px,calc(100% - 64px))}
+.page-navigation-inner>strong{font-weight:600;font-size:14px;letter-spacing:.16px}
+.page-navigation-inner>small{color:var(--inverse-ink-muted);letter-spacing:.32px;font-size:12px}
+.page-navigation-links>span{color:#525252}
+.page-navigation-links button{color:var(--inverse-ink-muted);font-weight:400;padding:0 16px;border-bottom:2px solid transparent}
+.page-navigation-links button:hover{background:#353535;color:#fff}
+.page-navigation-links button.active{background:var(--inverse-2);color:#fff;border-bottom-color:var(--ibm-blue)}
+.top-nav{top:48px!important}
+
+/* 히어로: 흰 캔버스 + 옅은 블루 그라데이션, 얇은 큰 제목 */
+.hero{background:linear-gradient(180deg,var(--ibm-blue-10) 0%,#fff 100%);color:var(--ink);border-bottom:1px solid var(--hairline)}
+.hero .eyebrow{color:var(--ink-muted)}
+.hero h1{font-weight:300;letter-spacing:-.5px;color:var(--ink)}
+.hero h1 em{color:var(--ibm-blue);font-weight:300}
+.hero-copy{color:var(--ink-muted);font-size:18px}
+.hero-thesis{color:var(--ink);border-left:3px solid var(--ibm-blue);font-weight:400;font-size:18px}
+.hero-link{background:var(--ibm-blue);border:0;border-radius:0;padding:14px 16px;font-weight:400;font-size:14px}
+.hero-link:hover{background:var(--ibm-blue-hover)}
+.hero-note{background:#fff;border:1px solid var(--hairline);border-radius:0;color:var(--ink-muted)}
+.hero-note strong{color:var(--ink);font-weight:600}
+
+/* 섹션 내비(탭 스트립) */
+.top-nav{background:#fff;border-bottom:1px solid var(--hairline);box-shadow:none}
+.nav-inner{width:min(1584px,calc(100% - 64px))}
+.nav-inner button{color:var(--ink-muted);padding:14px 20px;border-bottom:2px solid transparent}
+.nav-inner button:hover{color:var(--ink);background:var(--surface-1)}
+.nav-inner button.active{color:var(--ink);font-weight:600;border-color:var(--ibm-blue)}
+
+/* 섹션 리듬: 캔버스 ↔ surface-1 */
+.container{width:min(1584px,calc(100% - 64px))}
+.section{padding:80px 0}
+.section-tint{background:var(--surface-1)}
+.section-dark{background:var(--surface-1);color:var(--ink)}
+.section-dark .section-heading>p{color:var(--ink-muted)}
+.section-heading h2{font-weight:300;font-size:clamp(30px,3.2vw,42px);letter-spacing:0;line-height:1.2}
+.section-heading>p{color:var(--ink-muted)}
+.eyebrow,.kicker{color:var(--ink-muted);font-weight:400;font-size:14px;letter-spacing:.16px}
+
+/* 타일(카드): 0px, 그림자 없음, 1px 선 */
+.stat-card,.panel,.load-state,.evidence-cards>div,.conclusion-grid>div,.ts-kpis>div,.ts-finding,.ts-cause,.morning-card{border-radius:0;box-shadow:none;border:1px solid var(--hairline);background:#fff}
+.panel h3{font-weight:400;color:var(--ink)}
+.panel p{color:var(--ink-muted)}
+.stat-card{border-top:3px solid var(--ibm-blue)}
+.stat-card strong,.ts-kpis strong,.evidence-cards strong,.fact{font-weight:300;color:var(--ink)!important;letter-spacing:0}
+.ts-kpis strong{font-size:28px}
+.ts-kpis span,.stat-card span,.evidence-cards b{color:var(--ink-muted);font-weight:400}
+.accent-orange{border-top-color:#8a3ffc}.accent-green{border-top-color:var(--success)}.accent-purple{border-top-color:#6929c4}
+
+/* 연구 범위(이전 어두운 섹션) */
+.step{border-bottom:1px solid var(--hairline)}
+.step b{color:var(--ibm-blue);font-weight:300;font-size:24px}
+.step h3{font-weight:400}.step p{color:var(--ink-muted)}
+.scope-note{border-left:3px solid var(--ibm-blue);background:#fff;color:var(--ink-muted)}
+.scope-note.light{background:var(--ibm-blue-10);color:var(--ink)}
+.map-panel{border-radius:0;border:1px solid var(--hairline);background:var(--inverse)}
+.map-title,.map-legend{color:var(--inverse-ink-muted)}
+
+/* 주장 블록(Carbon info 알림) */
+.story-claim{background:#fff;border:1px solid var(--hairline);border-left:4px solid var(--ibm-blue);padding:24px}
+.story-claim span{color:var(--ink-muted);font-weight:600;letter-spacing:.16px}
+.story-claim h3{font-weight:300;font-size:26px;color:var(--ink);line-height:1.35}
+.story-claim p{color:var(--ink-muted)}
+.story-claim p b{color:var(--ink);font-weight:600}
+
+/* 차트 주석·메타 */
+.chart-note{background:var(--surface-1)!important;border-left:3px solid #8d8d8d!important;color:var(--ink-muted)!important;border-radius:0}
+.chart-meta{color:var(--ink-subtle)!important}
+
+/* 버튼 */
+.chart-actions button{border:1px solid var(--ibm-blue);background:#fff;color:var(--ibm-blue);border-radius:0;padding:7px 12px}
+.chart-actions button:hover{background:var(--ibm-blue-10)}
+.story-after button,.map-page-cta a,.page-not-found button{background:var(--ibm-blue);border:0;border-radius:0;color:#fff;font-weight:400;padding:14px 16px}
+.story-after button:hover,.map-page-cta a:hover{background:var(--ibm-blue-hover)}
+.story-after>div{background:#fff;border:1px solid var(--hairline);border-radius:0}
+.story-after b{color:var(--ink);font-weight:600}
+footer button{border-radius:0}
+
+/* 입력(Carbon: 회색 면 + 아래 선, 0px) */
+.selector{color:var(--ink-muted);font-weight:400}
+.selector select{background:var(--surface-1);border:0;border-bottom:1px solid #8d8d8d;border-radius:0;color:var(--ink);padding:11px 36px 11px 16px}
+.selector select:focus{outline:2px solid var(--ibm-blue);outline-offset:-2px}
+
+/* 탭 */
+.explorer-tabs{border-bottom:1px solid var(--hairline)}
+.explorer-tabs button{color:var(--ink-muted);padding:14px 20px;border-bottom:2px solid transparent}
+.explorer-tabs button[aria-selected="true"]{color:var(--ink);border-color:var(--ibm-blue);background:transparent;font-weight:600}
+
+/* 표(Carbon data table) */
+th{background:var(--surface-2);color:var(--ink);font-weight:600}
+td{border-bottom:1px solid var(--hairline)}
+.table-scroll{border-radius:0;border-color:var(--hairline)}
+.evidence-table-wrap{border-radius:0;border-color:var(--hairline);background:#fff}
+.evidence-table th{background:var(--surface-2)}
+.evidence-table th:first-child,.evidence-table td:first-child{color:var(--ink);font-weight:600}
+.comparison-table th{background:var(--surface-2);color:var(--ink)}
+
+/* 시계열 섹션 */
+.ts-finding{border-top:3px solid var(--ibm-blue)}
+.ts-finding-orange{border-top-color:var(--error)}.ts-finding-gray{border-top-color:#8d8d8d}.ts-finding-green{border-top-color:var(--success)}
+.ts-finding b{color:var(--ink);font-weight:600}.ts-finding p{color:var(--ink-muted)}
+.ts-cause{border-left-width:4px}
+.ts-cause-ext{border-left-color:var(--error)}.ts-cause-amp{border-left-color:#ff832b}.ts-cause-int{border-left-color:var(--ibm-blue)}.ts-cause-str{border-left-color:#8d8d8d}
+.ts-cause span{color:var(--ink-muted);letter-spacing:.16px;font-weight:600}.ts-cause h4{font-weight:400;color:var(--ink)}.ts-cause p{color:var(--ink-muted)}
+.ts-open{background:#fcf4d6;border:0;border-left:4px solid var(--warning);border-radius:0;color:var(--ink)}
+.ts-down{color:var(--error)}.ts-up{color:var(--success)}.ts-worse{color:var(--error)}.ts-better{color:var(--success)}
+.ts-na{color:var(--ink-subtle)}
+.ts-matched>b{color:var(--ink);font-weight:600}
+.synthesis-method{color:var(--ink-muted)}
+.map-cross-links a{border:1px solid var(--ibm-blue);border-radius:0;background:#fff;color:var(--ibm-blue);font-weight:400}
+.map-cross-links a:hover{background:var(--ibm-blue-10)}
+
+/* CTA 배너(Carbon cta-banner) */
+.map-page-cta{background:var(--ibm-blue);border:0;border-radius:0;padding:48px;color:#fff}
+.map-page-cta p{color:#fff;font-size:18px;font-weight:300}
+.map-page-cta a{background:#fff;color:var(--ibm-blue)}
+.map-page-cta a:hover{background:var(--ibm-blue-10);color:var(--ibm-blue-60)}
+
+/* 푸터(유일한 반전 면) */
+footer{background:var(--inverse);color:var(--inverse-ink-muted);padding:48px 0}
+footer strong{font-weight:600}
+footer button{border-color:#6f6f6f;color:#f4f4f4}
+
+/* 포커스 */
+button:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--ibm-blue)!important;outline-offset:-2px}
+
+@media(max-width:720px){.container,.nav-inner,.page-navigation-inner{width:calc(100% - 32px)}.map-page-cta{padding:28px}.story-claim h3{font-size:21px}}
+
+/* 2026-11-04 제목 굵게: 얇은 300/400 제목이 잘 안 보인다는 요청으로 제목류만 굵게 */
+.hero h1,.hero h1 em,.section-heading h2{font-weight:700}
+.story-claim h3,.map-page-cta p{font-weight:700}
+.panel h3,.step h3,.ts-cause h4{font-weight:600}
+.step b{font-weight:600}

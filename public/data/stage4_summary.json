@@ -1,0 +1,1568 @@
+{
+  "purpose": [
+    {
+      "year": 2023,
+      "total": 461358.66,
+      "common232": 260152.42,
+      "shopping": 2720.38,
+      "originCodes": 244
+    },
+    {
+      "year": 2024,
+      "total": 403366.93,
+      "common232": 238801.05,
+      "shopping": 1473.66,
+      "originCodes": 272
+    }
+  ],
+  "bus": [
+    {
+      "year": 2020,
+      "all": 7154946,
+      "fixed18": 6566931,
+      "sensitivity12": 4023788
+    },
+    {
+      "year": 2021,
+      "all": 6191347,
+      "fixed18": 5693523,
+      "sensitivity12": 3528013
+    },
+    {
+      "year": 2022,
+      "all": 3872169,
+      "fixed18": 3872169,
+      "sensitivity12": 2396075
+    },
+    {
+      "year": 2023,
+      "all": 3390768,
+      "fixed18": 3374841,
+      "sensitivity12": 2065545
+    },
+    {
+      "year": 2024,
+      "all": 4912310,
+      "fixed18": 4524008,
+      "sensitivity12": 2831401
+    },
+    {
+      "year": 2025,
+      "all": 6002763,
+      "fixed18": 5482095,
+      "sensitivity12": 3478625
+    },
+    {
+      "year": 2026,
+      "all": 3533182,
+      "fixed18": 3190889,
+      "sensitivity12": 1996289
+    }
+  ],
+  "busMonthly": [
+    {
+      "month": "2020-01",
+      "all": {
+        "boardings": 415244,
+        "alightings": 382720,
+        "total": 797964
+      },
+      "fixed18": {
+        "boardings": 386816,
+        "alightings": 344673,
+        "total": 731489
+      },
+      "sensitivity12": {
+        "boardings": 213365,
+        "alightings": 233357,
+        "total": 446722
+      }
+    },
+    {
+      "month": "2020-02",
+      "all": {
+        "boardings": 337050,
+        "alightings": 312099,
+        "total": 649149
+      },
+      "fixed18": {
+        "boardings": 313435,
+        "alightings": 281744,
+        "total": 595179
+      },
+      "sensitivity12": {
+        "boardings": 172805,
+        "alightings": 190326,
+        "total": 363131
+      }
+    },
+    {
+      "month": "2020-03",
+      "all": {
+        "boardings": 285331,
+        "alightings": 262054,
+        "total": 547385
+      },
+      "fixed18": {
+        "boardings": 264832,
+        "alightings": 235894,
+        "total": 500726
+      },
+      "sensitivity12": {
+        "boardings": 147470,
+        "alightings": 159092,
+        "total": 306562
+      }
+    },
+    {
+      "month": "2020-04",
+      "all": {
+        "boardings": 296999,
+        "alightings": 275997,
+        "total": 572996
+      },
+      "fixed18": {
+        "boardings": 276348,
+        "alightings": 249035,
+        "total": 525383
+      },
+      "sensitivity12": {
+        "boardings": 154435,
+        "alightings": 167814,
+        "total": 322249
+      }
+    },
+    {
+      "month": "2020-05",
+      "all": {
+        "boardings": 327690,
+        "alightings": 306547,
+        "total": 634237
+      },
+      "fixed18": {
+        "boardings": 304965,
+        "alightings": 276300,
+        "total": 581265
+      },
+      "sensitivity12": {
+        "boardings": 169780,
+        "alightings": 185754,
+        "total": 355534
+      }
+    },
+    {
+      "month": "2020-06",
+      "all": {
+        "boardings": 329084,
+        "alightings": 307328,
+        "total": 636412
+      },
+      "fixed18": {
+        "boardings": 306879,
+        "alightings": 277837,
+        "total": 584716
+      },
+      "sensitivity12": {
+        "boardings": 170727,
+        "alightings": 187647,
+        "total": 358374
+      }
+    },
+    {
+      "month": "2020-07",
+      "all": {
+        "boardings": 350168,
+        "alightings": 326650,
+        "total": 676818
+      },
+      "fixed18": {
+        "boardings": 326498,
+        "alightings": 294571,
+        "total": 621069
+      },
+      "sensitivity12": {
+        "boardings": 182932,
+        "alightings": 200943,
+        "total": 383875
+      }
+    },
+    {
+      "month": "2020-08",
+      "all": {
+        "boardings": 288304,
+        "alightings": 269939,
+        "total": 558243
+      },
+      "fixed18": {
+        "boardings": 268678,
+        "alightings": 243415,
+        "total": 512093
+      },
+      "sensitivity12": {
+        "boardings": 150284,
+        "alightings": 165653,
+        "total": 315937
+      }
+    },
+    {
+      "month": "2020-09",
+      "all": {
+        "boardings": 260031,
+        "alightings": 240105,
+        "total": 500136
+      },
+      "fixed18": {
+        "boardings": 242844,
+        "alightings": 217915,
+        "total": 460759
+      },
+      "sensitivity12": {
+        "boardings": 135726,
+        "alightings": 146560,
+        "total": 282286
+      }
+    },
+    {
+      "month": "2020-10",
+      "all": {
+        "boardings": 299809,
+        "alightings": 284650,
+        "total": 584459
+      },
+      "fixed18": {
+        "boardings": 279619,
+        "alightings": 257336,
+        "total": 536955
+      },
+      "sensitivity12": {
+        "boardings": 156373,
+        "alightings": 173771,
+        "total": 330144
+      }
+    },
+    {
+      "month": "2020-11",
+      "all": {
+        "boardings": 290451,
+        "alightings": 274145,
+        "total": 564596
+      },
+      "fixed18": {
+        "boardings": 270856,
+        "alightings": 248500,
+        "total": 519356
+      },
+      "sensitivity12": {
+        "boardings": 149268,
+        "alightings": 167203,
+        "total": 316471
+      }
+    },
+    {
+      "month": "2020-12",
+      "all": {
+        "boardings": 223643,
+        "alightings": 208908,
+        "total": 432551
+      },
+      "fixed18": {
+        "boardings": 207971,
+        "alightings": 189970,
+        "total": 397941
+      },
+      "sensitivity12": {
+        "boardings": 115154,
+        "alightings": 127349,
+        "total": 242503
+      }
+    },
+    {
+      "month": "2021-01",
+      "all": {
+        "boardings": 231323,
+        "alightings": 218833,
+        "total": 450156
+      },
+      "fixed18": {
+        "boardings": 214125,
+        "alightings": 198063,
+        "total": 412188
+      },
+      "sensitivity12": {
+        "boardings": 119564,
+        "alightings": 133501,
+        "total": 253065
+      }
+    },
+    {
+      "month": "2021-02",
+      "all": {
+        "boardings": 245798,
+        "alightings": 234278,
+        "total": 480076
+      },
+      "fixed18": {
+        "boardings": 227393,
+        "alightings": 211291,
+        "total": 438684
+      },
+      "sensitivity12": {
+        "boardings": 129476,
+        "alightings": 144761,
+        "total": 274237
+      }
+    },
+    {
+      "month": "2021-03",
+      "all": {
+        "boardings": 295570,
+        "alightings": 274131,
+        "total": 569701
+      },
+      "fixed18": {
+        "boardings": 273955,
+        "alightings": 248101,
+        "total": 522056
+      },
+      "sensitivity12": {
+        "boardings": 152179,
+        "alightings": 167317,
+        "total": 319496
+      }
+    },
+    {
+      "month": "2021-04",
+      "all": {
+        "boardings": 292989,
+        "alightings": 269052,
+        "total": 562041
+      },
+      "fixed18": {
+        "boardings": 272315,
+        "alightings": 243757,
+        "total": 516072
+      },
+      "sensitivity12": {
+        "boardings": 151941,
+        "alightings": 164917,
+        "total": 316858
+      }
+    },
+    {
+      "month": "2021-05",
+      "all": {
+        "boardings": 288203,
+        "alightings": 265539,
+        "total": 553742
+      },
+      "fixed18": {
+        "boardings": 266726,
+        "alightings": 239152,
+        "total": 505878
+      },
+      "sensitivity12": {
+        "boardings": 151746,
+        "alightings": 163341,
+        "total": 315087
+      }
+    },
+    {
+      "month": "2021-06",
+      "all": {
+        "boardings": 293577,
+        "alightings": 273044,
+        "total": 566621
+      },
+      "fixed18": {
+        "boardings": 271865,
+        "alightings": 245820,
+        "total": 517685
+      },
+      "sensitivity12": {
+        "boardings": 151756,
+        "alightings": 166458,
+        "total": 318214
+      }
+    },
+    {
+      "month": "2021-07",
+      "all": {
+        "boardings": 281558,
+        "alightings": 264058,
+        "total": 545616
+      },
+      "fixed18": {
+        "boardings": 259300,
+        "alightings": 237889,
+        "total": 497189
+      },
+      "sensitivity12": {
+        "boardings": 147767,
+        "alightings": 163040,
+        "total": 310807
+      }
+    },
+    {
+      "month": "2021-08",
+      "all": {
+        "boardings": 269965,
+        "alightings": 253291,
+        "total": 523256
+      },
+      "fixed18": {
+        "boardings": 248426,
+        "alightings": 227615,
+        "total": 476041
+      },
+      "sensitivity12": {
+        "boardings": 142238,
+        "alightings": 155882,
+        "total": 298120
+      }
+    },
+    {
+      "month": "2021-09",
+      "all": {
+        "boardings": 266281,
+        "alightings": 250182,
+        "total": 516463
+      },
+      "fixed18": {
+        "boardings": 246125,
+        "alightings": 225631,
+        "total": 471756
+      },
+      "sensitivity12": {
+        "boardings": 140170,
+        "alightings": 153860,
+        "total": 294030
+      }
+    },
+    {
+      "month": "2021-10",
+      "all": {
+        "boardings": 280693,
+        "alightings": 264003,
+        "total": 544696
+      },
+      "fixed18": {
+        "boardings": 260780,
+        "alightings": 239547,
+        "total": 500327
+      },
+      "sensitivity12": {
+        "boardings": 148197,
+        "alightings": 162675,
+        "total": 310872
+      }
+    },
+    {
+      "month": "2021-11",
+      "all": {
+        "boardings": 281016,
+        "alightings": 264771,
+        "total": 545787
+      },
+      "fixed18": {
+        "boardings": 262404,
+        "alightings": 240051,
+        "total": 502455
+      },
+      "sensitivity12": {
+        "boardings": 147238,
+        "alightings": 163650,
+        "total": 310888
+      }
+    },
+    {
+      "month": "2021-12",
+      "all": {
+        "boardings": 188633,
+        "alightings": 144559,
+        "total": 333192
+      },
+      "fixed18": {
+        "boardings": 188633,
+        "alightings": 144559,
+        "total": 333192
+      },
+      "sensitivity12": {
+        "boardings": 107660,
+        "alightings": 98679,
+        "total": 206339
+      }
+    },
+    {
+      "month": "2022-01",
+      "all": {
+        "boardings": 172677,
+        "alightings": 132618,
+        "total": 305295
+      },
+      "fixed18": {
+        "boardings": 172677,
+        "alightings": 132618,
+        "total": 305295
+      },
+      "sensitivity12": {
+        "boardings": 99420,
+        "alightings": 90504,
+        "total": 189924
+      }
+    },
+    {
+      "month": "2022-02",
+      "all": {
+        "boardings": 148856,
+        "alightings": 113581,
+        "total": 262437
+      },
+      "fixed18": {
+        "boardings": 148856,
+        "alightings": 113581,
+        "total": 262437
+      },
+      "sensitivity12": {
+        "boardings": 84929,
+        "alightings": 77206,
+        "total": 162135
+      }
+    },
+    {
+      "month": "2022-03",
+      "all": {
+        "boardings": 163947,
+        "alightings": 122998,
+        "total": 286945
+      },
+      "fixed18": {
+        "boardings": 163947,
+        "alightings": 122998,
+        "total": 286945
+      },
+      "sensitivity12": {
+        "boardings": 92708,
+        "alightings": 82633,
+        "total": 175341
+      }
+    },
+    {
+      "month": "2022-04",
+      "all": {
+        "boardings": 192616,
+        "alightings": 141630,
+        "total": 334246
+      },
+      "fixed18": {
+        "boardings": 192616,
+        "alightings": 141630,
+        "total": 334246
+      },
+      "sensitivity12": {
+        "boardings": 110244,
+        "alightings": 96010,
+        "total": 206254
+      }
+    },
+    {
+      "month": "2022-05",
+      "all": {
+        "boardings": 205534,
+        "alightings": 155212,
+        "total": 360746
+      },
+      "fixed18": {
+        "boardings": 205534,
+        "alightings": 155212,
+        "total": 360746
+      },
+      "sensitivity12": {
+        "boardings": 118387,
+        "alightings": 106029,
+        "total": 224416
+      }
+    },
+    {
+      "month": "2022-06",
+      "all": {
+        "boardings": 191755,
+        "alightings": 143680,
+        "total": 335435
+      },
+      "fixed18": {
+        "boardings": 191755,
+        "alightings": 143680,
+        "total": 335435
+      },
+      "sensitivity12": {
+        "boardings": 109023,
+        "alightings": 97753,
+        "total": 206776
+      }
+    },
+    {
+      "month": "2022-07",
+      "all": {
+        "boardings": 203746,
+        "alightings": 157781,
+        "total": 361527
+      },
+      "fixed18": {
+        "boardings": 203746,
+        "alightings": 157781,
+        "total": 361527
+      },
+      "sensitivity12": {
+        "boardings": 118354,
+        "alightings": 108726,
+        "total": 227080
+      }
+    },
+    {
+      "month": "2022-08",
+      "all": {
+        "boardings": 189991,
+        "alightings": 144589,
+        "total": 334580
+      },
+      "fixed18": {
+        "boardings": 189991,
+        "alightings": 144589,
+        "total": 334580
+      },
+      "sensitivity12": {
+        "boardings": 109199,
+        "alightings": 99281,
+        "total": 208480
+      }
+    },
+    {
+      "month": "2022-09",
+      "all": {
+        "boardings": 182185,
+        "alightings": 135023,
+        "total": 317208
+      },
+      "fixed18": {
+        "boardings": 182185,
+        "alightings": 135023,
+        "total": 317208
+      },
+      "sensitivity12": {
+        "boardings": 102998,
+        "alightings": 91633,
+        "total": 194631
+      }
+    },
+    {
+      "month": "2022-10",
+      "all": {
+        "boardings": 191527,
+        "alightings": 141651,
+        "total": 333178
+      },
+      "fixed18": {
+        "boardings": 191527,
+        "alightings": 141651,
+        "total": 333178
+      },
+      "sensitivity12": {
+        "boardings": 110196,
+        "alightings": 96709,
+        "total": 206905
+      }
+    },
+    {
+      "month": "2022-11",
+      "all": {
+        "boardings": 182650,
+        "alightings": 132710,
+        "total": 315360
+      },
+      "fixed18": {
+        "boardings": 182650,
+        "alightings": 132710,
+        "total": 315360
+      },
+      "sensitivity12": {
+        "boardings": 102772,
+        "alightings": 89245,
+        "total": 192017
+      }
+    },
+    {
+      "month": "2022-12",
+      "all": {
+        "boardings": 187218,
+        "alightings": 137994,
+        "total": 325212
+      },
+      "fixed18": {
+        "boardings": 187218,
+        "alightings": 137994,
+        "total": 325212
+      },
+      "sensitivity12": {
+        "boardings": 107800,
+        "alightings": 94316,
+        "total": 202116
+      }
+    },
+    {
+      "month": "2023-01",
+      "all": {
+        "boardings": 161949,
+        "alightings": 121095,
+        "total": 283044
+      },
+      "fixed18": {
+        "boardings": 161949,
+        "alightings": 121095,
+        "total": 283044
+      },
+      "sensitivity12": {
+        "boardings": 90908,
+        "alightings": 82346,
+        "total": 173254
+      }
+    },
+    {
+      "month": "2023-02",
+      "all": {
+        "boardings": 159197,
+        "alightings": 118559,
+        "total": 277756
+      },
+      "fixed18": {
+        "boardings": 159197,
+        "alightings": 118559,
+        "total": 277756
+      },
+      "sensitivity12": {
+        "boardings": 88813,
+        "alightings": 80267,
+        "total": 169080
+      }
+    },
+    {
+      "month": "2023-03",
+      "all": {
+        "boardings": 174736,
+        "alightings": 125793,
+        "total": 300529
+      },
+      "fixed18": {
+        "boardings": 174522,
+        "alightings": 125788,
+        "total": 300310
+      },
+      "sensitivity12": {
+        "boardings": 96298,
+        "alightings": 84297,
+        "total": 180595
+      }
+    },
+    {
+      "month": "2023-04",
+      "all": {
+        "boardings": 170557,
+        "alightings": 122284,
+        "total": 292841
+      },
+      "fixed18": {
+        "boardings": 169159,
+        "alightings": 122249,
+        "total": 291408
+      },
+      "sensitivity12": {
+        "boardings": 95575,
+        "alightings": 82592,
+        "total": 178167
+      }
+    },
+    {
+      "month": "2023-05",
+      "all": {
+        "boardings": 179073,
+        "alightings": 130024,
+        "total": 309097
+      },
+      "fixed18": {
+        "boardings": 177212,
+        "alightings": 129965,
+        "total": 307177
+      },
+      "sensitivity12": {
+        "boardings": 101985,
+        "alightings": 88111,
+        "total": 190096
+      }
+    },
+    {
+      "month": "2023-06",
+      "all": {
+        "boardings": 164784,
+        "alightings": 120546,
+        "total": 285330
+      },
+      "fixed18": {
+        "boardings": 163214,
+        "alightings": 120514,
+        "total": 283728
+      },
+      "sensitivity12": {
+        "boardings": 92087,
+        "alightings": 80974,
+        "total": 173061
+      }
+    },
+    {
+      "month": "2023-07",
+      "all": {
+        "boardings": 162493,
+        "alightings": 126396,
+        "total": 288889
+      },
+      "fixed18": {
+        "boardings": 161376,
+        "alightings": 126362,
+        "total": 287738
+      },
+      "sensitivity12": {
+        "boardings": 92958,
+        "alightings": 85446,
+        "total": 178404
+      }
+    },
+    {
+      "month": "2023-08",
+      "all": {
+        "boardings": 157472,
+        "alightings": 121602,
+        "total": 279074
+      },
+      "fixed18": {
+        "boardings": 156401,
+        "alightings": 121554,
+        "total": 277955
+      },
+      "sensitivity12": {
+        "boardings": 89013,
+        "alightings": 82040,
+        "total": 171053
+      }
+    },
+    {
+      "month": "2023-09",
+      "all": {
+        "boardings": 151955,
+        "alightings": 113096,
+        "total": 265051
+      },
+      "fixed18": {
+        "boardings": 150511,
+        "alightings": 113006,
+        "total": 263517
+      },
+      "sensitivity12": {
+        "boardings": 84380,
+        "alightings": 75860,
+        "total": 160240
+      }
+    },
+    {
+      "month": "2023-10",
+      "all": {
+        "boardings": 157793,
+        "alightings": 118271,
+        "total": 276064
+      },
+      "fixed18": {
+        "boardings": 156022,
+        "alightings": 118149,
+        "total": 274171
+      },
+      "sensitivity12": {
+        "boardings": 89733,
+        "alightings": 79219,
+        "total": 168952
+      }
+    },
+    {
+      "month": "2023-11",
+      "all": {
+        "boardings": 150480,
+        "alightings": 111767,
+        "total": 262247
+      },
+      "fixed18": {
+        "boardings": 148214,
+        "alightings": 111625,
+        "total": 259839
+      },
+      "sensitivity12": {
+        "boardings": 82272,
+        "alightings": 74497,
+        "total": 156769
+      }
+    },
+    {
+      "month": "2023-12",
+      "all": {
+        "boardings": 154085,
+        "alightings": 116761,
+        "total": 270846
+      },
+      "fixed18": {
+        "boardings": 151571,
+        "alightings": 116627,
+        "total": 268198
+      },
+      "sensitivity12": {
+        "boardings": 86533,
+        "alightings": 79341,
+        "total": 165874
+      }
+    },
+    {
+      "month": "2024-01",
+      "all": {
+        "boardings": 152037,
+        "alightings": 118237,
+        "total": 270274
+      },
+      "fixed18": {
+        "boardings": 149931,
+        "alightings": 118113,
+        "total": 268044
+      },
+      "sensitivity12": {
+        "boardings": 84651,
+        "alightings": 79224,
+        "total": 163875
+      }
+    },
+    {
+      "month": "2024-02",
+      "all": {
+        "boardings": 141724,
+        "alightings": 112250,
+        "total": 253974
+      },
+      "fixed18": {
+        "boardings": 139591,
+        "alightings": 112138,
+        "total": 251729
+      },
+      "sensitivity12": {
+        "boardings": 79448,
+        "alightings": 75443,
+        "total": 154891
+      }
+    },
+    {
+      "month": "2024-03",
+      "all": {
+        "boardings": 161877,
+        "alightings": 124425,
+        "total": 286302
+      },
+      "fixed18": {
+        "boardings": 159028,
+        "alightings": 124286,
+        "total": 283314
+      },
+      "sensitivity12": {
+        "boardings": 89505,
+        "alightings": 83249,
+        "total": 172754
+      }
+    },
+    {
+      "month": "2024-04",
+      "all": {
+        "boardings": 167531,
+        "alightings": 126943,
+        "total": 294474
+      },
+      "fixed18": {
+        "boardings": 164356,
+        "alightings": 126839,
+        "total": 291195
+      },
+      "sensitivity12": {
+        "boardings": 95879,
+        "alightings": 85763,
+        "total": 181642
+      }
+    },
+    {
+      "month": "2024-05",
+      "all": {
+        "boardings": 256478,
+        "alightings": 209842,
+        "total": 466320
+      },
+      "fixed18": {
+        "boardings": 232269,
+        "alightings": 183964,
+        "total": 416233
+      },
+      "sensitivity12": {
+        "boardings": 139083,
+        "alightings": 125433,
+        "total": 264516
+      }
+    },
+    {
+      "month": "2024-06",
+      "all": {
+        "boardings": 234667,
+        "alightings": 194393,
+        "total": 429060
+      },
+      "fixed18": {
+        "boardings": 213125,
+        "alightings": 171147,
+        "total": 384272
+      },
+      "sensitivity12": {
+        "boardings": 122989,
+        "alightings": 114276,
+        "total": 237265
+      }
+    },
+    {
+      "month": "2024-07",
+      "all": {
+        "boardings": 254945,
+        "alightings": 215496,
+        "total": 470441
+      },
+      "fixed18": {
+        "boardings": 231382,
+        "alightings": 189677,
+        "total": 421059
+      },
+      "sensitivity12": {
+        "boardings": 134635,
+        "alightings": 128816,
+        "total": 263451
+      }
+    },
+    {
+      "month": "2024-08",
+      "all": {
+        "boardings": 278391,
+        "alightings": 235085,
+        "total": 513476
+      },
+      "fixed18": {
+        "boardings": 252301,
+        "alightings": 206486,
+        "total": 458787
+      },
+      "sensitivity12": {
+        "boardings": 147019,
+        "alightings": 139352,
+        "total": 286371
+      }
+    },
+    {
+      "month": "2024-09",
+      "all": {
+        "boardings": 226676,
+        "alightings": 193193,
+        "total": 419869
+      },
+      "fixed18": {
+        "boardings": 206087,
+        "alightings": 170622,
+        "total": 376709
+      },
+      "sensitivity12": {
+        "boardings": 118556,
+        "alightings": 115039,
+        "total": 233595
+      }
+    },
+    {
+      "month": "2024-10",
+      "all": {
+        "boardings": 260080,
+        "alightings": 240248,
+        "total": 500328
+      },
+      "fixed18": {
+        "boardings": 237135,
+        "alightings": 215231,
+        "total": 452366
+      },
+      "sensitivity12": {
+        "boardings": 140183,
+        "alightings": 148081,
+        "total": 288264
+      }
+    },
+    {
+      "month": "2024-11",
+      "all": {
+        "boardings": 246142,
+        "alightings": 239652,
+        "total": 485794
+      },
+      "fixed18": {
+        "boardings": 225173,
+        "alightings": 217458,
+        "total": 442631
+      },
+      "sensitivity12": {
+        "boardings": 129620,
+        "alightings": 147981,
+        "total": 277601
+      }
+    },
+    {
+      "month": "2024-12",
+      "all": {
+        "boardings": 263209,
+        "alightings": 258789,
+        "total": 521998
+      },
+      "fixed18": {
+        "boardings": 242270,
+        "alightings": 235399,
+        "total": 477669
+      },
+      "sensitivity12": {
+        "boardings": 143537,
+        "alightings": 163639,
+        "total": 307176
+      }
+    },
+    {
+      "month": "2025-01",
+      "all": {
+        "boardings": 223071,
+        "alightings": 223765,
+        "total": 446836
+      },
+      "fixed18": {
+        "boardings": 206322,
+        "alightings": 202647,
+        "total": 408969
+      },
+      "sensitivity12": {
+        "boardings": 120972,
+        "alightings": 138890,
+        "total": 259862
+      }
+    },
+    {
+      "month": "2025-02",
+      "all": {
+        "boardings": 231682,
+        "alightings": 232827,
+        "total": 464509
+      },
+      "fixed18": {
+        "boardings": 215386,
+        "alightings": 212690,
+        "total": 428076
+      },
+      "sensitivity12": {
+        "boardings": 123341,
+        "alightings": 142137,
+        "total": 265478
+      }
+    },
+    {
+      "month": "2025-03",
+      "all": {
+        "boardings": 247191,
+        "alightings": 243350,
+        "total": 490541
+      },
+      "fixed18": {
+        "boardings": 229705,
+        "alightings": 222162,
+        "total": 451867
+      },
+      "sensitivity12": {
+        "boardings": 132724,
+        "alightings": 151216,
+        "total": 283940
+      }
+    },
+    {
+      "month": "2025-04",
+      "all": {
+        "boardings": 255398,
+        "alightings": 247756,
+        "total": 503154
+      },
+      "fixed18": {
+        "boardings": 237641,
+        "alightings": 225963,
+        "total": 463604
+      },
+      "sensitivity12": {
+        "boardings": 138881,
+        "alightings": 154490,
+        "total": 293371
+      }
+    },
+    {
+      "month": "2025-05",
+      "all": {
+        "boardings": 263111,
+        "alightings": 258026,
+        "total": 521137
+      },
+      "fixed18": {
+        "boardings": 242797,
+        "alightings": 233029,
+        "total": 475826
+      },
+      "sensitivity12": {
+        "boardings": 144481,
+        "alightings": 161159,
+        "total": 305640
+      }
+    },
+    {
+      "month": "2025-06",
+      "all": {
+        "boardings": 242086,
+        "alightings": 237444,
+        "total": 479530
+      },
+      "fixed18": {
+        "boardings": 223537,
+        "alightings": 215269,
+        "total": 438806
+      },
+      "sensitivity12": {
+        "boardings": 129326,
+        "alightings": 147277,
+        "total": 276603
+      }
+    },
+    {
+      "month": "2025-07",
+      "all": {
+        "boardings": 273770,
+        "alightings": 273955,
+        "total": 547725
+      },
+      "fixed18": {
+        "boardings": 252096,
+        "alightings": 247542,
+        "total": 499638
+      },
+      "sensitivity12": {
+        "boardings": 148657,
+        "alightings": 171592,
+        "total": 320249
+      }
+    },
+    {
+      "month": "2025-08",
+      "all": {
+        "boardings": 262816,
+        "alightings": 259989,
+        "total": 522805
+      },
+      "fixed18": {
+        "boardings": 241688,
+        "alightings": 234219,
+        "total": 475907
+      },
+      "sensitivity12": {
+        "boardings": 141144,
+        "alightings": 162587,
+        "total": 303731
+      }
+    },
+    {
+      "month": "2025-09",
+      "all": {
+        "boardings": 270173,
+        "alightings": 265431,
+        "total": 535604
+      },
+      "fixed18": {
+        "boardings": 248495,
+        "alightings": 238608,
+        "total": 487103
+      },
+      "sensitivity12": {
+        "boardings": 144537,
+        "alightings": 165379,
+        "total": 309916
+      }
+    },
+    {
+      "month": "2025-10",
+      "all": {
+        "boardings": 243366,
+        "alightings": 241232,
+        "total": 484598
+      },
+      "fixed18": {
+        "boardings": 223514,
+        "alightings": 216354,
+        "total": 439868
+      },
+      "sensitivity12": {
+        "boardings": 130069,
+        "alightings": 149396,
+        "total": 279465
+      }
+    },
+    {
+      "month": "2025-11",
+      "all": {
+        "boardings": 249254,
+        "alightings": 244707,
+        "total": 493961
+      },
+      "fixed18": {
+        "boardings": 229088,
+        "alightings": 219751,
+        "total": 448839
+      },
+      "sensitivity12": {
+        "boardings": 133079,
+        "alightings": 151073,
+        "total": 284152
+      }
+    },
+    {
+      "month": "2025-12",
+      "all": {
+        "boardings": 255935,
+        "alightings": 256428,
+        "total": 512363
+      },
+      "fixed18": {
+        "boardings": 234505,
+        "alightings": 229087,
+        "total": 463592
+      },
+      "sensitivity12": {
+        "boardings": 137061,
+        "alightings": 159157,
+        "total": 296218
+      }
+    },
+    {
+      "month": "2026-01",
+      "all": {
+        "boardings": 246257,
+        "alightings": 246704,
+        "total": 492961
+      },
+      "fixed18": {
+        "boardings": 224789,
+        "alightings": 219709,
+        "total": 444498
+      },
+      "sensitivity12": {
+        "boardings": 129409,
+        "alightings": 150717,
+        "total": 280126
+      }
+    },
+    {
+      "month": "2026-02",
+      "all": {
+        "boardings": 214578,
+        "alightings": 213818,
+        "total": 428396
+      },
+      "fixed18": {
+        "boardings": 196493,
+        "alightings": 190148,
+        "total": 386641
+      },
+      "sensitivity12": {
+        "boardings": 112662,
+        "alightings": 130103,
+        "total": 242765
+      }
+    },
+    {
+      "month": "2026-03",
+      "all": {
+        "boardings": 258500,
+        "alightings": 252885,
+        "total": 511385
+      },
+      "fixed18": {
+        "boardings": 236870,
+        "alightings": 225829,
+        "total": 462699
+      },
+      "sensitivity12": {
+        "boardings": 133531,
+        "alightings": 152617,
+        "total": 286148
+      }
+    },
+    {
+      "month": "2026-04",
+      "all": {
+        "boardings": 270505,
+        "alightings": 261828,
+        "total": 532333
+      },
+      "fixed18": {
+        "boardings": 248552,
+        "alightings": 234798,
+        "total": 483350
+      },
+      "sensitivity12": {
+        "boardings": 142098,
+        "alightings": 159088,
+        "total": 301186
+      }
+    },
+    {
+      "month": "2026-05",
+      "all": {
+        "boardings": 271867,
+        "alightings": 262824,
+        "total": 534691
+      },
+      "fixed18": {
+        "boardings": 248330,
+        "alightings": 233747,
+        "total": 482077
+      },
+      "sensitivity12": {
+        "boardings": 145508,
+        "alightings": 160638,
+        "total": 306146
+      }
+    },
+    {
+      "month": "2026-06",
+      "all": {
+        "boardings": 253483,
+        "alightings": 248135,
+        "total": 501618
+      },
+      "fixed18": {
+        "boardings": 232034,
+        "alightings": 221413,
+        "total": 453447
+      },
+      "sensitivity12": {
+        "boardings": 129835,
+        "alightings": 149402,
+        "total": 279237
+      }
+    },
+    {
+      "month": "2026-07",
+      "all": {
+        "boardings": 266129,
+        "alightings": 265669,
+        "total": 531798
+      },
+      "fixed18": {
+        "boardings": 242221,
+        "alightings": 235956,
+        "total": 478177
+      },
+      "sensitivity12": {
+        "boardings": 138069,
+        "alightings": 162612,
+        "total": 300681
+      }
+    }
+  ],
+  "rail": [
+    {
+      "year": 2019,
+      "months": 12,
+      "boardings": 3269615,
+      "alightings": 3442952,
+      "activity": 6712567,
+      "index2019": 100.0
+    },
+    {
+      "year": 2020,
+      "months": 12,
+      "boardings": 2201406,
+      "alightings": 2282170,
+      "activity": 4483576,
+      "index2019": 66.79376161161595
+    },
+    {
+      "year": 2024,
+      "months": 12,
+      "boardings": 2749222,
+      "alightings": 2802202,
+      "activity": 5551424,
+      "index2019": 82.70195291905466
+    }
+  ],
+  "stcisInternalFixed": [
+    {
+      "window": "핵심 16~19",
+      "direction": "INBOUND",
+      "year": 2021,
+      "value": 23506.0,
+      "perDay": 979.4166666666666,
+      "changePct": 0.0,
+      "dates": 24,
+      "regions": 8,
+      "areaSlotPairs": 71,
+      "returnedSlots": 1704
+    },
+    {
+      "window": "핵심 16~19",
+      "direction": "INBOUND",
+      "year": 2024,
+      "value": 22098.0,
+      "perDay": 920.75,
+      "changePct": -5.98996001021016,
+      "dates": 24,
+      "regions": 8,
+      "areaSlotPairs": 71,
+      "returnedSlots": 1704
+    },
+    {
+      "window": "핵심 16~19",
+      "direction": "OUTBOUND",
+      "year": 2021,
+      "value": 23304.0,
+      "perDay": 971.0,
+      "changePct": 0.0,
+      "dates": 24,
+      "regions": 9,
+      "areaSlotPairs": 64,
+      "returnedSlots": 1536
+    },
+    {
+      "window": "핵심 16~19",
+      "direction": "OUTBOUND",
+      "year": 2024,
+      "value": 23047.0,
+      "perDay": 960.2916666666666,
+      "changePct": -1.1028149673875776,
+      "dates": 24,
+      "regions": 9,
+      "areaSlotPairs": 64,
+      "returnedSlots": 1536
+    }
+  ],
+  "notes": {
+    "purpose": "2023/2024 full-year totals and common 232 codes are distinct populations; matching codes do not prove equal historical polygons.",
+    "bus": "Fixed 18 IDs do not establish stable service. Five IDs have coordinate mismatches. 2020-12-04 unobserved; supply breaks 2021-11-28 and 2024-09-28; missing QC remains unknown.",
+    "rail": "Station boardings+alightings are not unique Janghang2 visitors.",
+    "stcis": "Direction-specific fixed panels have different relative regions and slots; no net flow subtraction."
+  }
+}
