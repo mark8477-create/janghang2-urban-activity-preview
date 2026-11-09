@@ -56,7 +56,7 @@ export function IntegratedTimeline({ active }: { active: boolean }) {
     <div className="ts-findings">
       <Finding title="① 2020년: 공통 충격 + 더 큰 낙폭" tone="orange">세 상대 지표가 모두 2020년에 떨어졌습니다. 코로나는 지역 전체에 작용했지만 장항2동이 더 크게 흔들렸다는 뜻입니다.</Finding>
       <Finding title="② 회복의 갈림: 소비는 회복, 창업은 부진">카드 비중은 2021년 바닥 뒤 2023년에 2019년 수준으로 올라왔습니다. 그러나 인허가 비율은 회복기(2022~23)에 오히려 더 내려갔고, 정발산역 비율도 2020년 수준에 머물렀습니다.</Finding>
-      <Finding title="③ 소비 비중은 돌아왔고, 역 비중은 계속 낮아짐" tone="gray">카드 비중은 2023년 8~12월에 2019년 같은 달 수준으로 돌아왔습니다. 반면 정발산역 비중은 코로나 이전(2018 9.31%→2019 8.85%)부터 낮아졌고 회복기에도 돌아오지 않았습니다. 장기 구조 요인의 후보입니다.</Finding>
+      <Finding title="③ 소비 비중은 돌아왔고, 역 이용 비율은 계속 낮아짐" tone="gray">카드 비중은 2023년 8~12월에 2019년 같은 달 수준으로 돌아왔습니다. 반면 정발산역 비율(일산선 다른 10개 역 대비)은 코로나 이전(2018 9.31%→2019 8.85%)부터 낮아졌고 회복기에도 돌아오지 않았습니다. 장기 구조 요인의 후보입니다.</Finding>
     </div>
   </>;
 }
@@ -190,7 +190,7 @@ export function TransportTimeStory({ active }: { active: boolean }) {
   const yr = (y: number, k: string) => data.rail.monthly.filter((r: any) => r.month.startsWith(String(y))).reduce((s: number, r: any) => s + r[k], 0);
   const shareYears = [2018, 2019, 2020, 2022, 2024, 2025].map(y => `${y} ${(yr(y, 'jeongbalsan') / yr(y, 'ilsanLineOthers') * 100).toFixed(2)}%`).join(' → ');
   return <>
-    <Claim tag="교통 수요 · 정발산역 · 장항2동 버스 정류장" title="철도 이용은 코로나 때 더 크게 줄었다가 주변 역과 같은 폭으로 회복했다. 그러나 일산선 안에서 정발산역의 비중은 계속 낮아지고 있다.">
+    <Claim tag="교통 수요 · 정발산역 · 장항2동 버스 정류장" title="철도 이용은 코로나 때 더 크게 줄었다가 주변 역과 같은 폭으로 회복했다. 그러나 일산선 다른 역에 비해 정발산역 이용 비율은 계속 낮아지고 있다.">
       비교 기준은 같은 일산선의 다른 10개 역(대곡·대화·마두·백석·삼송·원당·원흥·주엽·지축·화정, 모두 고양시)과 고양시 전체 버스 정류장 승하차입니다.
     </Claim>
     <div className="ts-kpis">
@@ -202,7 +202,7 @@ export function TransportTimeStory({ active }: { active: boolean }) {
     <div className="story-visual-grid">
       <EventChart title="정발산역과 일산선 다른 역(2019=100)" kicker="월별 승하차 · 2015-01~2025-12" months={rMonths} unit="지수" events={ev} areas={PHASE_AREAS}
         series={[{ name: '정발산역', data: indexTo(rMonths, align(rMonths, data.rail.monthly, (r: any) => r.jeongbalsan), '2019-01', '2019-12'), color: C.purple, width: 2.6 }, { name: '일산선 다른 10개 역', data: indexTo(rMonths, align(rMonths, data.rail.monthly, (r: any) => r.ilsanLineOthers), '2019-01', '2019-12'), color: C.comp }]}
-        filename="transport_rail_vs_ilsan" note={<>일산선 안에서 정발산역의 연간 비중: {shareYears}. 코로나 이전부터 낮아지기 시작했고(분홍 점선 = 2017-08 스타필드 고양 개장; 개장 전후 같은 속도로 낮아져 개장 시점에 따로 꺾인 흔적은 없음), 2020년에 크게 낮아진 뒤 회복기에도 원래 비중으로 돌아오지 않았습니다. 2024-12 GTX-A(킨텍스·대곡역) 개통 뒤 2025년 비중이 더 낮아졌지만, 연구 연도축(2018~2024) 밖이라 참고로만 표시합니다.</>} />
+        filename="transport_rail_vs_ilsan" note={<>정발산역 비율(정발산역 ÷ 일산선 다른 10개 역, 연간): {shareYears}. 코로나 이전부터 낮아지기 시작했고(분홍 점선 = 2017-08 스타필드 고양 개장; 개장 전후 같은 속도로 낮아져 개장 시점에 따로 꺾인 흔적은 없음), 2020년에 크게 낮아진 뒤 회복기에도 원래 비율로 돌아오지 않았습니다. 2024-12 GTX-A(킨텍스·대곡역) 개통 뒤 2025년 비율이 더 낮아졌지만, 연구 연도축(2018~2024) 밖이라 참고로만 표시합니다.</>} />
       <EventChart title="버스 승하차: 장항2동·고양시·경기도(2020=100)" kicker="월별 · 2020-01~2026-07 · 관할(ORG_NM) 기준 합" months={bMonths} unit="지수" events={ev} areas={breaks}
         series={[{ name: '장항2동 정류장', data: indexTo(bMonths, align(bMonths, data.bus.monthly, (r: any) => r.janghang2), '2020-01', '2020-12'), color: C.green, width: 2.6 }, { name: '고양시 전체', data: indexTo(bMonths, align(bMonths, data.bus.monthly, (r: any) => r.goyang), '2020-01', '2020-12'), color: C.comp }, { name: '경기도 전체', data: indexTo(bMonths, align(bMonths, data.bus.monthly, (r: any) => r.gyeonggi), '2020-01', '2020-12'), color: C.comp2, dashed: true }]}
         filename="transport_bus_regional" note={<><b>2021-12에 고양시 전체와 경기도 전체 합계도 함께 급감</b>했다가 2024-10부터 다시 늘었습니다. 따라서 이 두 변곡은 장항2동 수요 변화가 아니라 원자료 공급 범위 변화로 보는 것이 타당합니다(새 확인). 버스 절대값의 연도 비교 대신, 고양시 대비 장항2동 비중으로 봅니다. 2020-12-04는 미관측일이며 0으로 채우지 않았습니다.</>} />
@@ -246,7 +246,7 @@ export function PhaseSynthesis({ active }: { active: boolean }) {
       <div className="ts-cause ts-cause-ext"><span>외부 · 공통 요인</span><h4>코로나19 충격(2020)과 회복(2022~23)</h4><p>2020년 카드와 철도는 비교 지역과 같은 시점에 함께 꺾였습니다(신규 인허가는 2020년에 두 지역 모두 늘었지만 장항2동 증가 폭이 작았습니다). 회복기 철도 반등 폭도 주변 역과 같습니다. 2023년 이후 전체 신규 인허가의 감소 폭도 고양시와 같아, 금리 인상(2021-08~2023-01)과 경기 둔화 같은 공통 요인의 후보입니다.</p></div>
       <div className="ts-cause ts-cause-amp"><span>공통 충격의 증폭</span><h4>장항2동이 더 크게 흔들림(소비는 이후 회복)</h4><p>같은 충격에서 카드(−20.0% vs −5.2%)와 정발산역(−34.4% vs −26.1%)이 비교 지역보다 더 크게 줄었습니다. 라페스타·웨스턴돔 같은 방문·여가형 상업지의 특성 때문일 가능성이 있으나, 업종·방문 목적 자료로 확인해야 하는 가설입니다. 카드 비중은 2023년 8~12월 8.80%로 2019년 같은 달(8.76%) 수준을 되찾아(같은 구성 구간 참고 비교), 소비 쪽 증폭은 일시적이었던 것으로 보입니다.</p></div>
       <div className="ts-cause ts-cause-int"><span>지역 고유 요인 후보</span><h4>회복기 이후의 따로 노는 약화</h4><p>회복기 신규 인허가(−16.0% vs +0.5%), 엔데믹 이후 CORE 인허가(−12.3% vs +3.8%), 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 소비 비중은 같은 시기에 회복했으므로, 고유 약화는 <b>소비보다 창업·사업체 쪽</b>에 있습니다.</p></div>
-      <div className="ts-cause ts-cause-str"><span>장기 구조 요인 후보</span><h4>코로나 이전부터의 비중 하락</h4><p>일산선 내 정발산역 비중(2018 9.31%→2019 8.85%→2024 7.75%)은 코로나 전부터 낮아졌고 회복기에도 돌아오지 않았습니다. 카드 비중도 2018→2019년에 낮아졌지만(8~12월 9.32%→8.76%) 2023년에는 2019년 수준이어서, 카드에서는 장기 하락의 근거가 약합니다. 대형 상권 경쟁·신도시 고령화가 언론에서 거론되지만 시점을 특정할 수 없습니다.</p></div>
+      <div className="ts-cause ts-cause-str"><span>장기 구조 요인 후보</span><h4>코로나 이전부터의 역 이용 비율 하락</h4><p>일산선 다른 10개 역 대비 정발산역 비율(2018 9.31%→2019 8.85%→2024 7.75%)은 코로나 전부터 낮아졌고 회복기에도 돌아오지 않았습니다. 카드 비중도 2018→2019년에 낮아졌지만(8~12월 9.32%→8.76%) 2023년에는 2019년 수준이어서, 카드에서는 장기 하락의 근거가 약합니다. 대형 상권 경쟁·신도시 고령화가 언론에서 거론되지만 시점을 특정할 수 없습니다.</p></div>
     </div>
     <div className="ts-open">
       <b>결론의 범위와 남은 확인</b>
