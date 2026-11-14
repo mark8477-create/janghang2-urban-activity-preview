@@ -24,7 +24,7 @@ const PHASE_AREAS: TsArea[] = [
   { from: '2019-01', to: '2019-12', label: '코로나 이전' },
   { from: '2020-03', to: '2021-10', label: '충격기', color: 'rgba(218,30,40,.06)' },
   { from: '2022-05', to: '2023-05', label: '회복기', color: 'rgba(36,161,72,.07)' },
-  { from: '2023-06', to: '2024-12', label: '엔데믹 이후', color: 'rgba(15,98,254,.05)' },
+  { from: '2023-06', to: '2024-12', label: '엔데믹 전환 이후', color: 'rgba(15,98,254,.05)' },
 ];
 function Loading({ error }: { error: string }) { return <div className="load-state">{error ? `데이터 로딩 오류: ${error}` : '시계열 데이터를 불러오는 중…'}</div>; }
 function Claim({ tag, title, children }: { tag: string; title: string; children: React.ReactNode }) { return <div className="story-claim"><span>{tag}</span><h3>{title}</h3><p>{children}</p></div>; }
@@ -38,6 +38,10 @@ export function IntegratedTimeline({ active }: { active: boolean }) {
   const ev: TsEvent[] = data.events;
   // 카드: 구성이 같은(39개 동·2자리 코드) 공급 구간 A·B·C2·C4·D1의 장항2동 비중만 2019년 평균=100으로 잇는다.
   const cardShare = indexTo(months, align(months, data.card.monthly.filter((r: any) => r.observed && r.supplyDongCount === 39), (r: any) => r.share), '2019-01', '2019-12');
+  // 44개 동 구성 구간도 같은 기준(39개 동 2019년 평균 비중=100)으로 나눠 점선으로 표시한다.
+  const raw39 = align(months, data.card.monthly.filter((r: any) => r.observed && r.supplyDongCount === 39), (r: any) => r.share);
+  const base39 = (() => { const b = raw39.filter((v, i) => v != null && months[i] >= '2019-01' && months[i] <= '2019-12') as number[]; return b.reduce((a, x) => a + x, 0) / b.length; })();
+  const cardShare44 = align(months, data.card.monthly.filter((r: any) => r.observed && r.supplyDongCount === 44), (r: any) => r.share).map(v => v == null ? null : v / base39 * 100);
   const jhRoll = rolling12(align(months, data.mois.monthly, (r: any) => r.jh_new));
   const gyRoll = rolling12(align(months, data.mois.monthly, (r: any) => r.gyEx_new));
   const moisRatio = indexTo(months, jhRoll.map((v, i) => v != null && gyRoll[i] ? v / gyRoll[i]! : null), '2019-12', '2019-12');
@@ -48,11 +52,12 @@ export function IntegratedTimeline({ active }: { active: boolean }) {
     </Claim>
     <EventChart title="장항2동 ÷ 비교 지역 상대 지표" kicker="2018-01~2025-12 · 월별 · 기준 시기 평균=100" months={months} unit="상대 지수" events={ev} areas={PHASE_AREAS} filename="timeline_relative_index" height={400}
       series={[
-        { name: '카드매출 비중(장항2동/고양시, 39개 동 구성 구간)', data: cardShare, color: C.jh, width: 2.6 },
+        { name: '카드매출 비중(장항2동/고양시, 39개 동 구성)', data: cardShare, color: C.jh, width: 2.6 },
+        { name: '카드매출 비중(44개 동 구성, 점선)', data: cardShare44, color: '#78A9FF', width: 2.2, dashed: true },
         { name: '신규 인허가 12개월 합 비율(장항2동/고양시 제외)', data: moisRatio, color: C.accent },
         { name: '정발산역/일산선 다른 10개 역', data: railRatio, color: C.purple },
       ]}
-      note={<>기준: 카드·철도 2019년 평균, 인허가 2019-12의 12개월 합. 카드는 공급 구간이 바뀌어도 장항2동 비중이 거의 이어지는 것을 확인했습니다(02 상업 참고). 그래서 <b>구성이 같은 39개 동·2자리 코드 구간</b>(A·B·C2·C4·D1)의 비중만 이어 그렸습니다. 44개 동 구간과 2024-02~12 미관측 구간은 비어 있습니다. 인허가는 비교 지역에서 장항2동을 뺐고, 카드의 고양시 값에는 장항2동이 포함됩니다. <b>버스는 이 그림에서 뺐습니다.</b> 2021-12~2024-09 원자료 공급 축소 구간에 장항2동의 고양시 내 비중도 약 20% 뛰어, 비율로도 공급 변화를 걸러낼 수 없기 때문입니다(04 교통 수요 참고).</>} />
+      note={<>기준: 카드·철도 2019년 평균, 인허가 2019-12의 12개월 합. 카드는 제공 구간 경계에서 금액이 5~7배(또는 0.2배) 급변하는데, <b>원인은 확인하지 못했습니다</b>(행정동 수 39·44개, 업종 코드가 바뀌는 시점과 겹침). 그래서 금액은 잇지 않고 장항2동의 고양시 내 비중으로 그렸으며, 44개 동 구성 구간은 <b>점선</b>으로 구분했습니다(같은 2019년 39개 동 평균=100 기준). 재난지원금처럼 고양시 전체에 같이 걸리는 효과는 비중에서 상쇄됩니다. 실제로 자료가 없는 기간은 2024-02~12뿐입니다. 인허가는 비교 지역에서 장항2동을 뺐고, 카드의 고양시 값에는 장항2동이 포함됩니다. <b>버스는 이 그림에서 뺐습니다.</b> 2021-12~2024-09 원자료 공급 축소 구간에 장항2동의 고양시 내 비중도 약 20% 뛰어, 비율로도 공급 변화를 걸러낼 수 없기 때문입니다(04 교통 수요 참고).</>} />
     <div className="ts-findings">
       <Finding title="① 2020년: 공통 충격 + 더 큰 낙폭" tone="orange">세 상대 지표가 모두 2020년에 떨어졌습니다. 코로나는 지역 전체에 작용했지만 장항2동이 더 크게 흔들렸다는 뜻입니다.</Finding>
       <Finding title="② 회복의 갈림: 소비는 회복, 창업은 부진">카드 비중은 2021년 바닥 뒤 2023년에 2019년 수준으로 올라왔습니다. 그러나 인허가 비율은 회복기(2022~23)에 오히려 더 내려갔고, 정발산역 비율도 2020년 수준에 머물렀습니다.</Finding>
@@ -112,7 +117,7 @@ export function CommerceTimeStory({ active }: { active: boolean }) {
       <div><span>카드 비중 · 8~12월 · 39개 동 구간</span><strong>{g39(2019)?.toFixed(2)}% → {g39(2021)?.toFixed(2)}% → {g39(2023)?.toFixed(2)}%</strong><small>2019 → 2021(바닥) → 2023 · 충격기 금액은 장항2동 {pctTxt(card[1]?.localPct)}, 고양시 {pctTxt(card[1]?.compPct)}</small></div>
       <div><span>SGIS 사업체 2020→2024</span><strong>−7.6%</strong><small>고양시 +8.7% · 2023년 장항2동 −7.3%</small></div>
       <div><span>신규 인허가 · 회복기 vs 충격기</span><strong>{pctTxt(mNew[2]?.localPct)}</strong><small>고양시(장항2동 제외) {pctTxt(mNew[2]?.compPct)}</small></div>
-      <div><span>CORE 인허가 · 엔데믹 이후 vs 회복기</span><strong>{pctTxt(mCore[3]?.localPct)}</strong><small>고양시(장항2동 제외) {pctTxt(mCore[3]?.compPct)}</small></div>
+      <div><span>CORE 인허가 · 엔데믹 전환 이후 vs 회복기</span><strong>{pctTxt(mCore[3]?.localPct)}</strong><small>고양시(장항2동 제외) {pctTxt(mCore[3]?.compPct)}</small></div>
     </div>
     <div className="story-visual-grid">
       <EventChart title="카드매출: 장항2동과 고양시(2018=100)" kicker="월별 · 동일 공급 A구간 2018-01~2020-12" months={cardMonths} unit="지수" events={ev}
@@ -120,7 +125,7 @@ export function CommerceTimeStory({ active }: { active: boolean }) {
         filename="commerce_card_a_monthly" note={<>2020년 2~3월 1차 확산 때 두 지역이 함께 떨어졌고(3월 장항2동 71.9, 고양시 84.3), 5월 재난지원금 사용 시기에 함께 반등했습니다. 그러나 고양시는 2018년 수준(101.1)으로 돌아간 반면 장항2동은 86.2에 그쳤습니다. 8월 이후 재확산·거리두기 강화 때는 장항2동만 다시 크게 떨어졌습니다(12월 57.8 vs 85.0). 제공기관·금액 단위는 미확인이며, 관측 매출의 상대 변화로만 읽습니다.</>} />
       <EventChart title="카드매출 중 장항2동 비중: 전 기간(2018-01~2025-06)" kicker="월별 · 구성별로 색을 나눔 · 회색 띠 = 공급 구간" months={allMonths} unit="%" events={ev} areas={episodes}
         series={[{ name: '39개 동 · 2자리 코드 구간', data: share39, color: C.jh, width: 2.4 }, { name: '44개 동 · 3자리 코드 구간', data: share44, color: C.accent, width: 2.4 }]} filename="commerce_card_share_full"
-        note={<>공급 구간이 바뀌면 장항2동과 고양시 금액이 함께 약 5~7배(또는 0.2배)로 뛰지만, 비중은 대체로 이어집니다(예: 2022-06 {bnd.find(b => b.to === '2022-07')?.shareFrom?.toFixed(2)}% → 2022-07 {bnd.find(b => b.to === '2022-07')?.shareTo?.toFixed(2)}%). 다만 2021-12 → 2022-01처럼 행정동 수·코드 체계가 바뀌는 곳에서는 비중도 {bnd.find(b => b.to === '2022-01')?.shareFrom?.toFixed(2)}% → {bnd.find(b => b.to === '2022-01')?.shareTo?.toFixed(2)}%로 뜁니다. 그래서 구성이 다른 구간끼리는 비교하지 않습니다. 2024년 2~12월은 미관측입니다.</>} />
+        note={<>공급 구간이 바뀌면 장항2동과 고양시 금액이 함께 약 5~7배(또는 0.2배)로 뜁니다. 원인은 확인하지 못했지만(동 수·업종 코드 변경 시점과 겹침, 재난지원금 같은 실제 소비 변화 가능성도 배제하지 않음), 고양시 전체에 같이 걸리는 효과는 비중에서 상쇄되고 비중은 대체로 이어집니다(예: 2022-06 {bnd.find(b => b.to === '2022-07')?.shareFrom?.toFixed(2)}% → 2022-07 {bnd.find(b => b.to === '2022-07')?.shareTo?.toFixed(2)}%). 다만 2021-12 → 2022-01처럼 행정동 수·코드 체계가 바뀌는 곳에서는 비중도 {bnd.find(b => b.to === '2022-01')?.shareFrom?.toFixed(2)}% → {bnd.find(b => b.to === '2022-01')?.shareTo?.toFixed(2)}%로 뜁니다. 그래서 구성이 다른 구간끼리는 비교하지 않습니다. 2024년 2~12월은 미관측입니다.</>} />
       <article className="panel chart-panel ts-panel">
         <div className="panel-head"><div><span className="kicker">카드 · 전 기간 · 구성과 달을 맞춘 비교</span><h3>장항2동 비중: 같은 구성 · 같은 달끼리</h3></div></div>
         {matched.map(g => <div key={g.id} className="ts-matched">
@@ -169,7 +174,7 @@ export function MobilityTimeStory({ active }: { active: boolean }) {
       series={[{ name: '유입', data: align(months, data.stcis.monthly, (r: any) => r.inbound), color: '#009d9a', width: 2.4 }, { name: '유출', data: align(months, data.stcis.monthly, (r: any) => r.outbound), color: '#8a3800' }]}
       filename="mobility_stcis_monthly" note={<>한 달 값이 대표일 두 날에서 나오므로 날씨·행사 같은 하루 사정에 크게 흔들립니다. 추세는 연 합계나 시기 평균으로 봅니다. 유입과 유출은 상대 지역·시간 슬롯 구성이 달라 빼서 순유입을 만들지 않습니다. <code>NOT_FOUND</code>·미반환 슬롯은 0이 아닙니다.</>} />
     <div className="ts-findings">
-      <Finding title="엔데믹 이후 감소">회복기(2022-05~2023-05) 대비 엔데믹 이후(2023-06~2024-12) 월평균은 유입 {pctTxt(sin[3]?.localPct)}, 유출 {pctTxt(sout[3]?.localPct)}입니다. 같은 시기 상업 지표(CORE 인허가·SGIS 2023)도 약해졌습니다.</Finding>
+      <Finding title="엔데믹 전환 이후 감소">회복기(2022-05~2023-05) 대비 엔데믹 전환 이후(2023-06~2024-12) 월평균은 유입 {pctTxt(sin[3]?.localPct)}, 유출 {pctTxt(sout[3]?.localPct)}입니다. 같은 시기 상업 지표(CORE 인허가·SGIS 2023)도 약해졌습니다.</Finding>
       <Finding title="원인 판단은 보류" tone="gray">비교 지역이 없어 이 감소가 수도권 공통 흐름인지 장항 고유인지 가를 수 없습니다. 2025년 반등(연구 연도축 밖)도 같은 이유로 해석을 보류합니다.</Finding>
       <Finding title="보조 자료: 경기 목적 OD" tone="green">장항2동 행정동 도착 목적 OD TOTAL은 2023→2024 −12.6%(공통 232코드 −8.2%)입니다. 2년치만 있어 시계열 비교에는 쓰지 않고 '상세 데이터 탐색 → 이동'에 둡니다.</Finding>
     </div>
@@ -245,7 +250,7 @@ export function PhaseSynthesis({ active }: { active: boolean }) {
     <div className="ts-cause-grid">
       <div className="ts-cause ts-cause-ext"><span>외부 · 공통 요인</span><h4>코로나19 충격(2020)과 회복(2022~23)</h4><p>2020년 카드와 철도는 비교 지역과 같은 시점에 함께 꺾였습니다(신규 인허가는 2020년에 두 지역 모두 늘었지만 장항2동 증가 폭이 작았습니다). 회복기 철도 반등 폭도 주변 역과 같습니다. 2023년 이후 전체 신규 인허가의 감소 폭도 고양시와 같아, 금리 인상(2021-08~2023-01)과 경기 둔화 같은 공통 요인의 후보입니다.</p></div>
       <div className="ts-cause ts-cause-amp"><span>공통 충격의 증폭</span><h4>장항2동이 더 크게 흔들림(소비는 이후 회복)</h4><p>같은 충격에서 카드(−20.0% vs −5.2%)와 정발산역(−34.4% vs −26.1%)이 비교 지역보다 더 크게 줄었습니다. 라페스타·웨스턴돔 같은 방문·여가형 상업지의 특성 때문일 가능성이 있으나, 업종·방문 목적 자료로 확인해야 하는 가설입니다. 카드 비중은 2023년 8~12월 8.80%로 2019년 같은 달(8.76%) 수준을 되찾아(같은 구성 구간 참고 비교), 소비 쪽 증폭은 일시적이었던 것으로 보입니다.</p></div>
-      <div className="ts-cause ts-cause-int"><span>지역 고유 요인 후보</span><h4>회복기 이후의 따로 노는 약화</h4><p>회복기 신규 인허가(−16.0% vs +0.5%), 엔데믹 이후 CORE 인허가(−12.3% vs +3.8%), 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 소비 비중은 같은 시기에 회복했으므로, 고유 약화는 <b>소비보다 창업·사업체 쪽</b>에 있습니다.</p></div>
+      <div className="ts-cause ts-cause-int"><span>지역 고유 요인 후보</span><h4>회복기 이후의 따로 노는 약화</h4><p>회복기 신규 인허가(−16.0% vs +0.5%), 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%), 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 소비 비중은 같은 시기에 회복했으므로, 고유 약화는 <b>소비보다 창업·사업체 쪽</b>에 있습니다.</p></div>
       <div className="ts-cause ts-cause-str"><span>장기 구조 요인 후보</span><h4>코로나 이전부터의 역 이용 비율 하락</h4><p>일산선 다른 10개 역 대비 정발산역 비율(2018 9.31%→2019 8.85%→2024 7.75%)은 코로나 전부터 낮아졌고 회복기에도 돌아오지 않았습니다. 카드 비중도 2018→2019년에 낮아졌지만(8~12월 9.32%→8.76%) 2023년에는 2019년 수준이어서, 카드에서는 장기 하락의 근거가 약합니다. 대형 상권 경쟁·신도시 고령화가 언론에서 거론되지만 시점을 특정할 수 없습니다.</p></div>
     </div>
     <div className="ts-open">
