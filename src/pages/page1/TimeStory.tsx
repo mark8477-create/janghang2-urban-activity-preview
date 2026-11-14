@@ -221,43 +221,58 @@ export function TransportTimeStory({ active }: { active: boolean }) {
 }
 
 /* ───────────── 05 종합: 시기별 비교와 원인 후보 ───────────── */
+// 판정: 월별 비율(장항2동 ÷ 비교 지역)의 시기 평균 변화를 지표별 흔들림 폭(2×표준오차)·순열검정(2만 회)과 비교.
+// 출처: analysis/16_threshold_placebo_20261115/ratio_phase_tests.csv (noise = 흔들림 폭 %, p = 순열검정 p값)
+const PHASE_TEST: Record<string, Record<string, { noise: number; p: number }>> = {
+  card: { P1: { noise: 4.2, p: 0.0001 } },
+  mois_new: { P1: { noise: 8.3, p: 0.0097 }, P2: { noise: 8.8, p: 0.0011 }, P3: { noise: 11.3, p: 0.968 } },
+  mois_core: { P1: { noise: 15.5, p: 0.536 }, P2: { noise: 18.1, p: 0.670 }, P3: { noise: 17.3, p: 0.062 } },
+  mois_closed: { P1: { noise: 12.4, p: 0.160 }, P2: { noise: 13.6, p: 0.080 }, P3: { noise: 13.9, p: 0.140 } },
+  rail: { P1: { noise: 4.1, p: 0.0001 }, P2: { noise: 3.3, p: 0.557 }, P3: { noise: 3.8, p: 0.289 } },
+};
+const pTxt = (p: number) => p < 0.001 ? 'p<0.001' : `p=${p.toFixed(p < 0.01 ? 3 : 2)}`;
 export function PhaseSynthesis({ active }: { active: boolean }) {
   const { data, error } = useTimeseries(active);
   if (!data) return <Loading error={error} />;
   const pc = data.phaseCompare;
-  const cellView = (c: any, isShare: boolean, higherIsWorse: boolean) => {
+  const cellView = (c: any, isShare: boolean, higherIsWorse: boolean, rowId: string) => {
     if (c.reason) return <span className="ts-na" title={c.reason}>비교 불가</span>;
     if (isShare) return c.localPt == null ? <span className="ts-na">–</span> : <span className={c.localPt < 0 ? 'ts-down' : 'ts-up'}>{c.localPt > 0 ? '▲' : '▼'} {c.localPt.toFixed(2)}%p</span>;
     if (c.localPct == null) return <span className="ts-na">–</span>;
     const gap = c.gapPt;
     // 폐업처럼 값이 클수록 나쁜 지표는 색과 문구를 뒤집는다.
     const bad = higherIsWorse ? c.localPct > 0 : c.localPct < 0;
-    const gapText = gap == null ? '' : Math.abs(gap) < 5 ? ' · 함께 움직임' : higherIsWorse
-      ? (gap < 0 ? ` · 장항2동 증가가 ${Math.abs(gap).toFixed(1)}%p 작음` : ` · 장항2동 증가가 ${gap.toFixed(1)}%p 큼`)
-      : (gap < 0 ? ` · 장항2동 ${Math.abs(gap).toFixed(1)}%p 약함` : ` · 장항2동 ${gap.toFixed(1)}%p 강함`);
-    const gapClass = gap == null || Math.abs(gap) < 5 ? 'ts-same' : (higherIsWorse ? gap > 0 : gap < 0) ? 'ts-worse' : 'ts-better';
+    const test = PHASE_TEST[rowId]?.[c.phase];
+    const sig = !!test && test.p < 0.05;
+    const border = !!test && !sig && test.p < 0.1;
+    const diffText = gap == null ? '' : higherIsWorse
+      ? (gap < 0 ? `장항2동 증가가 ${Math.abs(gap).toFixed(1)}%p 작음` : `장항2동 증가가 ${gap.toFixed(1)}%p 큼`)
+      : (gap < 0 ? `장항2동 ${Math.abs(gap).toFixed(1)}%p 약함` : `장항2동 ${gap.toFixed(1)}%p 강함`);
+    const gapText = gap == null || !test ? '' : sig ? ` · ${diffText} (${pTxt(test.p)})`
+      : border ? ` · ${diffText}, 경계선 (${pTxt(test.p)})` : ` · 함께 움직임 (흔들림 ±${test.noise}%)`;
+    const gapClass = gap == null || !test || !(sig || border) ? 'ts-same' : (higherIsWorse ? gap > 0 : gap < 0) ? 'ts-worse' : 'ts-better';
     return <><span className={bad ? 'ts-down' : 'ts-up'}>{c.localPct > 0 ? '▲' : '▼'} {pctTxt(c.localPct)}</span>{c.compPct != null && <small>비교 {pctTxt(c.compPct)}<em className={gapClass}>{gapText}</em></small>}</>;
   };
   return <>
     <Claim tag="종합 · 원인 후보의 네 갈래" title="장항2동의 약화는 '코로나 공통 충격'과 '장항2동 고유 요인' 두 층으로 나뉘어 보인다.">
-      아래 표는 각 시기의 월평균을 직전 시기와 비교한 결과입니다. 비교 지역과 5%p 안에서 함께 움직였으면 <b>공통(외부) 요인</b>, 장항2동만 5%p 넘게 약했으면 <b>지역 고유 요인의 후보</b>로 표시했습니다. 5%p는 읽기 위한 임의 기준이며 통계적 유의성 검정이 아닙니다. 시기 길이와 계절 구성이 달라 계절 효과가 남을 수 있습니다.
+      아래 표는 각 시기의 월평균을 직전 시기와 비교한 결과입니다. 판정은 <b>월별 비율(장항2동 ÷ 비교 지역)</b>의 시기 평균이 직전 시기보다 변한 폭을, 그 지표가 평소 월마다 흔들리는 폭(2×표준오차)과 비교해 정했습니다. 흔들림 폭 안이면 <b>함께 움직임(공통 요인)</b>, 폭 밖이고 두 시기의 달을 무작위로 섞는 순열검정에서 우연일 확률이 5% 미만이면 <b>지역 고유 요인의 후보</b>로 표시했습니다. 흔들림 폭은 카드·철도 ±3~4%, 인허가 전체 ±8~11%, 방문형 CORE ±15~18%, 폐업 ±12~14%로 지표마다 다릅니다. 월별 값의 계절성·자기상관 때문에 p값이 실제보다 작게 나올 수 있습니다. 표의 %p 차이는 두 지역 변화율의 차이이고, 검정은 월별 비율로 했습니다.
     </Claim>
     <div className="evidence-table-wrap"><table className="evidence-table ts-phase-table">
       <thead><tr><th>지표</th><th>비교 지역</th>{pc.phases.slice(1).map((p: any, i: number) => <th key={p.key}>{pc.phases[i].label} → {p.label}<small>{p.from}~{p.to}</small></th>)}</tr></thead>
-      <tbody>{pc.rows.map((r: any) => <tr key={r.id}><td>{r.label}</td><td>{r.comparison || '없음'}</td>{r.cells.slice(1).map((c: any) => <td key={c.phase}>{cellView(c, r.id === 'bus_share', !!r.higherIsWorse)}{c.window && <small>충격기 = {c.window}</small>}</td>)}</tr>)}</tbody>
+      <tbody>{pc.rows.map((r: any) => <tr key={r.id}><td>{r.label}</td><td>{r.comparison || '없음'}</td>{r.cells.slice(1).map((c: any) => <td key={c.phase}>{cellView(c, r.id === 'bus_share', !!r.higherIsWorse, r.id)}{c.window && <small>충격기 = {c.window}</small>}</td>)}</tr>)}</tbody>
     </table></div>
     <p className="synthesis-method">{pc.method} '비교 불가' 칸에 마우스를 올리면 이유가 보입니다.</p>
     <div className="ts-cause-grid">
       <div className="ts-cause ts-cause-ext"><span>외부 · 공통 요인</span><h4>코로나19 충격(2020)과 회복(2022~23)</h4><p>2020년 카드와 철도는 비교 지역과 같은 시점에 함께 꺾였습니다(신규 인허가는 2020년에 두 지역 모두 늘었지만 장항2동 증가 폭이 작았습니다). 회복기 철도 반등 폭도 주변 역과 같습니다. 2023년 이후 전체 신규 인허가의 감소 폭도 고양시와 같아, 금리 인상(2021-08~2023-01)과 경기 둔화 같은 공통 요인의 후보입니다.</p></div>
       <div className="ts-cause ts-cause-amp"><span>공통 충격의 증폭</span><h4>장항2동이 더 크게 흔들림(소비는 이후 회복)</h4><p>같은 충격에서 카드(−20.0% vs −5.2%)와 정발산역(−34.4% vs −26.1%)이 비교 지역보다 더 크게 줄었습니다. 라페스타·웨스턴돔 같은 방문·여가형 상업지의 특성 때문일 가능성이 있으나, 업종·방문 목적 자료로 확인해야 하는 가설입니다. 카드 비중은 2023년 8~12월 8.80%로 2019년 같은 달(8.76%) 수준을 되찾아(같은 구성 구간 참고 비교), 소비 쪽 증폭은 일시적이었던 것으로 보입니다.</p></div>
-      <div className="ts-cause ts-cause-int"><span>지역 고유 요인 후보</span><h4>회복기 이후의 따로 노는 약화</h4><p>회복기 신규 인허가(−16.0% vs +0.5%), 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%), 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 소비 비중은 같은 시기에 회복했으므로, 고유 약화는 <b>소비보다 창업·사업체 쪽</b>에 있습니다.</p></div>
+      <div className="ts-cause ts-cause-int"><span>지역 고유 요인 후보</span><h4>회복기 이후의 따로 노는 약화</h4><p>회복기 신규 인허가(−16.0% vs +0.5%, p=0.001)와 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%)는 방문형 건수가 적어 흔들림이 커서 경계선(p=0.06)이지만, 2019→2024 장기로는 −27.4% vs −4.9%입니다. 소비 비중은 같은 시기에 회복했으므로, 고유 약화는 <b>소비보다 창업·사업체 쪽</b>에 있습니다.</p></div>
       <div className="ts-cause ts-cause-str"><span>장기 구조 요인 후보</span><h4>코로나 이전부터의 역 이용 비율 하락</h4><p>일산선 다른 10개 역 대비 정발산역 비율(2018 9.31%→2019 8.85%→2024 7.75%)은 코로나 전부터 낮아졌고 회복기에도 돌아오지 않았습니다. 카드 비중도 2018→2019년에 낮아졌지만(8~12월 9.32%→8.76%) 2023년에는 2019년 수준이어서, 카드에서는 장기 하락의 근거가 약합니다. 대형 상권 경쟁·신도시 고령화가 언론에서 거론되지만 시점을 특정할 수 없습니다.</p></div>
     </div>
     <div className="ts-open">
       <b>결론의 범위와 남은 확인</b>
       <ul>
         <li>네 갈래는 <b>원인 후보</b>입니다. 비교 지역 대비 시점과 방향으로 나눈 것이며 인과 추정이 아닙니다.</li>
-        <li>판단 보류: STCIS(비교 지역 없음·2021년 이후만), 버스(공급 범위 변화). 카드 2021년 이후는 금액으로는 잇지 않고 같은 구성·같은 달의 비중으로만 참고 비교했습니다.</li>
+        <li>판단 보류: STCIS(비교 지역 없음·2021년 이후만), 버스(2021-11-28~2024-09-27 집계 범위 변경: 고양시 정류장 절반 누락). 카드 2021년 이후는 금액으로는 잇지 않고 같은 구성·같은 달의 비중으로만 참고 비교했습니다.</li>
         <li>현장 조사 우선 질문: 2022년 이후 방문형 점포의 신규 진입이 왜 적었는지, 2020년 충격이 업종 구성 때문인지.</li>
         <li>사건 타임라인의 확인 수준 B·C 항목(버스 노선 조정, 라페스타 공실 보도 등)은 공식 자료로 다시 대조해야 합니다.</li>
       </ul>
