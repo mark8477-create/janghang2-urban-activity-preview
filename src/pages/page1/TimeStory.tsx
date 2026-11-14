@@ -191,7 +191,7 @@ export function TransportTimeStory({ active }: { active: boolean }) {
   const rail = data.phaseCompare.rows.find((r: any) => r.id === 'rail')?.cells || [];
   const yrB = (y: number) => data.bus.monthly.filter((r: any) => r.month.startsWith(String(y))).reduce((s: number, r: any) => s + (r.goyang || 0), 0);
   const busShareMean = (from: string, to: string) => { const v = data.bus.monthly.filter((r: any) => r.month >= from && r.month <= to && r.goyang).map((r: any) => r.janghang2 / r.goyang * 100); return v.reduce((a: number, b: number) => a + b, 0) / v.length; };
-  const breaks: TsArea[] = [{ from: '2021-12', to: '2024-09', label: '버스 공급 범위 축소 구간', color: 'rgba(214,107,50,.07)' }];
+  const breaks: TsArea[] = [{ from: '2021-12', to: '2024-09', label: '버스 집계 범위 축소 구간', color: 'rgba(214,107,50,.07)' }];
   const yr = (y: number, k: string) => data.rail.monthly.filter((r: any) => r.month.startsWith(String(y))).reduce((s: number, r: any) => s + r[k], 0);
   const shareYears = [2018, 2019, 2020, 2022, 2024, 2025].map(y => `${y} ${(yr(y, 'jeongbalsan') / yr(y, 'ilsanLineOthers') * 100).toFixed(2)}%`).join(' → ');
   return <>
@@ -202,7 +202,7 @@ export function TransportTimeStory({ active }: { active: boolean }) {
       <div><span>정발산역 · 충격기 vs 2019</span><strong>{pctTxt(rail[1]?.localPct)}</strong><small>일산선 다른 역 {pctTxt(rail[1]?.compPct)}</small></div>
       <div><span>정발산역 · 회복기 vs 충격기</span><strong>{pctTxt(rail[2]?.localPct)}</strong><small>일산선 다른 역 {pctTxt(rail[2]?.compPct)}</small></div>
       <div><span>정발산역 · 이후 vs 회복기</span><strong>{pctTxt(rail[3]?.localPct)}</strong><small>일산선 다른 역 {pctTxt(rail[3]?.compPct)}</small></div>
-      <div><span>버스 · 고양시 전체 연 승하차</span><strong>{(yrB(2021) / 1e6).toFixed(1)}백만 → {(yrB(2022) / 1e6).toFixed(1)}백만</strong><small>2021 → 2022 · 원자료 공급 범위 축소(장항2동 수요 변화 아님)</small></div>
+      <div><span>버스 · 고양시 전체 연 승하차</span><strong>{(yrB(2021) / 1e6).toFixed(1)}백만 → {(yrB(2022) / 1e6).toFixed(1)}백만</strong><small>2021 → 2022 · 원자료 집계 범위 축소(고양시 정류장 절반 누락, 수요 변화 아님)</small></div>
     </div>
     <div className="story-visual-grid">
       <EventChart title="정발산역과 일산선 다른 역(2019=100)" kicker="월별 승하차 · 2015-01~2025-12" months={rMonths} unit="지수" events={ev} areas={PHASE_AREAS}
@@ -210,12 +210,12 @@ export function TransportTimeStory({ active }: { active: boolean }) {
         filename="transport_rail_vs_ilsan" note={<>정발산역 비율(정발산역 ÷ 일산선 다른 10개 역, 연간): {shareYears}. 코로나 이전부터 낮아지기 시작했고(분홍 점선 = 2017-08 스타필드 고양 개장; 개장 전후 같은 속도로 낮아져 개장 시점에 따로 꺾인 흔적은 없음), 2020년에 크게 낮아진 뒤 회복기에도 원래 비율로 돌아오지 않았습니다. 2024-12 GTX-A(킨텍스·대곡역) 개통 뒤 2025년 비율이 더 낮아졌지만, 연구 연도축(2018~2024) 밖이라 참고로만 표시합니다.</>} />
       <EventChart title="버스 승하차: 장항2동·고양시·경기도(2020=100)" kicker="월별 · 2020-01~2026-07 · 관할(ORG_NM) 기준 합" months={bMonths} unit="지수" events={ev} areas={breaks}
         series={[{ name: '장항2동 정류장', data: indexTo(bMonths, align(bMonths, data.bus.monthly, (r: any) => r.janghang2), '2020-01', '2020-12'), color: C.green, width: 2.6 }, { name: '고양시 전체', data: indexTo(bMonths, align(bMonths, data.bus.monthly, (r: any) => r.goyang), '2020-01', '2020-12'), color: C.comp }, { name: '경기도 전체', data: indexTo(bMonths, align(bMonths, data.bus.monthly, (r: any) => r.gyeonggi), '2020-01', '2020-12'), color: C.comp2, dashed: true }]}
-        filename="transport_bus_regional" note={<><b>2021-12에 고양시 전체와 경기도 전체 합계도 함께 급감</b>했다가 2024-10부터 다시 늘었습니다. 따라서 이 두 변곡은 장항2동 수요 변화가 아니라 원자료 공급 범위 변화로 보는 것이 타당합니다(새 확인). 버스 절대값의 연도 비교 대신, 고양시 대비 장항2동 비중으로 봅니다. 2020-12-04는 미관측일이며 0으로 채우지 않았습니다.</>} />
+        filename="transport_bus_regional" note={<><b>2021-11-28에 고양시 정류장의 절반이 원자료에서 빠지고</b>(1,873 → 888개, 같은 요일 비교) 2024-09-28에 돌아왔습니다. 같은 달 STCIS·정발산역은 거의 변하지 않아, 이 두 변곡은 수요 변화가 아니라 원자료 집계 범위 변화입니다. 버스 절대값의 연도 비교 대신, 고양시 대비 장항2동 비중으로 봅니다. 2020-12-04는 미관측일이며 0으로 채우지 않았습니다.</>} />
     </div>
     <div className="ts-findings">
       <Finding title="코로나: 정발산역이 더 크게 줄었다" tone="orange">충격기 월평균은 2019년 대비 정발산역 {pctTxt(rail[1]?.localPct)}, 일산선 다른 역 {pctTxt(rail[1]?.compPct)}였습니다. 출퇴근보다 상업·여가 방문 비중이 큰 역이라 거리두기 영향을 더 받았을 가능성이 있습니다(가설).</Finding>
       <Finding title="회복 폭은 주변 역과 같다">회복기 반등은 정발산역 {pctTxt(rail[2]?.localPct)}, 다른 역 {pctTxt(rail[2]?.compPct)}로 거의 같습니다. 회복 국면의 이동량은 공통 요인을 따라 움직였습니다.</Finding>
-      <Finding title="버스 급감은 공급 쪽 변화 → 시기 비교 보류" tone="gray">고양시·경기도 전체도 같은 시점에 함께 줄어, 장항2동 버스 수요 감소로 해석하지 않습니다. 공급 축소 구간에는 장항2동의 고양시 내 비중도 {busShareMean('2021-01', '2021-10').toFixed(2)}%(2021-01~10) → {busShareMean('2022-01', '2024-08').toFixed(2)}%(2022-01~2024-08)로 뛰었습니다. 축소가 정류장마다 다르게 적용됐다는 뜻이라, 비중으로도 수요를 비교하지 않습니다.</Finding>
+      <Finding title="버스 급감은 집계 범위 변경 → 시기 비교에서 제외" tone="gray">일별 원자료를 같은 요일끼리 비교하면 2021-11-28(일)에 고양시에서 원자료에 나타나는 정류장이 1,873개 → 888개로 절반 줄었고(경기도 −20%), 계속 나타난 정류장의 이용량도 중앙값 −40% 줄었습니다. 같은 달 교통카드 통행(STCIS)은 −9~−14%, 정발산역은 −0.5%로 거의 그대로였습니다. 2024-09-28에 정류장 수가 1,059개 → 1,807개로 돌아왔습니다. 수요가 아니라 집계에서 빠진 정류장·노선 때문이며, 빠진 폭이 시군마다 달라(안산 −2% ~ 고양 −55%) 비교 지역 비율로도 보정할 수 없습니다. 공급 축소 구간에는 장항2동의 고양시 내 비중도 {busShareMean('2021-01', '2021-10').toFixed(2)}%(2021-01~10) → {busShareMean('2022-01', '2024-08').toFixed(2)}%(2022-01~2024-08)로 뛰었습니다. 축소가 정류장마다 다르게 적용됐다는 뜻이라, 비중으로도 수요를 비교하지 않습니다.</Finding>
     </div>
   </>;
 }
@@ -263,10 +263,10 @@ export function PhaseSynthesis({ active }: { active: boolean }) {
     </table></div>
     <p className="synthesis-method">{pc.method} '비교 불가' 칸에 마우스를 올리면 이유가 보입니다.</p>
     <div className="ts-cause-grid">
-      <div className="ts-cause ts-cause-ext"><span>외부 · 공통 요인</span><h4>코로나19 충격(2020)과 회복(2022~23)</h4><p>2020년 카드와 철도는 비교 지역과 같은 시점에 함께 꺾였습니다(신규 인허가는 2020년에 두 지역 모두 늘었지만 장항2동 증가 폭이 작았습니다). 회복기 철도 반등 폭도 주변 역과 같습니다. 2023년 이후 전체 신규 인허가의 감소 폭도 고양시와 같아, 금리 인상(2021-08~2023-01)과 경기 둔화 같은 공통 요인의 후보입니다.</p></div>
-      <div className="ts-cause ts-cause-amp"><span>공통 충격의 증폭</span><h4>장항2동이 더 크게 흔들림(소비는 이후 회복)</h4><p>같은 충격에서 카드(−20.0% vs −5.2%)와 정발산역(−34.4% vs −26.1%)이 비교 지역보다 더 크게 줄었습니다. 라페스타·웨스턴돔 같은 방문·여가형 상업지의 특성 때문일 가능성이 있으나, 업종·방문 목적 자료로 확인해야 하는 가설입니다. 카드 비중은 2023년 8~12월 8.80%로 2019년 같은 달(8.76%) 수준을 되찾아(같은 구성 구간 참고 비교), 소비 쪽 증폭은 일시적이었던 것으로 보입니다.</p></div>
-      <div className="ts-cause ts-cause-int"><span>지역 고유 요인 후보</span><h4>회복기 이후의 따로 노는 약화</h4><p>회복기 신규 인허가(−16.0% vs +0.5%, p=0.001)와 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%)는 방문형 건수가 적어 흔들림이 커서 경계선(p=0.06)이지만, 2019→2024 장기로는 −27.4% vs −4.9%입니다. 소비 비중은 같은 시기에 회복했으므로, 고유 약화는 <b>소비보다 창업·사업체 쪽</b>에 있습니다.</p></div>
-      <div className="ts-cause ts-cause-str"><span>장기 구조 요인 후보</span><h4>코로나 이전부터의 역 이용 비율 하락</h4><p>일산선 다른 10개 역 대비 정발산역 비율(2018 9.31%→2019 8.85%→2024 7.75%)은 코로나 전부터 낮아졌고 회복기에도 돌아오지 않았습니다. 카드 비중도 2018→2019년에 낮아졌지만(8~12월 9.32%→8.76%) 2023년에는 2019년 수준이어서, 카드에서는 장기 하락의 근거가 약합니다. 대형 상권 경쟁·신도시 고령화가 언론에서 거론되지만 시점을 특정할 수 없습니다.</p></div>
+      <div className="ts-cause ts-cause-ext"><span>① 공통 외부 충격</span><h4>코로나19 충격(2020)과 회복(2022~23)</h4><p>2020년 카드와 철도는 비교 지역과 같은 시점에 함께 꺾였습니다(신규 인허가는 2020년에 두 지역 모두 늘었지만 장항2동 증가 폭이 작았습니다). 회복기 철도 반등 폭도 주변 역과 같습니다. 2023년 이후 전체 신규 인허가의 감소 폭도 고양시와 같아, 금리 인상(2021-08~2023-01)과 경기 둔화 같은 공통 요인의 후보입니다.</p></div>
+      <div className="ts-cause ts-cause-amp"><span>② 공통 충격의 증폭</span><h4>장항2동이 더 크게 흔들림(소비는 이후 회복)</h4><p>같은 충격에서 카드(−20.0% vs −5.2%)와 정발산역(−34.4% vs −26.1%)이 비교 지역보다 더 크게 줄었습니다. 라페스타·웨스턴돔 같은 방문·여가형 상업지의 특성 때문일 가능성이 있으나, 업종·방문 목적 자료로 확인해야 하는 가설입니다. 카드 비중은 2023년 8~12월 8.80%로 2019년 같은 달(8.76%) 수준을 되찾아(같은 구성 구간 참고 비교), 소비 쪽 증폭은 일시적이었던 것으로 보입니다.</p></div>
+      <div className="ts-cause ts-cause-int"><span>③ 지역 고유 요인 후보</span><h4>회복기 이후의 따로 노는 약화</h4><p>회복기 신규 인허가(−16.0% vs +0.5%, p=0.001)와 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%)는 방문형 건수가 적어 흔들림이 커서 경계선(p=0.06)이지만, 2019→2024 장기로는 −27.4% vs −4.9%입니다. 소비 비중은 같은 시기에 회복했으므로, 고유 약화는 <b>소비보다 창업·사업체 쪽</b>에 있습니다.</p></div>
+      <div className="ts-cause ts-cause-str"><span>④ 경쟁 상권·신도시 구조 후보</span><h4>새 점포·새 인구가 킨텍스·스타필드 쪽으로</h4><p>고양시 방문형 신규 인허가 중 장항2동 몫은 15.2%(2010)→9.2%(2024)로 줄고 대화동(킨텍스)은 9.8%→16.4%로 늘어 2018년부터 장항2동을 앞섰습니다. 스타필드 개장 전후 24개월 장항2동 −17.5%(고양시 −0.8%). 1기 신도시 주거지 인구는 −9~−15%, 장항1동은 +417%. 정발산역 비율도 코로나 전부터 낮아졌습니다(2018 9.31%→2024 7.75%). 위 05 경쟁 상권과 신도시 참고.</p></div>
     </div>
     <div className="ts-open">
       <b>결론의 범위와 남은 확인</b>

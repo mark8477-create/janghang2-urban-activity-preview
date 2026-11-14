@@ -1,0 +1,882 @@
+{
+ "generated": "2026-11-15",
+ "share": [
+  {
+   "year": 2010,
+   "jh2": 15.16,
+   "jh1": 0.58,
+   "daehwa": 9.75,
+   "changneung": 0.5,
+   "jh2Incl": 14.24,
+   "daehwaIncl": 10.67,
+   "goyangCount": 2605
+  },
+  {
+   "year": 2011,
+   "jh2": 14.19,
+   "jh1": 0.56,
+   "daehwa": 5.91,
+   "changneung": 0.6,
+   "jh2Incl": 13.42,
+   "daehwaIncl": 7.27,
+   "goyangCount": 2319
+  },
+  {
+   "year": 2012,
+   "jh2": 11.18,
+   "jh1": 0.29,
+   "daehwa": 5.73,
+   "changneung": 0.66,
+   "jh2Incl": 11.27,
+   "daehwaIncl": 7.71,
+   "goyangCount": 2425
+  },
+  {
+   "year": 2013,
+   "jh2": 10.87,
+   "jh1": 1.18,
+   "daehwa": 10.02,
+   "changneung": 1.95,
+   "jh2Incl": 10.47,
+   "daehwaIncl": 11.18,
+   "goyangCount": 2465
+  },
+  {
+   "year": 2014,
+   "jh2": 11.96,
+   "jh1": 0.83,
+   "daehwa": 7.25,
+   "changneung": 2.39,
+   "jh2Incl": 11.42,
+   "daehwaIncl": 8.09,
+   "goyangCount": 2759
+  },
+  {
+   "year": 2015,
+   "jh2": 11.42,
+   "jh1": 0.67,
+   "daehwa": 9.82,
+   "changneung": 2.46,
+   "jh2Incl": 10.93,
+   "daehwaIncl": 10.34,
+   "goyangCount": 3004
+  },
+  {
+   "year": 2016,
+   "jh2": 12.93,
+   "jh1": 0.48,
+   "daehwa": 8.73,
+   "changneung": 1.92,
+   "jh2Incl": 11.25,
+   "daehwaIncl": 11.79,
+   "goyangCount": 3334
+  },
+  {
+   "year": 2017,
+   "jh2": 10.25,
+   "jh1": 0.42,
+   "daehwa": 9.98,
+   "changneung": 7.29,
+   "jh2Incl": 8.89,
+   "daehwaIncl": 15.48,
+   "goyangCount": 3308
+  },
+  {
+   "year": 2018,
+   "jh2": 10.15,
+   "jh1": 0.68,
+   "daehwa": 12.74,
+   "changneung": 3.55,
+   "jh2Incl": 8.94,
+   "daehwaIncl": 15.36,
+   "goyangCount": 3241
+  },
+  {
+   "year": 2019,
+   "jh2": 9.39,
+   "jh1": 1.22,
+   "daehwa": 13.52,
+   "changneung": 4.31,
+   "jh2Incl": 9.31,
+   "daehwaIncl": 15.74,
+   "goyangCount": 3366
+  },
+  {
+   "year": 2020,
+   "jh2": 10.94,
+   "jh1": 1.97,
+   "daehwa": 8.49,
+   "changneung": 4.69,
+   "jh2Incl": 10.19,
+   "daehwaIncl": 13.65,
+   "goyangCount": 3346
+  },
+  {
+   "year": 2021,
+   "jh2": 9.4,
+   "jh1": 2.17,
+   "daehwa": 7.56,
+   "changneung": 4.49,
+   "jh2Incl": 7.61,
+   "daehwaIncl": 12.93,
+   "goyangCount": 3362
+  },
+  {
+   "year": 2022,
+   "jh2": 9.74,
+   "jh1": 1.45,
+   "daehwa": 11.52,
+   "changneung": 4.31,
+   "jh2Incl": 8.82,
+   "daehwaIncl": 15.89,
+   "goyangCount": 2968
+  },
+  {
+   "year": 2023,
+   "jh2": 9.8,
+   "jh1": 1.22,
+   "daehwa": 14.15,
+   "changneung": 2.87,
+   "jh2Incl": 8.61,
+   "daehwaIncl": 19.07,
+   "goyangCount": 3103
+  },
+  {
+   "year": 2024,
+   "jh2": 9.2,
+   "jh1": 0.87,
+   "daehwa": 16.4,
+   "changneung": 3.47,
+   "jh2Incl": 7.39,
+   "daehwaIncl": 20.03,
+   "goyangCount": 3000
+  }
+ ],
+ "starfield": [
+  {
+   "dong": "장항2동",
+   "before": 777,
+   "after": 641,
+   "pct": -17.5
+  },
+  {
+   "dong": "장항1동",
+   "before": 35,
+   "after": 44,
+   "pct": 25.7
+  },
+  {
+   "dong": "대화동",
+   "before": 644,
+   "after": 833,
+   "pct": 29.3
+  },
+  {
+   "dong": "창릉동",
+   "before": 157,
+   "after": 250,
+   "pct": 59.2
+  },
+  {
+   "dong": "고양시 전체",
+   "before": 6522,
+   "after": 6473,
+   "pct": -0.8
+  }
+ ],
+ "population": [
+  {
+   "dong": "장항2동",
+   "group": "장항2동",
+   "p2018": 26785,
+   "p2024": 26198,
+   "pct": -2.2,
+   "series": [
+    {
+     "year": 2018,
+     "value": 26785
+    },
+    {
+     "year": 2019,
+     "value": 26041
+    },
+    {
+     "year": 2020,
+     "value": 26679
+    },
+    {
+     "year": 2021,
+     "value": 27094
+    },
+    {
+     "year": 2022,
+     "value": 26756
+    },
+    {
+     "year": 2023,
+     "value": 26392
+    },
+    {
+     "year": 2024,
+     "value": 26198
+    }
+   ]
+  },
+  {
+   "dong": "장항1동",
+   "group": "장항1동",
+   "p2018": 3190,
+   "p2024": 16487,
+   "pct": 416.8,
+   "series": [
+    {
+     "year": 2018,
+     "value": 3190
+    },
+    {
+     "year": 2019,
+     "value": 7596
+    },
+    {
+     "year": 2020,
+     "value": 10639
+    },
+    {
+     "year": 2021,
+     "value": 11372
+    },
+    {
+     "year": 2022,
+     "value": 10977
+    },
+    {
+     "year": 2023,
+     "value": 10754
+    },
+    {
+     "year": 2024,
+     "value": 16487
+    }
+   ]
+  },
+  {
+   "dong": "대화동",
+   "group": "대화동",
+   "p2018": 30299,
+   "p2024": 33577,
+   "pct": 10.8,
+   "series": [
+    {
+     "year": 2018,
+     "value": 30299
+    },
+    {
+     "year": 2019,
+     "value": 33624
+    },
+    {
+     "year": 2020,
+     "value": 35376
+    },
+    {
+     "year": 2021,
+     "value": 35338
+    },
+    {
+     "year": 2022,
+     "value": 34579
+    },
+    {
+     "year": 2023,
+     "value": 33897
+    },
+    {
+     "year": 2024,
+     "value": 33577
+    }
+   ]
+  },
+  {
+   "dong": "창릉동",
+   "group": "창릉동",
+   "p2018": 14085,
+   "p2024": 22608,
+   "pct": 60.5,
+   "series": [
+    {
+     "year": 2018,
+     "value": 14085
+    },
+    {
+     "year": 2019,
+     "value": 18749
+    },
+    {
+     "year": 2020,
+     "value": 19931
+    },
+    {
+     "year": 2021,
+     "value": 22332
+    },
+    {
+     "year": 2022,
+     "value": 23271
+    },
+    {
+     "year": 2023,
+     "value": 22621
+    },
+    {
+     "year": 2024,
+     "value": 22608
+    }
+   ]
+  },
+  {
+   "dong": "마두1동",
+   "group": "1기 신도시 주거지",
+   "p2018": 24105,
+   "p2024": 21628,
+   "pct": -10.3,
+   "series": [
+    {
+     "year": 2018,
+     "value": 24105
+    },
+    {
+     "year": 2019,
+     "value": 23501
+    },
+    {
+     "year": 2020,
+     "value": 23255
+    },
+    {
+     "year": 2021,
+     "value": 22809
+    },
+    {
+     "year": 2022,
+     "value": 22267
+    },
+    {
+     "year": 2023,
+     "value": 21864
+    },
+    {
+     "year": 2024,
+     "value": 21628
+    }
+   ]
+  },
+  {
+   "dong": "마두2동",
+   "group": "1기 신도시 주거지",
+   "p2018": 15995,
+   "p2024": 14513,
+   "pct": -9.3,
+   "series": [
+    {
+     "year": 2018,
+     "value": 15995
+    },
+    {
+     "year": 2019,
+     "value": 15583
+    },
+    {
+     "year": 2020,
+     "value": 15625
+    },
+    {
+     "year": 2021,
+     "value": 15298
+    },
+    {
+     "year": 2022,
+     "value": 14865
+    },
+    {
+     "year": 2023,
+     "value": 14644
+    },
+    {
+     "year": 2024,
+     "value": 14513
+    }
+   ]
+  },
+  {
+   "dong": "주엽1동",
+   "group": "1기 신도시 주거지",
+   "p2018": 27456,
+   "p2024": 24928,
+   "pct": -9.2,
+   "series": [
+    {
+     "year": 2018,
+     "value": 27456
+    },
+    {
+     "year": 2019,
+     "value": 26670
+    },
+    {
+     "year": 2020,
+     "value": 26506
+    },
+    {
+     "year": 2021,
+     "value": 26255
+    },
+    {
+     "year": 2022,
+     "value": 25754
+    },
+    {
+     "year": 2023,
+     "value": 25408
+    },
+    {
+     "year": 2024,
+     "value": 24928
+    }
+   ]
+  },
+  {
+   "dong": "주엽2동",
+   "group": "1기 신도시 주거지",
+   "p2018": 28944,
+   "p2024": 25596,
+   "pct": -11.6,
+   "series": [
+    {
+     "year": 2018,
+     "value": 28944
+    },
+    {
+     "year": 2019,
+     "value": 27793
+    },
+    {
+     "year": 2020,
+     "value": 27800
+    },
+    {
+     "year": 2021,
+     "value": 27237
+    },
+    {
+     "year": 2022,
+     "value": 26384
+    },
+    {
+     "year": 2023,
+     "value": 25882
+    },
+    {
+     "year": 2024,
+     "value": 25596
+    }
+   ]
+  },
+  {
+   "dong": "정발산동",
+   "group": "1기 신도시 주거지",
+   "p2018": 24749,
+   "p2024": 20965,
+   "pct": -15.3,
+   "series": [
+    {
+     "year": 2018,
+     "value": 24749
+    },
+    {
+     "year": 2019,
+     "value": 23517
+    },
+    {
+     "year": 2020,
+     "value": 22907
+    },
+    {
+     "year": 2021,
+     "value": 22710
+    },
+    {
+     "year": 2022,
+     "value": 22062
+    },
+    {
+     "year": 2023,
+     "value": 21359
+    },
+    {
+     "year": 2024,
+     "value": 20965
+    }
+   ]
+  },
+  {
+   "dong": "백석1동",
+   "group": "1기 신도시 주거지",
+   "p2018": 30746,
+   "p2024": 27542,
+   "pct": -10.4,
+   "series": [
+    {
+     "year": 2018,
+     "value": 30746
+    },
+    {
+     "year": 2019,
+     "value": 29868
+    },
+    {
+     "year": 2020,
+     "value": 29524
+    },
+    {
+     "year": 2021,
+     "value": 29208
+    },
+    {
+     "year": 2022,
+     "value": 28528
+    },
+    {
+     "year": 2023,
+     "value": 27963
+    },
+    {
+     "year": 2024,
+     "value": 27542
+    }
+   ]
+  },
+  {
+   "dong": "고양시 전체",
+   "group": "고양시 전체",
+   "p2018": 1006992,
+   "p2024": 1044968,
+   "pct": 3.8,
+   "series": [
+    {
+     "year": 2018,
+     "value": 1006992
+    },
+    {
+     "year": 2019,
+     "value": 1024645
+    },
+    {
+     "year": 2020,
+     "value": 1045497
+    },
+    {
+     "year": 2021,
+     "value": 1049513
+    },
+    {
+     "year": 2022,
+     "value": 1044242
+    },
+    {
+     "year": 2023,
+     "value": 1047592
+    },
+    {
+     "year": 2024,
+     "value": 1044968
+    }
+   ]
+  }
+ ],
+ "stcisPhase": [
+  {
+   "day": "전체",
+   "flow": "유입",
+   "slot": "낮 12~15",
+   "shockToRecovery": -3.5,
+   "recoveryToEndemic": -5.3
+  },
+  {
+   "day": "전체",
+   "flow": "유입",
+   "slot": "오후 16~19",
+   "shockToRecovery": 2.1,
+   "recoveryToEndemic": -8.3
+  },
+  {
+   "day": "전체",
+   "flow": "유입",
+   "slot": "저녁 19~22",
+   "shockToRecovery": 12.9,
+   "recoveryToEndemic": -1.2
+  },
+  {
+   "day": "전체",
+   "flow": "유입",
+   "slot": "전체 24시간",
+   "shockToRecovery": 1.3,
+   "recoveryToEndemic": -4.9
+  },
+  {
+   "day": "전체",
+   "flow": "유출",
+   "slot": "낮 12~15",
+   "shockToRecovery": -3.4,
+   "recoveryToEndemic": 1.9
+  },
+  {
+   "day": "전체",
+   "flow": "유출",
+   "slot": "오후 16~19",
+   "shockToRecovery": 0.8,
+   "recoveryToEndemic": -4.1
+  },
+  {
+   "day": "전체",
+   "flow": "유출",
+   "slot": "저녁 19~22",
+   "shockToRecovery": -1.0,
+   "recoveryToEndemic": -6.0
+  },
+  {
+   "day": "전체",
+   "flow": "유출",
+   "slot": "전체 24시간",
+   "shockToRecovery": -1.6,
+   "recoveryToEndemic": -3.5
+  },
+  {
+   "day": "전체",
+   "flow": "장항동 안 이동",
+   "slot": "낮 12~15",
+   "shockToRecovery": 10.8,
+   "recoveryToEndemic": -17.6
+  },
+  {
+   "day": "전체",
+   "flow": "장항동 안 이동",
+   "slot": "오후 16~19",
+   "shockToRecovery": 3.3,
+   "recoveryToEndemic": 1.0
+  },
+  {
+   "day": "전체",
+   "flow": "장항동 안 이동",
+   "slot": "저녁 19~22",
+   "shockToRecovery": 17.6,
+   "recoveryToEndemic": -10.8
+  },
+  {
+   "day": "전체",
+   "flow": "장항동 안 이동",
+   "slot": "전체 24시간",
+   "shockToRecovery": 7.9,
+   "recoveryToEndemic": -0.5
+  },
+  {
+   "day": "평일(수)",
+   "flow": "유입",
+   "slot": "낮 12~15",
+   "shockToRecovery": -8.9,
+   "recoveryToEndemic": 1.9
+  },
+  {
+   "day": "평일(수)",
+   "flow": "유입",
+   "slot": "오후 16~19",
+   "shockToRecovery": -5.0,
+   "recoveryToEndemic": -5.3
+  },
+  {
+   "day": "평일(수)",
+   "flow": "유입",
+   "slot": "저녁 19~22",
+   "shockToRecovery": 4.3,
+   "recoveryToEndemic": -1.7
+  },
+  {
+   "day": "평일(수)",
+   "flow": "유입",
+   "slot": "전체 24시간",
+   "shockToRecovery": -1.8,
+   "recoveryToEndemic": -1.2
+  },
+  {
+   "day": "평일(수)",
+   "flow": "유출",
+   "slot": "낮 12~15",
+   "shockToRecovery": -4.6,
+   "recoveryToEndemic": 4.9
+  },
+  {
+   "day": "평일(수)",
+   "flow": "유출",
+   "slot": "오후 16~19",
+   "shockToRecovery": -4.7,
+   "recoveryToEndemic": 1.3
+  },
+  {
+   "day": "평일(수)",
+   "flow": "유출",
+   "slot": "저녁 19~22",
+   "shockToRecovery": -6.2,
+   "recoveryToEndemic": -6.1
+  },
+  {
+   "day": "평일(수)",
+   "flow": "유출",
+   "slot": "전체 24시간",
+   "shockToRecovery": -4.2,
+   "recoveryToEndemic": -0.2
+  },
+  {
+   "day": "평일(수)",
+   "flow": "장항동 안 이동",
+   "slot": "낮 12~15",
+   "shockToRecovery": -1.2,
+   "recoveryToEndemic": 4.8
+  },
+  {
+   "day": "평일(수)",
+   "flow": "장항동 안 이동",
+   "slot": "오후 16~19",
+   "shockToRecovery": -5.1,
+   "recoveryToEndemic": 8.4
+  },
+  {
+   "day": "평일(수)",
+   "flow": "장항동 안 이동",
+   "slot": "저녁 19~22",
+   "shockToRecovery": 5.7,
+   "recoveryToEndemic": -8.5
+  },
+  {
+   "day": "평일(수)",
+   "flow": "장항동 안 이동",
+   "slot": "전체 24시간",
+   "shockToRecovery": -2.0,
+   "recoveryToEndemic": 9.8
+  },
+  {
+   "day": "주말(토)",
+   "flow": "유입",
+   "slot": "낮 12~15",
+   "shockToRecovery": 1.6,
+   "recoveryToEndemic": -12.5
+  },
+  {
+   "day": "주말(토)",
+   "flow": "유입",
+   "slot": "오후 16~19",
+   "shockToRecovery": 9.8,
+   "recoveryToEndemic": -10.3
+  },
+  {
+   "day": "주말(토)",
+   "flow": "유입",
+   "slot": "저녁 19~22",
+   "shockToRecovery": 25.4,
+   "recoveryToEndemic": 0.7
+  },
+  {
+   "day": "주말(토)",
+   "flow": "유입",
+   "slot": "전체 24시간",
+   "shockToRecovery": 5.9,
+   "recoveryToEndemic": -8.8
+  },
+  {
+   "day": "주말(토)",
+   "flow": "유출",
+   "slot": "낮 12~15",
+   "shockToRecovery": -0.6,
+   "recoveryToEndemic": -2.0
+  },
+  {
+   "day": "주말(토)",
+   "flow": "유출",
+   "slot": "오후 16~19",
+   "shockToRecovery": 6.9,
+   "recoveryToEndemic": -11.6
+  },
+  {
+   "day": "주말(토)",
+   "flow": "유출",
+   "slot": "저녁 19~22",
+   "shockToRecovery": 5.5,
+   "recoveryToEndemic": -7.4
+  },
+  {
+   "day": "주말(토)",
+   "flow": "유출",
+   "slot": "전체 24시간",
+   "shockToRecovery": 2.2,
+   "recoveryToEndemic": -7.7
+  },
+  {
+   "day": "주말(토)",
+   "flow": "장항동 안 이동",
+   "slot": "낮 12~15",
+   "shockToRecovery": 15.2,
+   "recoveryToEndemic": -5.7
+  },
+  {
+   "day": "주말(토)",
+   "flow": "장항동 안 이동",
+   "slot": "오후 16~19",
+   "shockToRecovery": 11.9,
+   "recoveryToEndemic": -10.0
+  },
+  {
+   "day": "주말(토)",
+   "flow": "장항동 안 이동",
+   "slot": "저녁 19~22",
+   "shockToRecovery": 36.3,
+   "recoveryToEndemic": -19.6
+  },
+  {
+   "day": "주말(토)",
+   "flow": "장항동 안 이동",
+   "slot": "전체 24시간",
+   "shockToRecovery": 19.1,
+   "recoveryToEndemic": -11.6
+  }
+ ],
+ "busSide": [
+  {
+   "year": 2020,
+   "jh2SharePct": 91.4,
+   "fullCoverage": true
+  },
+  {
+   "year": 2021,
+   "jh2SharePct": 91.1,
+   "fullCoverage": true
+  },
+  {
+   "year": 2022,
+   "jh2SharePct": 99.4,
+   "fullCoverage": false
+  },
+  {
+   "year": 2023,
+   "jh2SharePct": 98.4,
+   "fullCoverage": false
+  },
+  {
+   "year": 2024,
+   "jh2SharePct": 91.4,
+   "fullCoverage": true
+  }
+ ],
+ "sources": [
+  "analysis/15_competition_kintex_starfield_20261109",
+  "analysis/14_final_presentation_20261109/stcis_phase_inout",
+  "analysis/14_final_presentation_20261109/stcis_legal_bus_share"
+ ]
+}
