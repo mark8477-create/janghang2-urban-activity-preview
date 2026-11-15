@@ -76,24 +76,53 @@ export function CompetitionStory({ active }: { active: boolean }) {
     series: [{ type: 'bar', barMaxWidth: 18, data: popRows.map(r => ({ value: Math.min(r.pct, 100), itemStyle: { color: r.dong === '장항2동' ? C.jh : r.group === '1기 신도시 주거지' ? C.comp : C.green } })),
       label: { show: true, position: 'right', formatter: (p: any) => pct(popRows[p.dataIndex].pct), color: '#161616', fontSize: 11 } }],
   };
+  const net: any[] = data.netByPeriod;
+  const periods = ['2010~15', '2016~19', '2020~21', '2022~24'];
+  const netOption = {
+    animationDuration: 250, color: [C.jh, C.accent, C.purple, C.green],
+    tooltip: { trigger: 'axis', valueFormatter: (v: number) => `${v > 0 ? '+' : ''}${v}건/년` },
+    legend: { top: 0, textStyle: axisText },
+    grid: { left: 50, right: 18, top: 40, bottom: 30 },
+    xAxis: { type: 'category', data: periods, axisLabel: axisText },
+    yAxis: { type: 'value', name: '건/년', axisLabel: axisText, splitLine: { lineStyle: { color: '#e8eef1' } } },
+    series: net.map(r => ({ name: r.dong, type: 'bar', barMaxWidth: 22, data: periods.map(p => r[p].net) })),
+  };
+  const biz: any[] = data.sgisBiz;
+  const bizOption = {
+    animationDuration: 250,
+    tooltip: { trigger: 'axis', valueFormatter: (v: number) => pct(v) },
+    grid: { left: 50, right: 18, top: 20, bottom: 30 },
+    xAxis: { type: 'category', data: biz.map(r => r.dong), axisLabel: axisText },
+    yAxis: { type: 'value', name: '%', axisLabel: axisText, splitLine: { lineStyle: { color: '#e8eef1' } } },
+    series: [{ type: 'bar', barMaxWidth: 46, data: biz.map(r => ({ value: r.pct, itemStyle: { color: r.dong === '장항2동' ? C.jh : r.dong === '고양시 전체' ? C.comp : '#a6c8ff' } })),
+      label: { show: true, position: 'top', formatter: (p: any) => pct(p.value), color: '#161616', fontSize: 12 } }],
+  };
+  const top: any[] = data.sgisTopGrowth;
+  const bizJh = biz.find(r => r.dong === '장항2동'), bizDh = biz.find(r => r.dong === '대화동'), bizGy = biz.find(r => r.dong === '고양시 전체');
+  const netOf = (d: string, p: string) => net.find(r => r.dong === d)[p].net;
+  const sn = (v: number) => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v)}`;
   const timeline = [['2003', '라페스타'], ['2005', '킨텍스 제1전시장'], ['2007', '웨스턴돔'], ['2010', '현대백화점 킨텍스점'], ['2011', '킨텍스 제2전시장'], ['2013', '원마운트'], ['2017', '스타필드 고양'], ['2019', '킨텍스원시티 입주'], ['2024', 'GTX-A 킨텍스역']];
   return <>
-    <Claim tag="경쟁 상권 · 신도시 구조 (행안부 인허가 · SGIS 인구)" title="새 점포와 새 인구는 킨텍스·스타필드 쪽 신규 개발지로 옮겨 갔다.">
-      라페스타·웨스턴돔은 1기 신도시와 함께 생긴 상권입니다. 이후 킨텍스·스타필드 주변에 새 상업·주거 개발이 이어졌습니다. 고양시에서 새로 생기는 <b>방문형(CORE) 점포</b> 가운데 각 동이 차지하는 몫과 동별 인구 변화를 보면, 진입과 인구가 어디로 갔는지 알 수 있습니다. 시점과 방향이 일치한다는 뜻이며 인과를 추정한 것은 아닙니다.
+    <Claim tag="경쟁 상권 · 신도시 구조 (행안부 인허가 · SGIS 사업체·인구)" title="2010년대 초부터 새 방문형 점포는 킨텍스·신규 개발지 쪽으로 분산됐고, 코로나 이후에는 이 동네들도 순증이 멈췄다.">
+      라페스타·웨스턴돔은 1기 신도시와 함께 생긴 상권입니다. 이후 킨텍스·스타필드 주변에 새 상업·주거 개발이 이어졌습니다. 고양시에서 새로 생기는 <b>방문형(CORE) 점포</b> 가운데 각 동이 차지하는 몫, <b>신규에서 폐업을 뺀 순증</b>, 실제로 남아 있는 <b>사업체 수</b>, 동별 인구를 함께 봅니다. 신규 진입만 보면 경쟁 동네가 커진 것처럼 보이지만, 폐업과 사업체 수까지 보면 코로나 이후에는 이 동네들도 성장이 멈췄습니다. 점포와 인구가 실제로 어디서 어디로 옮겼는지는 알 수 없으며, 시점과 방향의 일치일 뿐 인과 추정이 아닙니다.
     </Claim>
     <div className="ts-kpis">
       <div><span>방문형 신규 인허가 중 장항2동 몫</span><strong>{first.jh2.toFixed(1)}% → {last.jh2.toFixed(1)}%</strong><small>{first.year} → {last.year} · 즉석판매제조가공업 제외</small></div>
       <div><span>같은 기간 대화동(킨텍스) 몫</span><strong>{first.daehwa.toFixed(1)}% → {last.daehwa.toFixed(1)}%</strong><small>2018년부터 장항2동을 앞섬</small></div>
-      <div><span>스타필드 개장 전후 24개월 · 장항2동</span><strong>{pct(sfJh.pct)}</strong><small>고양시 전체 {pct(sfGy.pct)} · 방문형 신규 인허가</small></div>
-      <div><span>인구 2018→2024 · 장항1동</span><strong>{pct(jh1.pct, 0)}</strong><small>1기 신도시 주거지 {pct(ftMin, 0)} ~ {pct(ftMax, 0)}</small></div>
+      <div><span>방문형 순증 2022~24 · 대화동 / 창릉동</span><strong>{sn(netOf('대화동', '2022~24'))} / {sn(netOf('창릉동', '2022~24'))}건/년</strong><small>2016~19년 {sn(netOf('대화동', '2016~19'))} / {sn(netOf('창릉동', '2016~19'))}건/년에서 멈춤</small></div>
+      <div><span>남은 사업체 수 2020→2024</span><strong>장항2동 {pct(bizJh.pct)} · 대화동 {pct(bizDh.pct)}</strong><small>고양시 전체 {pct(bizGy.pct)} · 증가는 {top.map(r => r.dong).join('·')} 등에 몰림</small></div>
     </div>
     <div className="story-visual-grid">
       <Panel kicker="연간 · 고양시 방문형(CORE) 신규 인허가 중 각 동의 몫" title="새 방문형 점포는 장항2동에서 대화동(킨텍스) 쪽으로" option={shareOption}
-        note={<>즉석판매제조가공업 제외(포함하면 장항2동 {first.jh2Incl.toFixed(1)}%→{last.jh2Incl.toFixed(1)}%, 대화동 {first.daehwaIncl.toFixed(1)}%→{last.daehwaIncl.toFixed(1)}%). 대화동은 2018년부터 장항2동을 앞섰고 코로나 뒤(2022~24) 크게 늘었습니다. 인허가 기록 수는 점포 수가 아닙니다.</>} />
-      <Panel kicker="스타필드 고양 개장(2017-08) 전후 24개월 · 방문형 신규 인허가 변화율" title="개장 뒤 장항2동만 신규 진입이 줄었다" option={sfOption}
-        note={<>개장 전 2015.08~2017.07, 개장 후 2017.09~2019.08(개장 월 제외), 즉석판매제조가공업 제외. 장항2동 {sfJh.before}→{sfJh.after}건. 시점의 일치이며 인과가 아닙니다.</>} />
+        note={<>즉석판매제조가공업 제외(포함하면 장항2동 {first.jh2Incl.toFixed(1)}%→{last.jh2Incl.toFixed(1)}%, 대화동 {first.daehwaIncl.toFixed(1)}%→{last.daehwaIncl.toFixed(1)}%). 장항2동 몫은 스타필드 개장보다 앞선 2011~12년부터 줄기 시작했고, 대화동은 2018년부터 장항2동을 앞섰습니다. 인허가 기록 수는 점포 수가 아닙니다.</>} />
+      <Panel kicker="방문형 신규 − 폐업 기록 · 시기별 연평균" title="경쟁 동네도 코로나 이후 순증이 멈췄다" option={netOption}
+        note={<>대화동·창릉동은 2010년대에 점포가 쌓였지만(연 +70 안팎) 2022~24년에는 폐업도 늘어 순증이 0 근처입니다. 장항2동은 신규와 폐업이 함께 줄어 들고 나는 흐름 자체가 줄었습니다. 폐업 = 현재 상태가 폐업인 기록. 2016~19에는 2018년 일괄 폐업 기록(원인 미확인)이 포함됩니다. 즉석판매제조가공업 제외.</>} />
+      <Panel kicker="SGIS 행정동 사업체 수 · 2020 → 2024 변화율" title="남아 있는 사업체는 장항2동도 대화동도 줄었다" option={bizOption}
+        note={<>고양시 전체는 {pct(bizGy.pct)}이지만 증가는 {top.map(r => `${r.dong} +${r.chg.toLocaleString()}개`).join(', ')} 등에 몰렸습니다. 그래서 '경쟁 상권이 성장했다'기보다 새 진입이 주변 신규 개발지로 분산되고 코로나 이후 일산 기존 상업지 전반이 정체한 것으로 봅니다. SGIS 2019→2020은 기준 변경으로 잇지 않습니다.</>} />
+      <Panel kicker="스타필드 고양 개장(2017-08) 전후 24개월 · 방문형 신규 인허가 변화율" title="개장 무렵에도 장항2동의 신규 진입은 줄었다" option={sfOption}
+        note={<>개장 전 2015.08~2017.07, 개장 후 2017.09~2019.08(개장 월 제외), 즉석판매제조가공업 제외. 장항2동 {sfJh.before}→{sfJh.after}건, 고양시 전체 {pct(sfGy.pct)}. 개장 전부터 이어진 흐름이라 스타필드만의 효과로 볼 수 없습니다.</>} />
       <Panel kicker="SGIS 행정동 인구 · 2018 → 2024 변화율" title="1기 신도시 주거지는 줄고, 신규 개발지는 늘었다" option={popOption} height={360}
-        note={<>회색 = 1기 신도시 주거지(마두·주엽·정발산·백석), 초록 = 신규 개발지, 파랑 = 장항2동. 장항1동은 {pct(jh1.pct)}({jh1.p2018.toLocaleString()}→{jh1.p2024.toLocaleString()}명)로 막대는 +100%에서 잘랐습니다. 각 연도 경계 기준.</>} />
+        note={<>누가 어디서 옮겨 왔는지는 알 수 없습니다. 회색 = 1기 신도시 주거지(마두·주엽·정발산·백석), 초록 = 신규 개발지, 파랑 = 장항2동. 장항1동은 {pct(jh1.pct)}({jh1.p2018.toLocaleString()}→{jh1.p2024.toLocaleString()}명)로 막대는 +100%에서 잘랐습니다. 각 연도 경계 기준.</>} />
       <article className="panel chart-panel ts-panel">
         <div className="panel-head"><div><span className="kicker">개발 연표</span><h3>라페스타 뒤로 이어진 주변 개발</h3></div></div>
         <table className="evidence-table" style={{ minWidth: 0 }}><tbody>{timeline.map(([y, t]) => <tr key={y + t}><td>{y}</td><td>{t}</td></tr>)}</tbody></table>
@@ -144,17 +173,17 @@ export function StcisWeekdayStory({ active }: { active: boolean }) {
 /* ───────────── 07 결론과 활성화 방향 ───────────── */
 export function ConclusionStrategy() {
   const strategies = [
-    { rank: '①', title: '신규 입점·창업 유도', status: '해당', basis: '폐업은 고양시보다 덜 늘었고 신규 진입이 줄었다. 새 점포는 킨텍스·스타필드 쪽으로 갔다.', action: '방문형 업종의 진입 장벽 확인, 공실을 팝업·시범 입점에서 실제 임차로 이어 주기' },
+    { rank: '①', title: '신규 입점·창업 유도', status: '해당', basis: '폐업은 고양시보다 덜 늘었고 신규 진입이 줄어 사업체 수가 감소했다. 새 진입은 2010년대 초부터 주변 개발지로 분산.', action: '방문형 업종의 진입 장벽 확인, 공실을 팝업·시범 입점에서 실제 임차로 이어 주기' },
     { rank: '②', title: '방문 수요·접근성 강화', status: '일부 해당', basis: '토요일 유입 감소, 정발산역 비율의 장기 하락', action: '주말 방문객 유입, 킨텍스 행사 연계 검토' },
     { rank: '④', title: '생활권 수요 기반 강화', status: '일부 해당(최종 분석에서 추가)', basis: '충격 때 더 크게 흔들림(외부 방문 의존), 평일 이동은 유지', action: '종사자 38,610명·인근 주민이 쓰는 업종' },
     { rank: '③', title: '체류·소비 유도', status: '후순위', basis: '카드 소비 비중은 2023년에 2019년 수준으로 회복', action: '다른 방향보다 뒤에 검토' },
   ];
   return <>
     <Claim tag="연구 질문별 결론" title="지금 장항2동의 약한 고리는 소비가 아니라 새 점포의 진입과 주말 방문 수요다.">
-      충격은 모두에게 왔지만, 코로나 이후 새 점포와 새 인구는 킨텍스·스타필드 쪽 신규 개발지로 갔고 라페스타는 그 흐름에서 밀려났습니다. 모든 원인은 후보이며 인과 추정이 아닙니다.
+      충격은 모두에게 왔지만, 장항2동은 새 점포 진입이 약해지고 남아 있는 사업체 수가 줄었습니다. 새 진입은 2010년대 초부터 주변 신규 개발지로 분산됐고, 코로나 이후에는 일산 기존 상업지 전반의 성장이 멈췄습니다. 점포와 인구의 이동 경로는 확인할 수 없으며, 모든 원인은 후보입니다.
     </Claim>
     <div className="conclusion-grid">
-      <div><h4>Q1. 상업활동</h4><p>소비는 충격 뒤 회복했다. <b>새 점포 진입</b>은 장항2동만 약해졌고(회복기 p=0.001), 새 점포는 킨텍스·스타필드 쪽으로 옮겨 갔다. 사업체 수도 같은 방향(2020→2024 −7.6%, 고양시 +8.7%).</p></div>
+      <div><h4>Q1. 상업활동</h4><p>소비는 충격 뒤 회복했다. <b>새 점포 진입</b>은 장항2동만 약해졌고(회복기 p=0.001), 신규와 폐업이 함께 줄어 들고 나는 흐름이 줄었고, 남아 있는 사업체 수도 줄었다(2020→2024 −7.6%, 고양시 +8.7%). 새 진입은 2010년대 초부터 주변 개발지로 분산.</p></div>
       <div><h4>Q2. 인구 이동</h4><p>엔데믹 전환 이후 <b>토요일 낮 유입</b>이 줄었다(−12.5%). 평일 이동은 유지됐다.</p></div>
       <div><h4>Q3. 대중교통 수요</h4><p>철도는 충격 때 더 크게 줄고(−34.4% vs −26.1%) 같은 폭으로 회복했다. <b>정발산역 비율</b>은 코로나 전부터 낮아졌다(2018 9.31% → 2024 7.75%).</p></div>
     </div>

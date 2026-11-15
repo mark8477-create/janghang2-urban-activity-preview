@@ -243,9 +243,9 @@ function App() {
       <p className="eyebrow">URBAN ACTIVITY · RESEARCH STORY</p>
       <h1>장항2동 도시활동<br/><em>변화 분석</em></h1>
       <p className="hero-copy">라페스타·웨스턴돔을 포함하는 중심상업지역의 소비·경제·이동활동 변화</p>
-      <p className="hero-thesis">충격은 모두에게 왔지만 장항2동은 더 크게 흔들렸고, 코로나 이후 새 점포와 새 인구는 킨텍스·스타필드 쪽 신규 개발지로 갔습니다. 약한 고리는 소비가 아니라 새 점포의 진입과 주말 방문입니다.</p>
+      <p className="hero-thesis">충격은 모두에게 왔지만 장항2동은 더 크게 흔들렸고, 이후 새 점포 진입이 약해지고 사업체 수가 줄었습니다. 새 진입은 2010년대 초부터 주변 신규 개발지로 분산됐습니다. 약한 고리는 소비가 아니라 새 점포의 진입과 주말 방문입니다.</p>
       <button className="hero-link" onClick={() => jump('timeline')}>시간 흐름으로 읽기 <span>↘</span></button>
-    </div><div className="hero-note"><strong>분석 흐름</strong><span>① 상업: 카드매출·SGIS 사업체/종사자·행안부 인허가</span><span>② 인구이동: STCIS 교통카드 OD (보조: 경기 목적 OD)</span><span>③ 교통 수요: 버스 정류장·정발산역 승하차</span><span>④ 경쟁 상권·신도시: 새 점포와 새 인구가 간 곳</span><span>⑤ 종합: 시기별로 비교 지역과 함께 움직였는지 → 원인 후보 네 갈래 → 결론과 활성화 방향</span></div></div></header>
+    </div><div className="hero-note"><strong>분석 흐름</strong><span>① 상업: 카드매출·SGIS 사업체/종사자·행안부 인허가</span><span>② 인구이동: STCIS 교통카드 OD (보조: 경기 목적 OD)</span><span>③ 교통 수요: 버스 정류장·정발산역 승하차</span><span>④ 경쟁 상권·신도시: 새 진입의 분산과 순증·사업체 수</span><span>⑤ 종합: 시기별로 비교 지역과 함께 움직였는지 → 원인 후보 네 갈래 → 결론과 활성화 방향</span></div></div></header>
     <nav className="top-nav" aria-label="분석 영역"><div className="nav-inner">{nav.map(([id,label]) => <button type="button" key={id} className={activeNav === id ? 'active' : ''} onClick={() => jump(id)}>{label}</button>)}</div></nav>
     <main>
       <Overview/>
@@ -254,7 +254,7 @@ function App() {
       <Section id="economy" eyebrow="02 / COMMERCE" title="상업: 카드매출 · 사업체·종사자 · 인허가" intro="고양시와 같은 시기에 같은 방향으로 움직였는지 봅니다. 비교할 수 없는 구간은 이어 그리지 않고 이유를 적었습니다.">{active => <CommerceTimeStory active={active}/>}</Section>
       <Section id="access" eyebrow="03 / POPULATION MOBILITY" title="인구이동: STCIS 교통카드 OD의 월별 흐름" intro="장항 법정동 내부 고정 패널의 2021~2025년 월별 유입·유출과, 수요일·토요일 시간대별 시기 변화입니다. 코로나 이전 자료와 비교 지역이 없다는 한계를 함께 봅니다." tint>{active => <><MobilityTimeStory active={active}/><StcisWeekdayStory active={active}/><div className="story-after"><div><b>더 보기</b><p>목적 OD(2023~24), STCIS 외부 23개 지역, 24시간 시간대는 상세 탐색에 있습니다.</p></div><div><b>공간 단위</b><p>STCIS는 장항 <b>법정동</b>, 목적 OD는 장항2동 <b>행정동</b>입니다.</p></div><button type="button" onClick={()=>explore('mobility')}>이동 상세 탐색 ↗</button></div></>}</Section>
       <Section id="transport-story" eyebrow="04 / TRANSPORT DEMAND" title="교통 수요: 정발산역과 장항2동 버스 정류장" intro="일산선 다른 역, 고양시·경기도 전체 버스와 나란히 놓아 공통 흐름과 장항 고유 흐름을 나눕니다.">{active => <><TransportTimeStory active={active}/><div className="story-after"><div><b>더 보기</b><p>버스 고정 18·민감도 12 정류장 패널, 정류장별 값, 정발산역 시간대별 값은 상세 탐색에 있습니다.</p></div><div><b>단위</b><p>승하차는 이용 사건 수이며 방문객 수가 아닙니다.</p></div><button type="button" onClick={()=>explore('transport')}>교통 상세 탐색 ↗</button></div></>}</Section>
-      <Section id="competition" eyebrow="05 / COMPETITION & NEW TOWN" title="경쟁 상권과 신도시: 새 점포와 새 인구는 어디로 갔나" intro="고양시 방문형 신규 인허가 중 각 동의 몫, 스타필드 개장 전후 변화, 동별 인구를 함께 봅니다." tint>{active => <CompetitionStory active={active}/>}</Section>
+      <Section id="competition" eyebrow="05 / COMPETITION & NEW TOWN" title="경쟁 상권과 신도시: 새 진입은 어디서 늘었고, 남은 점포는 어떻게 됐나" intro="고양시 방문형 신규 인허가 중 각 동의 몫, 신규−폐업 순증, SGIS 사업체 수, 스타필드 개장 전후 변화, 동별 인구를 함께 봅니다." tint>{active => <CompetitionStory active={active}/>}</Section>
       <Section id="synthesis" eyebrow="06 / SYNTHESIS & CAUSES" title="종합: 시기별로 무엇이 함께, 무엇이 따로 움직였나" intro="코로나 이전 · 충격기 · 회복기 · 엔데믹 전환 이후 네 시기로 나눠 비교 지역 대비 변화를 보고, 원인 후보를 네 갈래로 나눕니다.">{active => <PhaseSynthesis active={active}/>}</Section>
       <Section id="stage4-comparison" eyebrow="06-A / COMPARABLE EVIDENCE" title="검증값과 민감도 비교" intro="자료별 관측 기간과 공간을 분리해 비교합니다. 서로 다른 수치를 합산하지 않습니다." tint>{() => <Stage4Comparisons/>}</Section>
       <Section id="implications" eyebrow="07 / CONCLUSION & STRATEGY" title="결론과 활성화 방향" intro="연구 질문별 결론을 중간발표의 조건부 판단 틀에 대입해 우선순위를 정했습니다.">{() => <ConclusionStrategy/>}</Section>
