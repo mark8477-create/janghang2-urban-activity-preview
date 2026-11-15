@@ -42,8 +42,10 @@ export function IntegratedTimeline({ active }: { active: boolean }) {
   const raw39 = align(months, data.card.monthly.filter((r: any) => r.observed && r.supplyDongCount === 39), (r: any) => r.share);
   const base39 = (() => { const b = raw39.filter((v, i) => v != null && months[i] >= '2019-01' && months[i] <= '2019-12') as number[]; return b.reduce((a, x) => a + x, 0) / b.length; })();
   const cardShare44 = align(months, data.card.monthly.filter((r: any) => r.observed && r.supplyDongCount === 44), (r: any) => r.share).map(v => v == null ? null : v / base39 * 100);
-  const jhRoll = rolling12(align(months, data.mois.monthly, (r: any) => r.jh_new));
-  const gyRoll = rolling12(align(months, data.mois.monthly, (r: any) => r.gyEx_new));
+  // 12개월 이동합은 축(2018-01~) 앞 2017년 값까지 써서 계산해 2018-01부터 선이 나오게 한다
+  const mExt = monthRange('2017-01', '2025-12');
+  const jhRoll = rolling12(align(mExt, data.mois.monthly, (r: any) => r.jh_new)).slice(12);
+  const gyRoll = rolling12(align(mExt, data.mois.monthly, (r: any) => r.gyEx_new)).slice(12);
   const moisRatio = indexTo(months, jhRoll.map((v, i) => v != null && gyRoll[i] ? v / gyRoll[i]! : null), '2019-12', '2019-12');
   const railRatio = indexTo(months, align(months, data.rail.monthly, (r: any) => r.jeongbalsan / r.ilsanLineOthers), '2019-01', '2019-12');
   return <>
