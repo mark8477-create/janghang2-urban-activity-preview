@@ -161,11 +161,11 @@ export function StcisWeekdayStory({ active }: { active: boolean }) {
   return <>
     <div className="story-claim" style={{ marginTop: 24 }}>
       <span>요일·시간대로 나누어 보기 · 회복기(2022.05~2023.05) → 엔데믹 전환 이후(2023.06~2024.12)</span>
-      <h3>줄어든 것은 토요일 낮에 장항동으로 들어오는 이동이고, 수요일 낮 이동은 유지됐다.</h3>
+      <h3>주말 이동은 들어오고 나가는 쪽 모두 줄었고, 토요일 낮 유입이 가장 크게 줄었다. 수요일 이동은 유지됐다.</h3>
       <p>같은 대표일 표본을 수요일과 토요일로 나누고, 고양시 다른 법정동과 장항동 사이 이동을 시간대별로 비교했습니다. 비교 지역이 없어 통계 검정은 하지 않았습니다.</p>
     </div>
     <div className="ts-kpis">
-      <div><span>토요일 낮 12~15시 · 장항동으로 들어오는 이동</span><strong>{pct(sat.recoveryToEndemic)}</strong><small>나가는 이동 {pct(satOut.recoveryToEndemic)} · 들어오는 방문이 줄어듦</small></div>
+      <div><span>토요일 낮 12~15시 · 장항동으로 들어오는 이동</span><strong>{pct(sat.recoveryToEndemic)}</strong><small>같은 시간 나가는 이동 {pct(satOut.recoveryToEndemic)} · 토요일 하루 전체는 유입 {pct(get('주말(토)', '유입', '전체 24시간')?.recoveryToEndemic)}, 유출 {pct(get('주말(토)', '유출', '전체 24시간')?.recoveryToEndemic)}로 함께 감소</small></div>
       <div><span>수요일 낮 12~15시 · 들어오는 이동</span><strong>{pct(wedNoon.recoveryToEndemic)}</strong><small>같은 낮 시간대인데 평일은 유지 · 하루 전체 {pct(wed.recoveryToEndemic)}</small></div>
       <div><span>STCIS 장항동은 장항2동을 대표하나</span><strong>약 {Math.round(bus.reduce((s: number, r: any) => s + r.jh2SharePct, 0) / bus.length)}%</strong><small>법정 장항동 버스 승하차 중 장항2동 쪽 정류장 몫({bus.map((r: any) => r.year).join('·')}년) · 법정 장항동 안에는 지하철역이 없음</small></div>
     </div>
@@ -201,6 +201,8 @@ export function CharacterShift({ active }: { active: boolean }) {
         label: { show: true, position: 'right', formatter: (q: any) => sn(q.value), fontSize: 11, color: '#161616' } },
     ],
   };
+  const mp: any[] = data.medicalPhase;
+  const sn1 = (v: number) => `${v > 0 ? '+' : ''}${v.toFixed(1)}`.replace('-', '−');
   const satNoon = data.stcisPhase.find((r: any) => r.day === '주말(토)' && r.flow === '유입' && r.slot === '낮 12~15');
   const wedNoon = data.stcisPhase.find((r: any) => r.day === '평일(수)' && r.flow === '유입' && r.slot === '낮 12~15');
   const cardOption = {
@@ -230,13 +232,14 @@ export function CharacterShift({ active }: { active: boolean }) {
     ],
   };
   return <>
-    <Claim tag="종합 · 상권 성격의 변화(가설) · 카드 업종 · 영업 점포 수 · 요일별 유입" title="장항2동은 주말 여가형에서 평일 생활·의료형 상권으로 바뀌고 있다.">
+    <Claim tag="종합 · 상권 성격의 변화(가설) · 카드 업종 · 영업 점포 수 · 요일별 유입" title="장항2동은 주말 여가형에서 생활·의료형 상권으로 바뀌고 있다.">
       카드 매출의 고양시 내 몫은 2023년에 2019년 수준으로 돌아왔지만, 이를 끌어올린 것은 <b>의료</b>였고 음식·주점과 미용 몫은 줄었습니다. 영업 점포 수도 여가·오락이 줄고 의료·미용은 늘었고, 방문형 인허가 순증으로 보면 음식점은 순감이 이어지고 의료는 문을 거의 닫지 않고 쌓였습니다. 같은 시기 토요일 낮 유입은 줄고 수요일 낮 유입은 유지됐습니다. 어느 쪽이 먼저인지(점포가 줄어 방문이 줄었는지, 그 반대인지)는 이 자료로 알 수 없고, STCIS는 법정동·카드와 인허가는 행정동이라 같은 사람의 행동을 이은 것도 아닙니다.
     </Claim>
     <div className="ts-kpis">
       <div><span>카드 몫 · 전체</span><strong>{c19.total.toFixed(2)}% → {c23.total.toFixed(2)}%</strong><small>{c19.window} → {c23.window} · 39개 동·같은 달</small></div>
       <div><span>카드 몫 · 의료 / 음식·주점 / 미용</span><strong>{c19.medical.toFixed(1)}→{c23.medical.toFixed(1)}% · {c19.food.toFixed(1)}→{c23.food.toFixed(1)}% · {c19.beauty.toFixed(1)}→{c23.beauty.toFixed(1)}%</strong><small>장항2동 카드 매출 중 의료 비중 {Math.round(c19.medicalMix)}% → {Math.round(c23.medicalMix)}%</small></div>
       <div><span>영업 점포 수 2019→2024 · 여가·오락 / 의료</span><strong>{pct(sOf('여가·오락·체육').jhPct)} / {pct(sOf('의료').jhPct)}</strong><small>고양시 {pct(sOf('여가·오락·체육').gyPct)} / {pct(sOf('의료').gyPct)}</small></div>
+      <div><span>의료 점포 순증(곳/년) · 코로나 이전 → 충격기 → 회복기 → 이후</span><strong>{mp.map(r => sn1(r.jh)).join(' → ')}</strong><small>고양시(장항2동 제외) {mp.map(r => sn1(r.gyEx)).join(' → ')} · 코로나 때 함께 늘었지만 이후 고양시가 줄 때 장항2동은 유지(계기 + 지속)</small></div>
       <div><span>낮 12~15시 유입 · 토요일 / 수요일</span><strong>{pct(satNoon.recoveryToEndemic)} / {pct(wedNoon.recoveryToEndemic)}</strong><small>회복기 → 엔데믹 전환 이후 · 법정 장항동</small></div>
     </div>
     <div className="story-visual-grid">
@@ -252,28 +255,29 @@ export function CharacterShift({ active }: { active: boolean }) {
 
 /* ───────────── 07 결론과 활성화 방향 ───────────── */
 export function ConclusionStrategy() {
-  const strategies = [
-    { rank: '①', title: '신규 입점·창업 유도', status: '해당', basis: '방문형 폐업은 줄었지만(고양시는 증가) 신규 진입이 더 크게 줄어 순증 0·사업체 수 감소. 새 점포의 순증은 향동·삼송 신규 택지로.', action: '방문형 업종의 진입 장벽 확인, 공실을 팝업·시범 입점에서 실제 임차로 이어 주기' },
-    { rank: '②', title: '방문 수요·접근성 강화', status: '일부 해당', basis: '토요일 낮 유입 감소, 정발산역 비율의 장기 하락', action: '주말 방문객 유입, 킨텍스 행사 연계 검토(현장 조사로 먼저 확인)' },
-    { rank: '③', title: '체류·소비 유도', status: '일부 해당', basis: '전체 카드 몫은 의료로 회복, 음식·주점·미용 몫은 감소', action: '음식·주점·미용 같은 여가 소비를 다시 끌어오는 방안' },
-    { rank: '④', title: '생활권 수요 기반 강화', status: '일부 해당(최종 분석에서 추가)', basis: '충격 때 더 크게 흔들림, 평일 이동 유지, 의료 등 생활 소비 증가', action: '종사자 38,610명·인근 주민이 쓰는 업종' },
+  const steps = [
+    { rank: '① 문제', title: '들고 나는 흐름이 멈춘 상권', basis: '공실 보도가 이어지는데 방문형 순증 연 +14곳(고양시 +384곳), 방문형 신규 −27.4%, 사업체 −7.6%(고양시 +8.7%)' },
+    { rank: '② 목표', title: '음식·주점 소비 회복', basis: '장항2동 카드 매출 중 음식·주점 35.0% → 28.2%(2019→2023), 고양시 음식·주점 매출 중 장항2동 몫 14.7% → 12.2%, 일반음식점 순증 연 −41 → −20곳' },
+    { rank: '③ 수단', title: '주말 낮·오후 방문 회복', basis: '토요일 낮 유입 −12.5%·오후 −10.3%, 충격기 음식·주점 −28.1% vs 의료 +7.1%(놀러 오는 소비가 방문에 민감, 가설). 정발산역 이용 회복은 기대 효과' },
+    { rank: '④ 실행', title: '공실을 음식·주점 입점으로', basis: '빈 점포 영화제·거리 사업처럼 행사로 채우는 데서 나아가 팝업·시범 입점을 실제 임차로. 킨텍스 연계는 현장 확인 후' },
   ];
   return <>
-    <Claim tag="연구 질문별 결론" title="장항2동은 주말 여가형에서 평일 생활·의료형 상권으로 바뀌고 있고, 새 점포 진입과 주말 방문이 약해졌다.">
-      순증은 0 근처인데 사업체·종사자가 줄어 성장보다는 <b>정체~소폭 위축</b>입니다. 주변 기존 상권(킨텍스·스타필드)도 포화되어 새 점포의 순증은 향동·삼송 신규 택지로 옮겨 갔습니다. 공실률은 한국부동산원 상가 공실률 표본에 장항 상권이 없어 확인하지 못했습니다. 점포와 인구의 이동 경로는 확인할 수 없으며, 모든 원인은 후보입니다.
+    <Claim tag="연구 질문별 결론" title="장항2동은 주말 여가형에서 생활·의료형 상권으로 바뀌고 있고, 새 점포 진입과 주말 방문이 약해졌다.">
+      순증은 0 근처인데 사업체·종사자가 줄어 성장보다는 <b>정체~소폭 위축</b>입니다. 공실률은 한국부동산원 상가 공실률 표본에 장항 상권이 없어 확인하지 못했습니다. 점포와 인구의 이동 경로는 확인할 수 없으며, 원인은 후보이고 인과를 추정한 것은 아닙니다.
     </Claim>
-    <div className="conclusion-grid">
-      <div><h4>Q1. 상업활동</h4><p>카드 몫은 회복했지만 <b>의료가 이끌었고</b> 음식·주점·미용 몫은 줄었다. <b>새 점포 진입</b>은 장항2동만 약해졌고(회복기 p=0.001), 순증은 0 근처, 남아 있는 사업체 수는 줄었다(2020→2024 −7.6%, 고양시 +8.7%) → 정체~소폭 위축.</p></div>
-      <div><h4>Q2. 인구 이동</h4><p>엔데믹 전환 이후 <b>토요일 낮 유입</b>이 줄었다(−12.5%). 수요일 낮은 유지됐다(+1.9%).</p></div>
-      <div><h4>Q3. 대중교통 수요</h4><p>철도는 충격 때 더 크게 줄고(−34.4% vs −26.1%) 같은 폭으로 회복했다. <b>정발산역 비율</b>은 코로나 전부터 낮아졌다(2018 9.31% → 2024 7.75%).</p></div>
+    <div className="conclusion-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
+      <div><h4>Q1. 상업활동</h4><p>충격은 공통이었지만 <b>장항2동이 더 크게</b> 흔들렸고, 이후 <b>새 점포 진입이 약해져</b> 정체~소폭 위축(사업체 2020→2024 −7.6%, 고양시 +8.7%). 소비 몫 회복은 <b>의료가 이끌었고</b>(코로나 때 시작, 이후에도 유지) 음식·주점·미용 몫은 줄었다.</p></div>
+      <div><h4>Q2. 인구 이동</h4><p>엔데믹 전환 이후 <b>주말(특히 토요일 낮) 유입</b>이 줄었다(−12.5%). 토요일은 유입·유출이 함께 줄었고, 수요일 이동은 유지됐다(낮 +1.9%).</p></div>
+      <div><h4>Q3. 대중교통 수요</h4><p>철도는 비교 역과 같은 폭으로 회복했다. <b>정발산역 비율</b>은 코로나 전부터 낮아졌다(2018 9.31% → 2024 7.75%).</p></div>
+      <div><h4>Q4. 경쟁 상권 <small style={{ fontWeight: 400, color: '#6f6f6f' }}>최종 분석에서 추가</small></h4><p>장항2동·대화동(킨텍스)·창릉동(스타필드) <b>기존 상권은 모두 순증 0(포화)</b>이고, 새 점포 순증은 <b>향동·삼송 신규 택지</b>로 옮겨 갔다.</p></div>
     </div>
     <div className="evidence-table-wrap"><table className="evidence-table">
-      <thead><tr><th>순위</th><th>활성화 방향</th><th>해당 여부</th><th>최종 분석 결과</th><th>검토할 내용</th></tr></thead>
-      <tbody>{strategies.map(s => <tr key={s.rank}><td>{s.rank}</td><td><b>{s.title}</b></td><td>{s.status}</td><td>{s.basis}</td><td>{s.action}</td></tr>)}</tbody>
+      <thead><tr><th>단계</th><th>활성화 방향</th><th>근거</th></tr></thead>
+      <tbody>{steps.map(s => <tr key={s.rank}><td>{s.rank}</td><td><b>{s.title}</b></td><td>{s.basis}</td></tr>)}</tbody>
     </table></div>
-    <p className="synthesis-method">중간발표에서 세운 조건부 판단 틀에 최종 결과를 대입했습니다. 우선순위: ① 신규 진입 유도 → ② 방문 수요·접근성, ③ 음식·미용 소비, ④ 생활권 수요를 함께 검토. 방향 제시이며 정책 효과를 추정한 것이 아닙니다.</p>
+    <p className="synthesis-method"><b>유지되는 기반: 의료.</b> 카드 의료 몫이 늘고 의료 점포 순증이 코로나 뒤에도 유지돼, 줄지 않는 수요로 보고 위 방향과 함께 갑니다(의료 방문이 다른 소비로 이어지는지는 미확인). 방향 제시이며 정책 효과를 추정한 것이 아닙니다.</p>
     <div className="ts-cause-grid">
-      <div className="ts-cause ts-cause-int"><span>현재 라페스타 공실 활용 사례</span><h4>행사로 채우는 데서 실제 임차로</h4><p>빈 점포 독립 영화제(2026-10, A동 빈 점포 두 곳을 상영·전시 공간으로), 거리 중심 상권 살리기 프로젝트(정원·공연), 서브컬처 축제, 시의회의 장기 공실 실험 창업공간·청년 예술공간 제안. 연구 기간 밖의 사례이며 효과를 평가하지 않았습니다.</p></div>
+      <div className="ts-cause ts-cause-int"><span>④ 실행의 출발점 · 현재 라페스타 공실 활용 사례</span><h4>행사로 채우는 데서 실제 임차로</h4><p>빈 점포 독립 영화제(2026-10, A동 빈 점포 두 곳을 상영·전시 공간으로), 거리 중심 상권 살리기 프로젝트(정원·공연), 서브컬처 축제, 시의회의 장기 공실 실험 창업공간·청년 예술공간 제안. 연구 기간 밖의 사례이며 효과를 평가하지 않았습니다.</p></div>
       <div className="ts-cause ts-cause-amp"><span>향후 과제 ① (전략 실행 전 확인)</span><h4>2022년 이후 방문형 점포의 신규 진입이 왜 적었나</h4><p>두 상권의 입점·공실·임대 이력과 현장 조사(영업시간·고객 유입 시간대)로 확인합니다.</p></div>
       <div className="ts-cause ts-cause-str"><span>향후 과제 ② (전략 실행 전 확인)</span><h4>2020년 충격이 더 컸던 이유</h4><p>업종 구성과 외부 방문 의존 때문인지 상권별 업종·방문객 거주지 자료로 확인합니다. 카드 금액 단위·제공 카드사는 경기도 AI데이터행정과에 확인이 필요합니다.</p></div>
     </div>

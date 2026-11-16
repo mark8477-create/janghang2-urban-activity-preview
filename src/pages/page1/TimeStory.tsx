@@ -269,13 +269,13 @@ export function PhaseSynthesis({ active }: { active: boolean }) {
     </Claim>
     <div className="evidence-table-wrap"><table className="evidence-table ts-phase-table">
       <thead><tr><th>지표</th><th>비교 지역</th>{pc.phases.slice(1).map((p: any, i: number) => <th key={p.key}>{pc.phases[i].label} → {p.label}<small>{p.from}~{p.to}</small></th>)}</tr></thead>
-      <tbody>{pc.rows.map((r: any) => <tr key={r.id}><td>{r.label}</td><td>{r.comparison || '없음'}</td>{r.cells.slice(1).map((c: any) => <td key={c.phase}>{cellView(c, r.id === 'bus_share', !!r.higherIsWorse, r.id)}{c.window && <small>충격기 = {c.window}</small>}</td>)}</tr>)}</tbody>
+      <tbody>{pc.rows.filter((r: any) => r.id !== 'mois_new').map((r: any) => <tr key={r.id}><td>{r.label}</td><td>{r.comparison || '없음'}</td>{r.cells.slice(1).map((c: any) => <td key={c.phase}>{cellView(c, r.id === 'bus_share', !!r.higherIsWorse, r.id)}{c.window && <small>충격기 = {c.window}</small>}</td>)}</tr>)}</tbody>
     </table></div>
-    <p className="synthesis-method">{pc.method} '비교 불가' 칸에 마우스를 올리면 이유가 보입니다.</p>
+    <p className="synthesis-method">{pc.method} 195개 업종 전체 신규 인허가는 통신판매처럼 점포 없는 등록이 섞여 표에서 뺐습니다(충격기 −11.5% p=0.010, 회복기 −16.0% p=0.001). '비교 불가' 칸에 마우스를 올리면 이유가 보입니다.</p>
     <div className="ts-cause-grid">
       <div className="ts-cause ts-cause-ext"><span>① 공통 외부 충격</span><h4>코로나19 충격(2020)과 회복(2022~23)</h4><p>2020년 카드와 철도는 비교 지역과 같은 시점에 함께 꺾였습니다(신규 인허가는 2020년에 두 지역 모두 늘었지만 장항2동 증가 폭이 작았습니다). 회복기 철도 반등 폭도 주변 역과 같습니다. 2023년 이후 전체 신규 인허가의 감소 폭도 고양시와 같아, 금리 인상(2021-08~2023-01)과 경기 둔화 같은 공통 요인의 후보입니다.</p></div>
       <div className="ts-cause ts-cause-amp"><span>② 공통 충격의 증폭</span><h4>장항2동이 더 크게 흔들림(놀러 오는 소비가 더 줄어듦)</h4><p>같은 충격에서 카드(−20.0% vs −5.2%)와 정발산역(−34.4% vs −26.1%)이 비교 지역보다 더 크게 줄었습니다. 업종별로는 음식·주점이 −28.1%(고양시 −17.0%)로 더 줄고 의료는 +7.1%(−3.5%)였습니다. 라페스타·웨스턴돔 같은 방문·여가형 상업지의 특성 때문일 가능성이 있는 가설입니다.</p></div>
-      <div className="ts-cause ts-cause-int"><span>③ 지역 고유 요인 후보</span><h4>새 점포 진입·주말 방문 약화, 평일 생활·의료형으로(가설)</h4><p>회복기 신규 인허가(−16.0% vs +0.5%, p=0.001)와 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%)는 경계선(p=0.06)이지만 2019→2024 장기로는 −27.4% vs −4.9%입니다. 같은 시기 토요일 낮 유입은 줄고(−12.5%) 수요일 낮은 유지됐고(+1.9%), 카드 몫은 의료가 끌어올렸습니다. 상권이 <b>주말 여가형에서 평일 생활·의료형으로</b> 바뀌는 것으로 보입니다.</p></div>
+      <div className="ts-cause ts-cause-int"><span>③ 지역 고유 요인 후보</span><h4>새 점포 진입·주말 방문 약화, 생활·의료형으로(가설)</h4><p>2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%)는 경계선(p=0.06)이지만 2019→2024 장기로는 −27.4% vs −4.9%입니다. 같은 시기 토요일 낮 유입은 줄고(−12.5%) 수요일 낮은 유지됐고(+1.9%), 카드 몫은 의료가 끌어올렸습니다. 상권이 <b>주말 여가형에서 생활·의료형으로</b> 바뀌는 것으로 보입니다. 의료 쪽 변화는 코로나 때 고양시와 함께 시작됐지만, 엔데믹 뒤 고양시의 의료 순증이 절반 넘게 줄 때 장항2동은 유지돼 일시적 현상으로만 보기는 어렵습니다(06 성격 변화 참고).</p></div>
       <div className="ts-cause ts-cause-str"><span>④ 경쟁 상권·신도시 구조 후보</span><h4>기존 상권은 포화, 순증은 향동·삼송 신규 택지로</h4><p>방문형 점포 순증(신규−폐업) 2022~24 연평균은 장항2동 +14, 대화동(킨텍스) −3, 창릉동(스타필드) +1로 0 근처인 반면, 화전동(향동지구) +61, 삼송1동(삼송지구) +48로 뚜렷하게 늘었습니다. 고양시 방문형 신규 중 장항2동 몫은 스타필드 개장 전인 2011~12년부터 줄었습니다(15.2%→9.2%). 1기 신도시 주거지 인구는 −9~−15%, 정발산역 비율도 코로나 전부터 낮아졌습니다(2018 9.31%→2024 7.75%). 이동 경로는 확인할 수 없습니다. 위 05 경쟁 상권과 신도시 참고.</p></div>
     </div>
     <div className="ts-open">

@@ -1450,6 +1450,32 @@
    "gyClosed2224": 1195.7
   }
  ],
+ "medicalPhase": [
+  {
+   "phase": "P0",
+   "label": "코로나 이전",
+   "jh": 0.0,
+   "gyEx": 37.0
+  },
+  {
+   "phase": "P1",
+   "label": "충격기",
+   "jh": 7.2,
+   "gyEx": 54.6
+  },
+  {
+   "phase": "P2",
+   "label": "회복기",
+   "jh": 4.6,
+   "gyEx": 64.6
+  },
+  {
+   "phase": "P3",
+   "label": "엔데믹 전환 이후",
+   "jh": 5.1,
+   "gyEx": 24.6
+  }
+ ],
  "sources": [
   "analysis/15_competition_kintex_starfield_20261109",
   "analysis/14_final_presentation_20261109/stcis_phase_inout",
