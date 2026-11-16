@@ -242,7 +242,7 @@ function App() {
     <header className="hero"><div className="container hero-inner"><div>
       <p className="eyebrow">URBAN ACTIVITY · RESEARCH STORY</p>
       <h1>장항2동 도시활동<br/><em>변화 분석</em></h1>
-      <p className="hero-copy">라페스타·웨스턴돔을 포함하는 중심상업지역의 소비·경제·이동활동 변화</p>
+      <p className="hero-copy">라페스타·웨스턴돔을 품은 고양시 상업 중심, 장항2동의 소비·경제·이동활동 변화</p>
       <p className="hero-thesis">충격은 모두에게 왔지만 장항2동은 더 크게 흔들렸고, 이후 새 점포 진입과 주말 방문이 약해지며 주말 여가형에서 평일 생활·의료형 상권으로 바뀌고 있습니다. 순증 0과 사업체 감소로 보아 정체~소폭 위축이며, 새 점포의 순증은 향동·삼송 신규 택지로 옮겨 갔습니다.</p>
       <button className="hero-link" onClick={() => jump('timeline')}>시간 흐름으로 읽기 <span>↘</span></button>
     </div><div className="hero-note"><strong>분석 흐름</strong><span>① 상업: 카드매출·SGIS 사업체/종사자·행안부 인허가</span><span>② 인구이동: STCIS 교통카드 OD (보조: 경기 목적 OD)</span><span>③ 교통 수요: 버스 정류장·정발산역 승하차</span><span>④ 경쟁 상권·신도시: 고양시 동별 순증·사업체 수</span><span>⑤ 종합: 시기별 비교 → 상권 성격의 변화(카드 업종·점포 수·요일별 유입) → 원인 후보 네 갈래 → 결론과 활성화 방향</span></div></div></header>
