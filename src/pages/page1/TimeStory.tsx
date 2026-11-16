@@ -62,7 +62,7 @@ export function IntegratedTimeline({ active }: { active: boolean }) {
       note={<>기준: 카드·철도 2019년 평균, 인허가 2019-12의 12개월 합. 카드는 제공 구간 경계에서 금액이 5~7배(또는 0.2배) 급변하는데, <b>원인은 확인하지 못했습니다</b>(행정동 수 39·44개, 업종 코드가 바뀌는 시점과 겹침). 그래서 금액은 잇지 않고 장항2동의 고양시 내 비중으로 그렸으며, 44개 동 구성 구간은 <b>점선</b>으로 구분했습니다(같은 2019년 39개 동 평균=100 기준). 재난지원금처럼 고양시 전체에 같이 걸리는 효과는 비중에서 상쇄됩니다. 실제로 자료가 없는 기간은 2024-02~12뿐입니다. 인허가는 비교 지역에서 장항2동을 뺐고, 카드의 고양시 값에는 장항2동이 포함됩니다. <b>버스는 이 그림에서 뺐습니다.</b> 2021-12~2024-09 원자료 공급 축소 구간에 장항2동의 고양시 내 비중도 약 20% 뛰어, 비율로도 공급 변화를 걸러낼 수 없기 때문입니다(04 교통 수요 참고).</>} />
     <div className="ts-findings">
       <Finding title="① 2020년: 공통 충격 + 더 큰 낙폭" tone="orange">세 상대 지표가 모두 2020년에 떨어졌습니다. 코로나는 지역 전체에 작용했지만 장항2동이 더 크게 흔들렸다는 뜻입니다.</Finding>
-      <Finding title="② 회복의 갈림: 소비는 회복, 창업은 부진">카드 비중은 2021년 바닥 뒤 2023년에 2019년 수준으로 올라왔습니다. 그러나 인허가 비율은 회복기(2022~23)에 오히려 더 내려갔고, 정발산역 비율도 2020년 수준에 머물렀습니다.</Finding>
+      <Finding title="② 회복의 갈림: 소비 몫은 회복, 창업은 부진">카드 비중은 2021년 바닥 뒤 2023년에 2019년 수준으로 올라왔습니다(의료가 이끔, 06 종합 참고). 그러나 인허가 비율은 회복기(2022~23)에 오히려 더 내려갔고, 정발산역 비율도 2020년 수준에 머물렀습니다.</Finding>
       <Finding title="③ 소비 비중은 돌아왔고, 역 이용 비율은 계속 낮아짐" tone="gray">카드 비중은 2023년 8~12월에 2019년 같은 달 수준으로 돌아왔습니다. 반면 정발산역 비율(일산선 다른 10개 역 대비)은 코로나 이전(2018 9.31%→2019 8.85%)부터 낮아졌고 회복기에도 돌아오지 않았습니다. 장기 구조 요인의 후보입니다.</Finding>
     </div>
   </>;
@@ -90,7 +90,7 @@ function SgisChart({ rows }: { rows: any[] }) {
 
 export function CommerceTimeStory({ active }: { active: boolean }) {
   const { data, error } = useTimeseries(active);
-  const [moisScope, setMoisScope] = useState<'new' | 'newCore' | 'closed'>('new');
+  const [moisScope, setMoisScope] = useState<'newCore' | 'closedCore'>('newCore');
   const months = useMemo(() => monthRange('2018-01', '2025-06'), []);
   const mMonths = useMemo(() => monthRange('2019-01', '2024-12'), []);
   if (!data) return <Loading error={error} />;
@@ -99,11 +99,19 @@ export function CommerceTimeStory({ active }: { active: boolean }) {
   const cardMonths = monthRange('2018-01', '2020-12');
   // 6개월 미만 구간은 이름을 숨겨 겹침을 막고, 결측 구간은 '미관측'으로 표시한다.
   const episodes: TsArea[] = data.card.coverage.map((c: any) => ({ from: c.first, to: c.last, label: /MISSING/i.test(c.episode) ? '미관측' : (c.months ?? 0) >= 6 ? `공급 ${c.episode}` : '', color: /MISSING/i.test(c.episode) ? 'rgba(214,107,50,.10)' : undefined }));
-  const scopeLabel = { new: '신규 인허가(전체 195개 업종)', newCore: '신규 인허가(CORE 60개 업종)', closed: '폐업 기록(현재 상태 폐업 + 폐업일자)' }[moisScope];
+  const scopeLabel = { newCore: '방문형(CORE) 신규 인허가', closedCore: '방문형(CORE) 폐업 기록' }[moisScope];
+  // 방문형 신규·폐업: 2019→2024 연간 합(비교 = 고양시 전체), 시기별 월평균 변화(비교 = 고양시, 장항2동 제외)
+  const MM: any[] = data.mois.monthly;
+  const yrSum = (k: string, y: number) => MM.filter(r => r.month.startsWith(String(y))).reduce((s, r) => s + r[k], 0);
+  const chg = (k: string) => (yrSum(k, 2024) / yrSum(k, 2019) - 1) * 100;
+  const PH: any[] = data.phaseCompare.phases;
+  const pm = (k: string, ph: any) => { const v = MM.filter(r => r.month >= ph.from && r.month <= ph.to).map(r => r[k]); return v.reduce((a: number, b: number) => a + b, 0) / v.length; };
+  const phChg = (k: string, i: number) => ({ localPct: (pm('jh_' + k, PH[i]) / pm('jh_' + k, PH[i - 1]) - 1) * 100, compPct: (pm('gyEx_' + k, PH[i]) / pm('gyEx_' + k, PH[i - 1]) - 1) * 100 });
+  const cClosed = [null, phChg('closedCore', 1), phChg('closedCore', 2), phChg('closedCore', 3)];
   const jh = rolling12(align(mMonths, data.mois.monthly, (r: any) => r[`jh_${moisScope}`]));
   const gy = rolling12(align(mMonths, data.mois.monthly, (r: any) => r[`gyEx_${moisScope}`]));
   const phase = (id: string) => data.phaseCompare.rows.find((r: any) => r.id === id)?.cells || [];
-  const card = phase('card'), mNew = phase('mois_new'), mCore = phase('mois_core'), mClosed = phase('mois_closed');
+  const card = phase('card'), mCore = phase('mois_core');
   const matched: any[] = data.card.shareMatched;
   const g39 = (y: number) => matched.find(g => g.id === 'g39')?.windows.find((w: any) => w.year === y)?.share as number | undefined;
   const g44 = (y: number) => matched.find(g => g.id === 'g44')?.windows.find((w: any) => w.year === y)?.share as number | undefined;
@@ -118,8 +126,8 @@ export function CommerceTimeStory({ active }: { active: boolean }) {
     <div className="ts-kpis">
       <div><span>카드 비중 · 8~12월 · 39개 동 구간</span><strong>{g39(2019)?.toFixed(2)}% → {g39(2021)?.toFixed(2)}% → {g39(2023)?.toFixed(2)}%</strong><small>2019 → 2021(바닥) → 2023 · 충격기 금액은 장항2동 {pctTxt(card[1]?.localPct)}, 고양시 {pctTxt(card[1]?.compPct)}</small></div>
       <div><span>SGIS 사업체 2020→2024</span><strong>−7.6%</strong><small>고양시 +8.7% · 2023년 장항2동 −7.3%</small></div>
-      <div><span>신규 인허가 · 회복기 vs 충격기</span><strong>{pctTxt(mNew[2]?.localPct)}</strong><small>고양시(장항2동 제외) {pctTxt(mNew[2]?.compPct)}</small></div>
-      <div><span>CORE 인허가 · 엔데믹 전환 이후 vs 회복기</span><strong>{pctTxt(mCore[3]?.localPct)}</strong><small>고양시(장항2동 제외) {pctTxt(mCore[3]?.compPct)}</small></div>
+      <div><span>방문형(CORE) 신규 인허가 2019→2024</span><strong>{pctTxt(chg('jh_newCore'))}</strong><small>고양시 전체 {pctTxt(chg('gy_newCore'))}</small></div>
+      <div><span>방문형(CORE) 폐업 기록 2019→2024</span><strong>{pctTxt(chg('jh_closedCore'))}</strong><small>고양시 전체 {pctTxt(chg('gy_closedCore'))}</small></div>
     </div>
     <div className="story-visual-grid">
       <EventChart title="카드매출: 장항2동과 고양시(2018=100)" kicker="월별 · 동일 공급 A구간 2018-01~2020-12" months={cardMonths} unit="지수" events={ev}
@@ -140,18 +148,18 @@ export function CommerceTimeStory({ active }: { active: boolean }) {
       </article>
       <SgisChart rows={data.sgis.rows} />
       <div className="ts-panel-wrap">
-        <div className="story-subheading"><h4>행안부 인허가 12개월 이동합</h4><label className="selector"><span>범위</span><select value={moisScope} onChange={e => setMoisScope(e.target.value as any)}><option value="new">신규 · 전체</option><option value="newCore">신규 · CORE</option><option value="closed">폐업 기록</option></select></label></div>
+        <div className="story-subheading"><h4>행안부 인허가 12개월 이동합 · 방문형(CORE)</h4><label className="selector"><span>보기</span><select value={moisScope} onChange={e => setMoisScope(e.target.value as any)}><option value="newCore">신규</option><option value="closedCore">폐업 기록</option></select></label></div>
         <EventChart title={`${scopeLabel}: 장항2동 vs 고양시(장항2동 제외)`} kicker="12개월 이동합 · 2019-12=100 · 2019-12~2024-12" months={mMonths} unit="지수" events={ev} areas={PHASE_AREAS.slice(1)}
           series={[{ name: '장항2동', data: indexTo(mMonths, jh, '2019-12', '2019-12'), color: C.jh, width: 2.6 }, { name: '고양시(장항2동 제외)', data: indexTo(mMonths, gy, '2019-12', '2019-12'), color: C.comp }]}
-          filename={`commerce_mois_${moisScope}`} note={<>월별 기록은 들쭉날쭉해서 직전 12개월 합으로 추세를 봅니다. 인허가 기록 수는 실제 점포 수가 아니며, CORE는 연구용 분류입니다. 폐업 기록은 <b>현재 상태가 폐업</b>이고 폐업일자가 있는 기록만 셉니다. 말소·전출 등은 제외했습니다.</>} />
+          filename={`commerce_mois_${moisScope}`} note={<>월별 기록은 들쭉날쭉해서 직전 12개월 합으로 추세를 봅니다. 195개 업종 전체 기록은 절반 넘게 통신판매처럼 점포 없는 등록이라, 신규와 폐업 모두 손님이 직접 찾아오는 <b>CORE 60개 업종</b>만 봅니다(연구용 분류). 인허가 기록 수는 실제 점포 수가 아닙니다. 폐업 기록은 <b>현재 상태가 폐업</b>이고 폐업일자가 있는 기록만 셉니다. 말소·전출 등은 제외했습니다.</>} />
       </div>
     </div>
     <div className="ts-findings">
-      <Finding title="코로나 충격: 장항2동이 더 크게" tone="orange">카드 A구간 월평균은 2019년 대비 충격기(2020-03~12)에 장항2동 {pctTxt(card[1]?.localPct)}, 고양시 {pctTxt(card[1]?.compPct)}였습니다. 같은 충격기에 신규 인허가도 고양시(장항2동 제외)는 {pctTxt(mNew[1]?.compPct)} 늘었지만 장항2동은 {pctTxt(mNew[1]?.localPct)}에 그쳤습니다.</Finding>
-      <Finding title="소비 비중은 2023년에 회복" tone="green">같은 구성(39개 동)·같은 달(8~12월)로 보면 장항2동의 카드매출 비중은 2019년 {g39(2019)?.toFixed(2)}% → 2021년 {g39(2021)?.toFixed(2)}% → 2023년 {g39(2023)?.toFixed(2)}%입니다. 코로나 때의 더 큰 하락은 <b>소비에서는 일시적</b>이었던 것으로 보입니다(참고 비교).</Finding>
-      <Finding title="회복기: 상업 진입 회복이 장항2동만 부진">거리두기 해제 뒤(2022-05~2023-05) 신규 인허가 월평균은 장항2동 {pctTxt(mNew[2]?.localPct)}, 고양시(장항2동 제외) {pctTxt(mNew[2]?.compPct)}입니다. 공통 회복 요인이 있었는데도 장항2동은 따로 줄었습니다. <b>지역 고유 요인의 후보</b>입니다.</Finding>
-      <Finding title="2023년 중반 이후: 전체는 함께, 방문형 업종은 장항2동만" tone="gray">전체 신규 인허가는 두 지역이 비슷하게 줄었습니다({pctTxt(mNew[3]?.localPct)} vs {pctTxt(mNew[3]?.compPct)}). 금리·경기 같은 공통 요인의 후보입니다. 반면 CORE는 장항2동 {pctTxt(mCore[3]?.localPct)}, 고양시 {pctTxt(mCore[3]?.compPct)}입니다. SGIS 사업체도 2023년 장항2동만 크게 줄었습니다.</Finding>
-      <Finding title="폐업 기록은 오히려 고양시가 더 늘어남" tone="green">폐업 기록 월평균 증가율은 회복기 장항2동 {pctTxt(mClosed[2]?.localPct)} vs 고양시 {pctTxt(mClosed[2]?.compPct)}, 이후 {pctTxt(mClosed[3]?.localPct)} vs {pctTxt(mClosed[3]?.compPct)}입니다. 장항2동의 약화는 '폐업 급증'보다 <b>새로 들어오는 영업이 줄어든 쪽</b>에 가깝게 보입니다(인허가 기록 기준).</Finding>
+      <Finding title="코로나 충격: 장항2동이 더 크게" tone="orange">카드 A구간 월평균은 2019년 대비 충격기(2020-03~12)에 장항2동 {pctTxt(card[1]?.localPct)}, 고양시 {pctTxt(card[1]?.compPct)}였습니다. 같은 충격기에 방문형 신규 인허가도 고양시(장항2동 제외)는 {pctTxt(mCore[1]?.compPct)}였지만 장항2동은 {pctTxt(mCore[1]?.localPct)}였습니다.</Finding>
+      <Finding title="소비 비중은 2023년에 회복(의료가 이끔)" tone="green">같은 구성(39개 동)·같은 달(8~12월)로 보면 장항2동의 카드매출 비중은 2019년 {g39(2019)?.toFixed(2)}% → 2021년 {g39(2021)?.toFixed(2)}% → 2023년 {g39(2023)?.toFixed(2)}%입니다. 전체 몫은 돌아왔지만 업종별로는 의료 몫이 커지고 음식·주점·미용 몫은 줄었습니다(06 종합의 업종별 몫 참고).</Finding>
+      <Finding title="방문형 신규: 장항2동만 계속 줄었다">방문형 신규 인허가 월평균은 회복기 장항2동 {pctTxt(mCore[2]?.localPct)}(고양시, 장항2동 제외 {pctTxt(mCore[2]?.compPct)}), 엔데믹 전환 이후 {pctTxt(mCore[3]?.localPct)}({pctTxt(mCore[3]?.compPct)})입니다. 이후 구간의 차이는 흔들림 폭의 경계선(p≈0.06)이라 <b>지역 고유 요인의 후보</b>로만 읽습니다. SGIS 사업체도 2023년 장항2동만 크게 줄었습니다.</Finding>
+      <Finding title="방문형 폐업: 고양시는 늘고 장항2동은 그대로" tone="green">방문형 폐업 기록 월평균은 회복기 장항2동 {pctTxt(cClosed[2]?.localPct)} vs 고양시(장항2동 제외) {pctTxt(cClosed[2]?.compPct)}, 엔데믹 전환 이후 {pctTxt(cClosed[3]?.localPct)} vs {pctTxt(cClosed[3]?.compPct)}입니다. 장항2동의 약화는 '폐업 급증'보다 <b>새로 들어오는 점포가 줄어든 쪽</b>에 가깝습니다. 업종별로는 음식점이 순감하고 의료는 거의 닫지 않고 쌓였습니다(06 종합).</Finding>
+      <Finding title="전체 195개 업종 기록은 이 패널에서 뺐습니다" tone="gray">통신판매처럼 점포 없는 등록이 절반 넘게 섞여 상권 지표로 읽기 어렵습니다. 시기별 검정(06 종합)에는 참고로 남겨 두었습니다.</Finding>
     </div>
   </>;
 }
@@ -266,9 +274,9 @@ export function PhaseSynthesis({ active }: { active: boolean }) {
     <p className="synthesis-method">{pc.method} '비교 불가' 칸에 마우스를 올리면 이유가 보입니다.</p>
     <div className="ts-cause-grid">
       <div className="ts-cause ts-cause-ext"><span>① 공통 외부 충격</span><h4>코로나19 충격(2020)과 회복(2022~23)</h4><p>2020년 카드와 철도는 비교 지역과 같은 시점에 함께 꺾였습니다(신규 인허가는 2020년에 두 지역 모두 늘었지만 장항2동 증가 폭이 작았습니다). 회복기 철도 반등 폭도 주변 역과 같습니다. 2023년 이후 전체 신규 인허가의 감소 폭도 고양시와 같아, 금리 인상(2021-08~2023-01)과 경기 둔화 같은 공통 요인의 후보입니다.</p></div>
-      <div className="ts-cause ts-cause-amp"><span>② 공통 충격의 증폭</span><h4>장항2동이 더 크게 흔들림(소비는 이후 회복)</h4><p>같은 충격에서 카드(−20.0% vs −5.2%)와 정발산역(−34.4% vs −26.1%)이 비교 지역보다 더 크게 줄었습니다. 라페스타·웨스턴돔 같은 방문·여가형 상업지의 특성 때문일 가능성이 있으나, 업종·방문 목적 자료로 확인해야 하는 가설입니다. 카드 비중은 2023년 8~12월 8.80%로 2019년 같은 달(8.76%) 수준을 되찾아(같은 구성 구간 참고 비교), 소비 쪽 증폭은 일시적이었던 것으로 보입니다.</p></div>
-      <div className="ts-cause ts-cause-int"><span>③ 지역 고유 요인 후보</span><h4>회복기 이후의 따로 노는 약화</h4><p>회복기 신규 인허가(−16.0% vs +0.5%, p=0.001)와 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%)는 방문형 건수가 적어 흔들림이 커서 경계선(p=0.06)이지만, 2019→2024 장기로는 −27.4% vs −4.9%입니다. 소비 비중은 같은 시기에 회복했으므로, 고유 약화는 <b>소비보다 창업·사업체 쪽</b>에 있습니다.</p></div>
-      <div className="ts-cause ts-cause-str"><span>④ 경쟁 상권·신도시 구조 후보</span><h4>2010년대 초부터 새 진입이 주변 개발지로 분산</h4><p>고양시 방문형 신규 인허가 중 장항2동 몫은 15.2%(2010)→9.2%(2024)로 줄고 대화동(킨텍스)은 9.8%→16.4%로 늘었습니다. 다만 대화동·창릉동도 코로나 이후 폐업이 늘어 순증이 멈췄고 사업체 수가 줄어(2020→2024 대화동 −13.1%), 경쟁 상권의 성장보다는 일산 기존 상업지 전반의 정체에 가깝습니다. 1기 신도시 주거지 인구는 −9~−15%, 정발산역 비율도 코로나 전부터 낮아졌습니다(2018 9.31%→2024 7.75%). 이동 경로는 확인할 수 없습니다. 위 05 경쟁 상권과 신도시 참고.</p></div>
+      <div className="ts-cause ts-cause-amp"><span>② 공통 충격의 증폭</span><h4>장항2동이 더 크게 흔들림(놀러 오는 소비가 더 줄어듦)</h4><p>같은 충격에서 카드(−20.0% vs −5.2%)와 정발산역(−34.4% vs −26.1%)이 비교 지역보다 더 크게 줄었습니다. 업종별로는 음식·주점이 −28.1%(고양시 −17.0%)로 더 줄고 의료는 +7.1%(−3.5%)였습니다. 라페스타·웨스턴돔 같은 방문·여가형 상업지의 특성 때문일 가능성이 있는 가설입니다.</p></div>
+      <div className="ts-cause ts-cause-int"><span>③ 지역 고유 요인 후보</span><h4>새 점포 진입·주말 방문 약화, 평일 생활·의료형으로(가설)</h4><p>회복기 신규 인허가(−16.0% vs +0.5%, p=0.001)와 2023년 SGIS 사업체(−7.3% vs +2.7%)는 장항2동만 약해졌습니다. 엔데믹 전환 이후 CORE 인허가(−12.3% vs +3.8%)는 경계선(p=0.06)이지만 2019→2024 장기로는 −27.4% vs −4.9%입니다. 같은 시기 토요일 낮 유입은 줄고(−12.5%) 수요일 낮은 유지됐고(+1.9%), 카드 몫은 의료가 끌어올렸습니다. 상권이 <b>주말 여가형에서 평일 생활·의료형으로</b> 바뀌는 것으로 보입니다.</p></div>
+      <div className="ts-cause ts-cause-str"><span>④ 경쟁 상권·신도시 구조 후보</span><h4>기존 상권은 포화, 순증은 향동·삼송 신규 택지로</h4><p>방문형 점포 순증(신규−폐업) 2022~24 연평균은 장항2동 +14, 대화동(킨텍스) −3, 창릉동(스타필드) +1로 0 근처인 반면, 화전동(향동지구) +61, 삼송1동(삼송지구) +48로 뚜렷하게 늘었습니다. 고양시 방문형 신규 중 장항2동 몫은 스타필드 개장 전인 2011~12년부터 줄었습니다(15.2%→9.2%). 1기 신도시 주거지 인구는 −9~−15%, 정발산역 비율도 코로나 전부터 낮아졌습니다(2018 9.31%→2024 7.75%). 이동 경로는 확인할 수 없습니다. 위 05 경쟁 상권과 신도시 참고.</p></div>
     </div>
     <div className="ts-open">
       <b>결론의 범위와 남은 확인</b>

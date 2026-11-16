@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15",
+ "generated": "2026-11-16",
  "share": [
   {
    "year": 2010,
@@ -1018,9 +1018,444 @@
    "chg": 1031
   }
  ],
+ "netAllDongs": [
+  {
+   "dong": "장항2동",
+   "label": "장항2동",
+   "kind": "jh",
+   "avg1619": 8,
+   "avg2224": 14,
+   "net2025": -91,
+   "years": [
+    {
+     "year": 2016,
+     "net": 56
+    },
+    {
+     "year": 2017,
+     "net": 97
+    },
+    {
+     "year": 2018,
+     "net": -125
+    },
+    {
+     "year": 2019,
+     "net": 2
+    },
+    {
+     "year": 2020,
+     "net": 74
+    },
+    {
+     "year": 2021,
+     "net": 47
+    },
+    {
+     "year": 2022,
+     "net": 40
+    },
+    {
+     "year": 2023,
+     "net": 34
+    },
+    {
+     "year": 2024,
+     "net": -31
+    },
+    {
+     "year": 2025,
+     "net": -91
+    }
+   ]
+  },
+  {
+   "dong": "대화동",
+   "label": "대화동(킨텍스)",
+   "kind": "old",
+   "avg1619": 69,
+   "avg2224": -3,
+   "net2025": -19,
+   "years": [
+    {
+     "year": 2016,
+     "net": 45
+    },
+    {
+     "year": 2017,
+     "net": 75
+    },
+    {
+     "year": 2018,
+     "net": 55
+    },
+    {
+     "year": 2019,
+     "net": 99
+    },
+    {
+     "year": 2020,
+     "net": 31
+    },
+    {
+     "year": 2021,
+     "net": 25
+    },
+    {
+     "year": 2022,
+     "net": 35
+    },
+    {
+     "year": 2023,
+     "net": -4
+    },
+    {
+     "year": 2024,
+     "net": -41
+    },
+    {
+     "year": 2025,
+     "net": -19
+    }
+   ]
+  },
+  {
+   "dong": "창릉동",
+   "label": "창릉동(스타필드)",
+   "kind": "old",
+   "avg1619": 77,
+   "avg2224": 1,
+   "net2025": -27,
+   "years": [
+    {
+     "year": 2016,
+     "net": 40
+    },
+    {
+     "year": 2017,
+     "net": 173
+    },
+    {
+     "year": 2018,
+     "net": 36
+    },
+    {
+     "year": 2019,
+     "net": 58
+    },
+    {
+     "year": 2020,
+     "net": 78
+    },
+    {
+     "year": 2021,
+     "net": 22
+    },
+    {
+     "year": 2022,
+     "net": 38
+    },
+    {
+     "year": 2023,
+     "net": -17
+    },
+    {
+     "year": 2024,
+     "net": -18
+    },
+    {
+     "year": 2025,
+     "net": -27
+    }
+   ]
+  },
+  {
+   "dong": "화전동",
+   "label": "화전동(향동지구)",
+   "kind": "new",
+   "avg1619": 11,
+   "avg2224": 61,
+   "net2025": 20,
+   "years": [
+    {
+     "year": 2016,
+     "net": 5
+    },
+    {
+     "year": 2017,
+     "net": 14
+    },
+    {
+     "year": 2018,
+     "net": -4
+    },
+    {
+     "year": 2019,
+     "net": 28
+    },
+    {
+     "year": 2020,
+     "net": 116
+    },
+    {
+     "year": 2021,
+     "net": 128
+    },
+    {
+     "year": 2022,
+     "net": 50
+    },
+    {
+     "year": 2023,
+     "net": 71
+    },
+    {
+     "year": 2024,
+     "net": 63
+    },
+    {
+     "year": 2025,
+     "net": 20
+    }
+   ]
+  },
+  {
+   "dong": "삼송1동",
+   "label": "삼송1동(삼송지구)",
+   "kind": "new",
+   "avg1619": 22,
+   "avg2224": 48,
+   "net2025": -10,
+   "years": [
+    {
+     "year": 2016,
+     "net": 14
+    },
+    {
+     "year": 2017,
+     "net": 17
+    },
+    {
+     "year": 2018,
+     "net": 20
+    },
+    {
+     "year": 2019,
+     "net": 36
+    },
+    {
+     "year": 2020,
+     "net": 45
+    },
+    {
+     "year": 2021,
+     "net": 72
+    },
+    {
+     "year": 2022,
+     "net": 101
+    },
+    {
+     "year": 2023,
+     "net": 29
+    },
+    {
+     "year": 2024,
+     "net": 13
+    },
+    {
+     "year": 2025,
+     "net": -10
+    }
+   ]
+  }
+ ],
+ "cardIndustry": [
+  {
+   "window": "2019 8~12월",
+   "year": 2019,
+   "total": 8.76,
+   "medical": 10.08,
+   "food": 14.71,
+   "beauty": 24.37,
+   "medicalMix": 13.41
+  },
+  {
+   "window": "2021 8~12월",
+   "year": 2021,
+   "total": 7.15,
+   "medical": 13.19,
+   "food": 12.03,
+   "beauty": 21.6,
+   "medicalMix": 25.76
+  },
+  {
+   "window": "2023 8~12월",
+   "year": 2023,
+   "total": 8.8,
+   "medical": 15.16,
+   "food": 12.16,
+   "beauty": 18.91,
+   "medicalMix": 29.96
+  }
+ ],
+ "storeStock": [
+  {
+   "group": "일반음식점",
+   "jh2019": 951,
+   "jh2024": 935,
+   "jhPct": -1.7,
+   "gyPct": 9.0
+  },
+  {
+   "group": "카페·제과",
+   "jh2019": 245,
+   "jh2024": 265,
+   "jhPct": 8.2,
+   "gyPct": 20.4
+  },
+  {
+   "group": "주점",
+   "jh2019": 33,
+   "jh2024": 36,
+   "jhPct": 9.1,
+   "gyPct": -5.9
+  },
+  {
+   "group": "미용·이용·세탁",
+   "jh2019": 318,
+   "jh2024": 404,
+   "jhPct": 27.0,
+   "gyPct": 18.7
+  },
+  {
+   "group": "의료",
+   "jh2019": 195,
+   "jh2024": 232,
+   "jhPct": 19.0,
+   "gyPct": 18.4
+  },
+  {
+   "group": "여가·오락·체육",
+   "jh2019": 262,
+   "jh2024": 215,
+   "jhPct": -17.9,
+   "gyPct": -3.7
+  },
+  {
+   "group": "식품·담배 소매",
+   "jh2019": 273,
+   "jh2024": 289,
+   "jhPct": 5.9,
+   "gyPct": 6.8
+  }
+ ],
+ "coreNetByGroup": [
+  {
+   "group": "미용·이용·세탁·목욕",
+   "label": "미용·세탁",
+   "net1619": 19.2,
+   "net2224": 19.7,
+   "new1619": 55.8,
+   "new2224": 60.7,
+   "closed1619": 36.5,
+   "closed2224": 41.0,
+   "gyNet1619": 122.5,
+   "gyNet2224": 130.0,
+   "gyClosed1619": 275.5,
+   "gyClosed2224": 296.7
+  },
+  {
+   "group": "여가·오락·체육",
+   "label": "여가·체육",
+   "net1619": 15.0,
+   "net2224": 7.0,
+   "new1619": 41.2,
+   "new2224": 23.7,
+   "closed1619": 26.2,
+   "closed2224": 16.7,
+   "gyNet1619": 90.5,
+   "gyNet2224": 49.3,
+   "gyClosed1619": 150.8,
+   "gyClosed2224": 120.7
+  },
+  {
+   "group": "의료(병의원·약국·안경)",
+   "label": "의료",
+   "net1619": 2.5,
+   "net2224": 4.7,
+   "new1619": 14.0,
+   "new2224": 7.7,
+   "closed1619": 11.5,
+   "closed2224": 3.0,
+   "gyNet1619": 31.8,
+   "gyNet2224": 47.7,
+   "gyClosed1619": 76.5,
+   "gyClosed2224": 47.0
+  },
+  {
+   "group": "반려동물",
+   "label": "반려동물",
+   "net1619": 7.2,
+   "net2224": 3.7,
+   "new1619": 10.2,
+   "new2224": 13.7,
+   "closed1619": 3.0,
+   "closed2224": 10.0,
+   "gyNet1619": 77.0,
+   "gyNet2224": 35.3,
+   "gyClosed1619": 24.2,
+   "gyClosed2224": 90.7
+  },
+  {
+   "group": "상품 소매",
+   "label": "상품 소매",
+   "net1619": 7.0,
+   "net2224": -0.3,
+   "new1619": 32.8,
+   "new2224": 15.7,
+   "closed1619": 25.8,
+   "closed2224": 16.0,
+   "gyNet1619": 135.0,
+   "gyNet2224": 23.3,
+   "gyClosed1619": 389.8,
+   "gyClosed2224": 302.0
+  },
+  {
+   "group": "카페·제과",
+   "label": "카페·제과",
+   "net1619": -2.2,
+   "net2224": -1.3,
+   "new1619": 70.0,
+   "new2224": 58.0,
+   "closed1619": 72.2,
+   "closed2224": 59.3,
+   "gyNet1619": 185.0,
+   "gyNet2224": -1.0,
+   "gyClosed1619": 672.5,
+   "gyClosed2224": 850.0
+  },
+  {
+   "group": "일반음식점",
+   "label": "일반음식점",
+   "net1619": -41.0,
+   "net2224": -20.0,
+   "new1619": 128.5,
+   "new2224": 109.0,
+   "closed1619": 169.5,
+   "closed2224": 129.0,
+   "gyNet1619": -56.8,
+   "gyNet2224": 100.0,
+   "gyClosed1619": 1182.0,
+   "gyClosed2224": 1195.7
+  }
+ ],
  "sources": [
   "analysis/15_competition_kintex_starfield_20261109",
   "analysis/14_final_presentation_20261109/stcis_phase_inout",
-  "analysis/14_final_presentation_20261109/stcis_legal_bus_share"
+  "analysis/14_final_presentation_20261109/stcis_legal_bus_share",
+  "analysis/17_card_industry_20261115",
+  "analysis/18_store_stock_by_industry_20261115",
+  "analysis/19_medical_net_20261116"
  ]
 }
