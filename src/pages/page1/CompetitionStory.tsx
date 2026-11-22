@@ -303,5 +303,10 @@ export function ConclusionStrategy() {
         <li>④ 주민등록 전입·전출과 연령별 인구로 장항2동·인접 동의 정주 변화(고령화, 신규 택지로의 이주)를 확인해 상권 수요 변화와 연결한다.</li>
       </ul>
     </div>
+    <div className="ts-cause-grid" style={{ marginTop: 18 }}>
+      <div className="ts-cause ts-cause-ext"><span>활용 · 시·구청 상권 담당</span><h4>사업 시기·지표 점검</h4><p>상권 사업의 대상 시기와 지표를 점검하고, 사업 전후를 비교하는 기준선으로 씁니다.</p></div>
+      <div className="ts-cause ts-cause-int"><span>활용 · 라페스타·웨스턴돔 상인회</span><h4>행사·팝업 시기 정하기</h4><p>주말·행사일 방문 흐름을 보고 행사와 팝업 시기를 정합니다.</p></div>
+      <div className="ts-cause ts-cause-str"><span>활용 · 창업 예정자·연구자</span><h4>동별 진입 흐름 확인</h4><p>동별 신규 진입·순증을 확인하고, 상세 탐색에서 표·CSV를 내려받습니다.</p></div>
+    </div>
   </>;
 }
