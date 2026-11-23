@@ -303,10 +303,15 @@ export function ConclusionStrategy() {
         <li>④ 주민등록 전입·전출과 연령별 인구로 장항2동·인접 동의 정주 변화(고령화, 신규 택지로의 이주)를 확인해 상권 수요 변화와 연결한다.</li>
       </ul>
     </div>
-    <div className="ts-cause-grid" style={{ marginTop: 18 }}>
-      <div className="ts-cause ts-cause-ext"><span>활용 · 시·구청 상권 담당</span><h4>사업 시기·지표 점검</h4><p>상권 사업의 대상 시기와 지표를 점검하고, 사업 전후를 비교하는 기준선으로 씁니다.</p></div>
-      <div className="ts-cause ts-cause-int"><span>활용 · 라페스타·웨스턴돔 상인회</span><h4>행사·팝업 시기 정하기</h4><p>주말·행사일 방문 흐름을 보고 행사와 팝업 시기를 정합니다.</p></div>
-      <div className="ts-cause ts-cause-str"><span>활용 · 창업 예정자·연구자</span><h4>동별 진입 흐름 확인</h4><p>동별 신규 진입·순증을 확인하고, 상세 탐색에서 표·CSV를 내려받습니다.</p></div>
+    <div className="ts-open" style={{ marginTop: 18 }}>
+      <b>활용</b>
+      <p style={{ margin: '6px 0 0' }}>이 분석은 실시간 상권 정보(소상공인365 등)가 아니라, 2018~2024년 장기 변화를 비교 지역과 나란히 놓고 진단한 자료입니다.</p>
+    </div>
+    <div className="ts-cause-grid" style={{ marginTop: 12, gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+      <div className="ts-cause ts-cause-ext"><span>활용 · 고양시 상권 담당</span><h4>사업 대상과 전후 비교 기준선</h4><p>활성화 사업의 대상(음식·주점 소비, 주말 낮 방문)을 정하고, 사업 전후를 비교하는 기준선으로 씁니다.</p></div>
+      <div className="ts-cause ts-cause-str"><span>활용 · 1기 신도시 정비 계획 담당</span><h4>주거 정비와 중심 상권을 함께</h4><p>배후 주거지 인구 감소와 중심 상권 수요를 함께 고려하는 근거로 씁니다.</p></div>
+      <div className="ts-cause ts-cause-int"><span>활용 · 라페스타·웨스턴돔 상인회</span><h4>공실 업종 유치 방향</h4><p>상권 성격 변화(주말 여가형 → 생활·의료형)에 맞춰 공실에 들일 업종 방향을 정하는 데 씁니다.</p></div>
+      <div className="ts-cause ts-cause-amp"><span>활용 · 연구자·시정연구원</span><h4>다른 1기 신도시 상권에 적용</h4><p>공공데이터 결합과 시기·비교 지역 판정 방법을 다른 1기 신도시 중심 상권에 그대로 적용하고, 상세 탐색에서 표·CSV를 내려받아 재현합니다.</p></div>
     </div>
   </>;
 }
